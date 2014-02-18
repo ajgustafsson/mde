@@ -47,6 +47,6 @@ public interface Transition extends Node {
 	 * @model
 	 * @generated
 	 */
-	void doJob(Task prevTask);
+	void transit();
 
 } // Transition

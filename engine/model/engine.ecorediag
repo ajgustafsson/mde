@@ -60,6 +60,10 @@
         <element xmi:type="ecore:EOperation" href="engine.ecore#//Task/doJob"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_C3AngZViEeOPIt4DSX9rxw"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_UPiUUJipEeO7z4lyg8Ua4w" type="2002">
+        <element xmi:type="ecore:EOperation" href="engine.ecore#//Task/setReady"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_UPiUUZipEeO7z4lyg8Ua4w"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_UQrx6Y2HEeO7E9OXd4kHsQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_UQrx6o2HEeO7E9OXd4kHsQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_UQrx642HEeO7E9OXd4kHsQ"/>

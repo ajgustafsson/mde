@@ -306,6 +306,24 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getTask__DoJob() {
+		return taskEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTask__SetReady__EList() {
+		return taskEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getTask_Permission() {
 		return (EReference)taskEClass.getEStructuralFeatures().get(3);
 	}
@@ -360,7 +378,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTransition__DoJob__Task() {
+	public EOperation getTransition__Transit() {
 		return transitionEClass.getEOperations().get(0);
 	}
 
@@ -642,10 +660,12 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		createEAttribute(taskEClass, TASK__DESCRIPTION);
 		createEAttribute(taskEClass, TASK__RESULT);
 		createEAttribute(taskEClass, TASK__DATA);
+		createEOperation(taskEClass, TASK___DO_JOB);
+		createEOperation(taskEClass, TASK___SET_READY__ELIST);
 
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__PREVIOUS_TASK);
-		createEOperation(transitionEClass, TRANSITION___DO_JOB__TASK);
+		createEOperation(transitionEClass, TRANSITION___TRANSIT);
 
 		splitEClass = createEClass(SPLIT);
 		createEReference(splitEClass, SPLIT__TASKS);
@@ -741,11 +761,15 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		initEAttribute(getTask_Result(), ecorePackage.getEBigInteger(), "Result", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_Data(), ecorePackage.getEString(), "data", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getTask__DoJob(), null, "doJob", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		EOperation op = initEOperation(getTask__SetReady__EList(), null, "setReady", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEEList(), "previousTasks", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(transitionEClass, Transition.class, "Transition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_PreviousTask(), this.getTask(), this.getTask_Transition(), "previousTask", null, 0, -1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getTransition__DoJob__Task(), null, "doJob", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTask(), "prevTask", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getTransition__Transit(), null, "transit", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(splitEClass, Split.class, "Split", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSplit_Tasks(), this.getTask(), null, "tasks", null, 2, -1, Split.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -836,7 +860,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		  (workflowEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne startExistsOnce endExistsOnce onlyOneTransitionAllowedToReferenceSameTask"
+			 "constraints", "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne startExistsOnce endExistsOnce onlyOneTransitionAllowedToReferenceSameTask"
 		   });			
 		addAnnotation
 		  (taskEClass, 
@@ -894,8 +918,8 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		  (workflowEClass, 
 		   source, 
 		   new String[] {
-			 "numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge", "\n\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTask->size())->sum() in\n\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits",
-			 "numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne", "\n\t\t\tlet numberOfIfElse : Integer = IfElse.allInstances()->size(),\n\t\t\tnumberOfSwitch : Integer = Switch.allInstances()->size(),\n\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n\t\t\tnumberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTask->size())->sum() in\n\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch",
+			 "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge", "\n\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTask->size())->sum() in\n\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits",
+			 "numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne", "\n\t\t\tlet numberOfIfElse : Integer = IfElse.allInstances()->size(),\n\t\t\tnumberOfSwitch : Integer = Switch.allInstances()->size(),\n\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n\t\t\tnumberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTask->size())->sum() in\n\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch",
 			 "startExistsOnce", "\n\t\t\tTask.allInstances()->select(t | t.isStart = true)->size() = 1",
 			 "endExistsOnce", "\n\t\t\tTask.allInstances()->select(t | t.isEnd = true)->size() = 1",
 			 "onlyOneTransitionAllowedToReferenceSameTask", "\n\t\t\tlet allRefs : Bag = Split.allInstances().tasks->\n\t\t\t\t\t\t\t\tunion(Merge.allInstances().task)->\n\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks)->\n\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks)->\n\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task)->\n\t\t\t\t\t\t\t\tunion(Simple.allInstances().task),\t\t\t\t\t\t\t\t\n\t\t\tuniqueRef : Set = Split.allInstances().tasks->asSet()->\n\t\t\t\t\t\t\t\tunion(Merge.allInstances().task->asSet())->\n\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks->asSet())->\n\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks->asSet())->\n\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task->asSet())->\n\t\t\t\t\t\t\t\tunion(Simple.allInstances().task->asSet())\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tin\n\t\t\t\t\t\t uniqueRef->size() = allRefs->size()"

@@ -4,7 +4,15 @@
 
 [template public merge(aMerge : Merge)]
 [comment @main/]
-[file (aMerge.name, false, 'UTF-8')]
+[file (aMerge.eClass().name + '.java', false, 'UTF-8')] implements [aMerge.eClass().eSuperTypes.name/] {
+
+	public void [aMerge.transit()/] {
+		[aMerge.previousTask/]
+	}
+
+}
+
+	
 
 [/file]
 [/template]

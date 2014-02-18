@@ -26,12 +26,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/Description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/Result"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute engine.ecore#//Task/data"/>
+      <genOperations ecoreOperation="engine.ecore#//Task/doJob"/>
+      <genOperations ecoreOperation="engine.ecore#//Task/setReady">
+        <genParameters ecoreParameter="engine.ecore#//Task/setReady/previousTasks"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="engine.ecore#//Transition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Transition/previousTask"/>
-      <genOperations ecoreOperation="engine.ecore#//Transition/doJob">
-        <genParameters ecoreParameter="engine.ecore#//Transition/doJob/prevTask"/>
-      </genOperations>
+      <genOperations ecoreOperation="engine.ecore#//Transition/transit"/>
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//Split">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Split/tasks"/>

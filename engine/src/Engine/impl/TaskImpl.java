@@ -7,6 +7,7 @@ import Engine.Permission;
 import Engine.Task;
 import Engine.TaskState;
 import Engine.Transition;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -330,6 +331,28 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void doJob() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReady(EList previousTasks) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -585,6 +608,24 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case EnginePackage.TASK___DO_JOB:
+				doJob();
+				return null;
+			case EnginePackage.TASK___SET_READY__ELIST:
+				setReady((EList)arguments.get(0));
+				return null;
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

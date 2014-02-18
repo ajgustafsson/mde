@@ -244,13 +244,31 @@ public interface EnginePackage extends EPackage {
 	int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 8;
 
 	/**
+	 * The operation id for the '<em>Do Job</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK___DO_JOB = NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Set Ready</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK___SET_READY__ELIST = NODE_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+	int TASK_OPERATION_COUNT = NODE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link Engine.Transition <em>Transition</em>}' class.
@@ -290,13 +308,13 @@ public interface EnginePackage extends EPackage {
 	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION___DO_JOB__TASK = NODE_OPERATION_COUNT + 0;
+	int TRANSITION___TRANSIT = NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Transition</em>' class.
@@ -354,13 +372,13 @@ public interface EnginePackage extends EPackage {
 	int SPLIT_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPLIT___DO_JOB__TASK = TRANSITION___DO_JOB__TASK;
+	int SPLIT___TRANSIT = TRANSITION___TRANSIT;
 
 	/**
 	 * The number of operations of the '<em>Split</em>' class.
@@ -418,13 +436,13 @@ public interface EnginePackage extends EPackage {
 	int MERGE_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE___DO_JOB__TASK = TRANSITION___DO_JOB__TASK;
+	int MERGE___TRANSIT = TRANSITION___TRANSIT;
 
 	/**
 	 * The number of operations of the '<em>Merge</em>' class.
@@ -482,13 +500,13 @@ public interface EnginePackage extends EPackage {
 	int SIMPLE_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE___DO_JOB__TASK = TRANSITION___DO_JOB__TASK;
+	int SIMPLE___TRANSIT = TRANSITION___TRANSIT;
 
 	/**
 	 * The number of operations of the '<em>Simple</em>' class.
@@ -546,13 +564,13 @@ public interface EnginePackage extends EPackage {
 	int IF_ELSE_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_ELSE___DO_JOB__TASK = TRANSITION___DO_JOB__TASK;
+	int IF_ELSE___TRANSIT = TRANSITION___TRANSIT;
 
 	/**
 	 * The number of operations of the '<em>If Else</em>' class.
@@ -610,13 +628,13 @@ public interface EnginePackage extends EPackage {
 	int SWITCH_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH___DO_JOB__TASK = TRANSITION___DO_JOB__TASK;
+	int SWITCH___TRANSIT = TRANSITION___TRANSIT;
 
 	/**
 	 * The number of operations of the '<em>Switch</em>' class.
@@ -674,13 +692,13 @@ public interface EnginePackage extends EPackage {
 	int WAIT_FOR_ONE_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Do Job</em>' operation.
+	 * The operation id for the '<em>Transit</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WAIT_FOR_ONE___DO_JOB__TASK = TRANSITION___DO_JOB__TASK;
+	int WAIT_FOR_ONE___TRANSIT = TRANSITION___TRANSIT;
 
 	/**
 	 * The number of operations of the '<em>Wait For One</em>' class.
@@ -1003,6 +1021,26 @@ public interface EnginePackage extends EPackage {
 	EAttribute getTask_Data();
 
 	/**
+	 * Returns the meta object for the '{@link Engine.Task#doJob() <em>Do Job</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Do Job</em>' operation.
+	 * @see Engine.Task#doJob()
+	 * @generated
+	 */
+	EOperation getTask__DoJob();
+
+	/**
+	 * Returns the meta object for the '{@link Engine.Task#setReady(org.eclipse.emf.common.util.EList) <em>Set Ready</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Set Ready</em>' operation.
+	 * @see Engine.Task#setReady(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getTask__SetReady__EList();
+
+	/**
 	 * Returns the meta object for the reference '{@link Engine.Task#getPermission <em>Permission</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1068,14 +1106,14 @@ public interface EnginePackage extends EPackage {
 	EReference getTransition_PreviousTask();
 
 	/**
-	 * Returns the meta object for the '{@link Engine.Transition#doJob(Engine.Task) <em>Do Job</em>}' operation.
+	 * Returns the meta object for the '{@link Engine.Transition#transit() <em>Transit</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Do Job</em>' operation.
-	 * @see Engine.Transition#doJob(Engine.Task)
+	 * @return the meta object for the '<em>Transit</em>' operation.
+	 * @see Engine.Transition#transit()
 	 * @generated
 	 */
-	EOperation getTransition__DoJob__Task();
+	EOperation getTransition__Transit();
 
 	/**
 	 * Returns the meta object for class '{@link Engine.Split <em>Split</em>}'.
@@ -1462,6 +1500,22 @@ public interface EnginePackage extends EPackage {
 		EAttribute TASK__DATA = eINSTANCE.getTask_Data();
 
 		/**
+		 * The meta object literal for the '<em><b>Do Job</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TASK___DO_JOB = eINSTANCE.getTask__DoJob();
+
+		/**
+		 * The meta object literal for the '<em><b>Set Ready</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TASK___SET_READY__ELIST = eINSTANCE.getTask__SetReady__EList();
+
+		/**
 		 * The meta object literal for the '<em><b>Permission</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1512,12 +1566,12 @@ public interface EnginePackage extends EPackage {
 		EReference TRANSITION__PREVIOUS_TASK = eINSTANCE.getTransition_PreviousTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Do Job</b></em>' operation.
+		 * The meta object literal for the '<em><b>Transit</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TRANSITION___DO_JOB__TASK = eINSTANCE.getTransition__DoJob__Task();
+		EOperation TRANSITION___TRANSIT = eINSTANCE.getTransition__Transit();
 
 		/**
 		 * The meta object literal for the '{@link Engine.impl.SplitImpl <em>Split</em>}' class.

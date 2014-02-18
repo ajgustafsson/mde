@@ -4,7 +4,10 @@
 
 [template public split(aSplit : Split)]
 [comment @main/]
-[file (aSplit.name, false, 'UTF-8')]
+[file (aSplit.eClass().name + '.java', false, 'UTF-8')]
+
+public class [aSplit.eClass()
+
 
 [/file]
 [/template]

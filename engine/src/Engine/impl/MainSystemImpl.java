@@ -9,17 +9,14 @@ import Engine.User;
 import Engine.UserGroup;
 import Engine.Workflow;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -150,6 +147,26 @@ public class MainSystemImpl extends MinimalEObjectImpl.Container implements Main
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 */
+	public void start(String userName, String workflowName) {
+		
+		Workflow workflow = getWorkflow(workflowName);
+		workflow.start(userName);
+	}
+
+	private Workflow getWorkflow(String name) {
+		for (Workflow workflow : workflows) {
+			if (workflow.getName().equals(name)) {
+				return workflow;
+			}
+		}
+		throw new UnsupportedOperationException("No workflow with name: " + name + ".");
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -258,6 +275,36 @@ public class MainSystemImpl extends MinimalEObjectImpl.Container implements Main
 				return permissions != null && !permissions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case EnginePackage.MAIN_SYSTEM___START__STRING_STRING:
+				start((String)arguments.get(0), (String)arguments.get(1));
+				return null;
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	public static void main(String[] args) {
+		if (args.length != 2) {
+			System.out.println("Need to provide username and name of the workflow to execute");
+		} else {
+			String userName = args[0];
+			String workflowName = args[1];
+			
+			MainSystemImpl system = new MainSystemImpl();
+			system.start(userName, workflowName);
+			
+		}
+		
+		
 	}
 
 } //MainSystemImpl

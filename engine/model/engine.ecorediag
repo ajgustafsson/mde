@@ -12,6 +12,10 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_UQpVpI2HEeO7E9OXd4kHsQ"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_UQpVpY2HEeO7E9OXd4kHsQ" type="5002">
+      <children xmi:type="notation:Node" xmi:id="_wDwSEJi9EeO2wKxXx8aSew" type="2002">
+        <element xmi:type="ecore:EOperation" href="engine.ecore#//Workflow/start"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_wDwSEZi9EeO2wKxXx8aSew"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_UQpVpo2HEeO7E9OXd4kHsQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_UQpVp42HEeO7E9OXd4kHsQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_UQp8sI2HEeO7E9OXd4kHsQ"/>
@@ -52,11 +56,11 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_UQsY8Y2HEeO7E9OXd4kHsQ"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_doC2oJi7EeOohNXuM62FSw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="engine.ecore#//Task/isEnd"/>
+        <element xmi:type="ecore:EAttribute" href="engine.ecore#//Task/end"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_doC2oZi7EeOohNXuM62FSw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_doEr0Ji7EeOohNXuM62FSw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="engine.ecore#//Task/isStart"/>
+        <element xmi:type="ecore:EAttribute" href="engine.ecore#//Task/start"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_doEr0Zi7EeOohNXuM62FSw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_doEr0pi7EeOohNXuM62FSw" type="2001">

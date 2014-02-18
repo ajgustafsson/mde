@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<G2:MainSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:G2="Group2"
+    xsi:schemaLocation="Group2 engine.ecore">
+  <workflows
+      name="myWorkFlow">
+    <nodes xsi:type="G2:Task"
+        name="Task1"
+        isStart="true"
+        transition="//@workflows.0/@nodes.1"/>
+    <nodes xsi:type="G2:Simple"
+        name="simple"
+        previousTask="//@workflows.0/@nodes.0"
+        task="//@workflows.0/@nodes.2"/>
+    <nodes xsi:type="G2:Task"
+        name="Task2"
+        isEnd="true"/>
+  </workflows>
+</G2:MainSystem>

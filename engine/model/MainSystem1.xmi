@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<G2:MainSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:G2="Group2"
+    xsi:schemaLocation="Group2 engine.ecore">
+  <workflows>
+    <nodes xsi:type="G2:Task"
+        isEnd="true"
+        isStart="true"/>
+  </workflows>
+</G2:MainSystem>

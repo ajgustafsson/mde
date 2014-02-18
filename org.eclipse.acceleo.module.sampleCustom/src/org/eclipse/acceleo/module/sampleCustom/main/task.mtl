@@ -1,0 +1,14 @@
+[comment encoding = UTF-8 /]
+[module task('Group2')]
+
+
+[template public task(aTask : Task)]
+[comment @main/]
+[file ('Task.Java', false, 'UTF-8')]
+public class Task {
+
+	public Task
+
+}
+[/file]
+[/template]

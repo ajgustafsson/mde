@@ -1,0 +1,10 @@
+[comment encoding = UTF-8 /]
+[module Split('Group2')]
+
+
+[template public split(aSplit : Split)]
+[comment @main/]
+[file (aSplit.name, false, 'UTF-8')]
+
+[/file]
+[/template]

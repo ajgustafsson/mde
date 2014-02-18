@@ -35,7 +35,7 @@ public class Task extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/sampleCustom/main/task";
+    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/sampleCustom/main/Task";
     
     /**
      * The name of the templates that are to be generated.

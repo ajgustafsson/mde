@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="task" name="org.eclipse.acceleo.module.sampleCustom">
+<project default="Task" name="org.eclipse.acceleo.module.sampleCustom">
     <property name="ECLIPSE_HOME" value="../../../../../Downloads/eclipse-modeling-kepler-R-win32-x86_64/eclipse"/>
     <property name="ECLIPSE_WORKSPACE" value="../../../.."/>
 
@@ -46,7 +46,7 @@
     </path>
 
     <!-- The default task with the jars used by this project -->
-    <target name="task">
+    <target name="Task">
         <java classname="org.eclipse.acceleo.module.sampleCustom.main.Task" classpathref="org.eclipse.acceleo.module.sampleCustom.classpath">
             <arg value="${model}"/>
             <arg value="${target}"/>
@@ -57,7 +57,7 @@
         In case of problem you can also try with all the jar available in your Eclipse
         Keep in mind that having two versions of the same jar can create problems
     -->
-    <target name="task.alljars">
+    <target name="Task.alljars">
         <java classname="org.eclipse.acceleo.module.sampleCustom.main.Task" classpathref="org.eclipse.acceleo.module.sampleCustom.classpath">
             <arg value="${model}"/>
             <arg value="${target}"/>

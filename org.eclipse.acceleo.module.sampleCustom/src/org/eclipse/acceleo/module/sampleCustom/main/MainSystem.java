@@ -35,7 +35,7 @@ public class MainSystem extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/sampleCustom/main/mainSystem";
+    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/sampleCustom/main/MainSystem";
     
     /**
      * The name of the templates that are to be generated.

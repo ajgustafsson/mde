@@ -10,7 +10,7 @@ Package Engine <Group2>
   Class Workflow
     Reference nodes : Node<<0..*>>
     Attribute name : EString
-    Operation start(EString) : void
+    Operation start(User) : void
 
   Class Node
     Attribute name : EString

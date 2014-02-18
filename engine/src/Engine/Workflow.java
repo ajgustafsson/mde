@@ -73,6 +73,6 @@ public interface Workflow extends EObject {
 	 * @model
 	 * @generated
 	 */
-	void start(String userName);
+	void start(User user);
 
 } // Workflow

@@ -243,7 +243,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getWorkflow__Start__String() {
+	public EOperation getWorkflow__Start__User() {
 		return workflowEClass.getEOperations().get(0);
 	}
 
@@ -674,7 +674,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		workflowEClass = createEClass(WORKFLOW);
 		createEReference(workflowEClass, WORKFLOW__NODES);
 		createEAttribute(workflowEClass, WORKFLOW__NAME);
-		createEOperation(workflowEClass, WORKFLOW___START__STRING);
+		createEOperation(workflowEClass, WORKFLOW___START__USER);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
@@ -778,8 +778,8 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		initEReference(getWorkflow_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflow_Name(), ecorePackage.getEString(), "name", null, 0, 1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getWorkflow__Start__String(), null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "userName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getWorkflow__Start__User(), null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUser(), "user", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

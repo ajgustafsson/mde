@@ -5,6 +5,7 @@ package Engine.impl;
 import Engine.EnginePackage;
 import Engine.Node;
 import Engine.Task;
+import Engine.User;
 import Engine.Workflow;
 
 import java.lang.reflect.InvocationTargetException;
@@ -118,22 +119,12 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
-	public void start(String userName) {
-		
-		Task startTask = getStartTask();
-		
-		boolean running = true;
-		
-		while (running) {
-			
-			
-			
-			
-		}
-		
-	
+	public void start(User user) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
-	
+
 	private Task getStartTask() {
 		for (Node node : this.nodes) {
 			if (node instanceof Task) {
@@ -242,8 +233,8 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case EnginePackage.WORKFLOW___START__STRING:
-				start((String)arguments.get(0));
+			case EnginePackage.WORKFLOW___START__USER:
+				start((User)arguments.get(0));
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

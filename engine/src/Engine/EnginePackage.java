@@ -104,7 +104,7 @@ public interface EnginePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW___START__STRING = 0;
+	int WORKFLOW___START__USER = 0;
 
 	/**
 	 * The number of operations of the '<em>Workflow</em>' class.
@@ -973,14 +973,14 @@ public interface EnginePackage extends EPackage {
 	EAttribute getWorkflow_Name();
 
 	/**
-	 * Returns the meta object for the '{@link Engine.Workflow#start(java.lang.String) <em>Start</em>}' operation.
+	 * Returns the meta object for the '{@link Engine.Workflow#start(Engine.User) <em>Start</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Start</em>' operation.
-	 * @see Engine.Workflow#start(java.lang.String)
+	 * @see Engine.Workflow#start(Engine.User)
 	 * @generated
 	 */
-	EOperation getWorkflow__Start__String();
+	EOperation getWorkflow__Start__User();
 
 	/**
 	 * Returns the meta object for class '{@link Engine.Node <em>Node</em>}'.
@@ -1503,7 +1503,7 @@ public interface EnginePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation WORKFLOW___START__STRING = eINSTANCE.getWorkflow__Start__String();
+		EOperation WORKFLOW___START__USER = eINSTANCE.getWorkflow__Start__User();
 
 		/**
 		 * The meta object literal for the '{@link Engine.Node <em>Node</em>}' class.

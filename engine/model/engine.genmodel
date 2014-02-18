@@ -14,7 +14,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//Workflow/nodes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Workflow/name"/>
       <genOperations ecoreOperation="engine.ecore#//Workflow/start">
-        <genParameters ecoreParameter="engine.ecore#//Workflow/start/userName"/>
+        <genParameters ecoreParameter="engine.ecore#//Workflow/start/user"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="engine.ecore#//Node">

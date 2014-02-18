@@ -151,7 +151,11 @@ public class MainSystemImpl extends MinimalEObjectImpl.Container implements Main
 	public void start(String userName, String workflowName) {
 		
 		Workflow workflow = getWorkflow(workflowName);
-		workflow.start(userName);
+		for(User user : this.users){
+			if(userName.equals(user.getName())){
+				workflow.start(user);
+			}
+		}
 	}
 
 	private Workflow getWorkflow(String name) {

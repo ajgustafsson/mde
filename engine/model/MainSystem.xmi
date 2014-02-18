@@ -5,25 +5,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:G2="Group2"
     xsi:schemaLocation="Group2 engine.ecore">
-  <workflows
-      name="myWorkFlow">
+  <workflows>
     <nodes xsi:type="G2:Task"
         name="Task1"
-        isStart="true"
+        start="true"
         transition="//@workflows.0/@nodes.1"/>
     <nodes xsi:type="G2:Simple"
-        name="simple"
-        previousTask="//@workflows.0/@nodes.0"
+        name="simple1"
+        previousTasks="//@workflows.0/@nodes.0"
         task="//@workflows.0/@nodes.2"/>
     <nodes xsi:type="G2:Task"
         name="Task2"
-        transition="//@workflows.0/@nodes.3"/>
-    <nodes xsi:type="G2:Simple"
-        name="simepl2"
-        previousTask="//@workflows.0/@nodes.2"
-        task="//@workflows.0/@nodes.4"/>
-    <nodes xsi:type="G2:Task"
-        name="Task3"
-        isEnd="true"/>
+        end="true"/>
   </workflows>
 </G2:MainSystem>

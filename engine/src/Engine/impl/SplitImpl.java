@@ -137,12 +137,11 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for (Task task : tasks) {
+			task.setReady(previousTask);
+		}		
 	}
 
 	/**

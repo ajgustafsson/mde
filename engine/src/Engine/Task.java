@@ -2,7 +2,6 @@
  */
 package Engine;
 
-import java.math.BigInteger;
 import org.eclipse.emf.common.util.EList;
 
 
@@ -236,12 +235,12 @@ public interface Task extends Node {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' attribute.
-	 * @see #setResult(BigInteger)
+	 * @see #setResult(int)
 	 * @see Engine.EnginePackage#getTask_Result()
 	 * @model
 	 * @generated
 	 */
-	BigInteger getResult();
+	int getResult();
 
 	/**
 	 * Sets the value of the '{@link Engine.Task#getResult <em>Result</em>}' attribute.
@@ -251,6 +250,6 @@ public interface Task extends Node {
 	 * @see #getResult()
 	 * @generated
 	 */
-	void setResult(BigInteger value);
+	void setResult(int value);
 
 } // Task

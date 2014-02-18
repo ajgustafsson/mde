@@ -8,7 +8,6 @@ import Engine.Task;
 import Engine.TaskState;
 import Engine.Transition;
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigInteger;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -170,7 +169,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger RESULT_EDEFAULT = null;
+	protected static final int RESULT_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' attribute.
@@ -180,7 +179,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger result = RESULT_EDEFAULT;
+	protected int result = RESULT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
@@ -453,7 +452,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigInteger getResult() {
+	public int getResult() {
 		return result;
 	}
 
@@ -462,8 +461,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(BigInteger newResult) {
-		BigInteger oldResult = result;
+	public void setResult(int newResult) {
+		int oldResult = result;
 		result = newResult;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EnginePackage.TASK__RESULT, oldResult, result));
@@ -532,7 +531,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				setDescription((String)newValue);
 				return;
 			case EnginePackage.TASK__RESULT:
-				setResult((BigInteger)newValue);
+				setResult((Integer)newValue);
 				return;
 			case EnginePackage.TASK__DATA:
 				setData((String)newValue);
@@ -603,7 +602,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			case EnginePackage.TASK__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case EnginePackage.TASK__RESULT:
-				return RESULT_EDEFAULT == null ? result != null : !RESULT_EDEFAULT.equals(result);
+				return result != RESULT_EDEFAULT;
 			case EnginePackage.TASK__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 		}

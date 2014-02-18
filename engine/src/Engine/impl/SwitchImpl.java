@@ -2,13 +2,11 @@
  */
 package Engine.impl;
 
-import Engine.EnginePackage;
-import Engine.Switch;
-import Engine.Task;
-
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,6 +18,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import Engine.EnginePackage;
+import Engine.Switch;
+import Engine.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,12 +142,12 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		Task prevTask = previousTask.get(0);
+		int result = previousTask.get(0).getResult();
+		Task nextTask = tasks.get(result);
 		
-		
+		nextTask.setReady(previousTask);
 		
 	}
 	

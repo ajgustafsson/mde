@@ -137,12 +137,10 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		int result = previousTask.get(0).getResult();
+		tasks.get(result).setReady(previousTask);
 	}
 
 	/**

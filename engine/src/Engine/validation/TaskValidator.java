@@ -29,6 +29,8 @@ public interface TaskValidator {
 	boolean validatePermission(Permission value);
 	boolean validateTransition(EList<Transition> value);
 	boolean validateDescription(String value);
+	boolean validateResult(int value);
+
 	boolean validateResult(BigInteger value);
 	boolean validateData(String value);
 }

@@ -11,7 +11,7 @@ public class [aSplit.eClass().name/] implements [aSplit.eClass().eSuperTypes.nam
 	private List<Task> tasks;
 
 	public void transit(Task prevTask) {
-		List<Task> previousTasks = new ArrayList([aSplit.previousTask/]);
+		List<Task> previousTasks = new ArrayList([aSplit.previousTasks/]);
 				
 		for (Task next : task) {
 			next.setPreviousTasks(previousTasks);

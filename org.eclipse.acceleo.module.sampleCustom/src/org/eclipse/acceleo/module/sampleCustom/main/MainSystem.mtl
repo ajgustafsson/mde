@@ -33,17 +33,20 @@ public class [workflow.eClass().name/] {
 	TaskImpl [task.name/] = new TaskImpl();
 	[task.name/].setName("[task.name/]");
 	[task.name/].setState(TaskState.[task.state/]);
-	[task.name/].setIsEnd([task.isEnd/]);
-	[task.name/].setIsStart([task.isStart/]);
+	[task.name/].setEnd([task.end/]);
+	[task.name/].setStart([task.start/]);
 	tasks.put([task.name/].getName(), [task.name/]);
 	System.out.println([task.name/].getName() + [task.name/].getState());
 	
 	[/for]
-}/**
+}
 	[for (simple : Simple | workflow.nodes->select(oclIsKindOf(Simple)).oclAsType(Simple))]
-    [simple.eClass().name/] [simple.name/] = new [simple.eClass().name/]([simple.name/], tasks.get("[simple.task/]"), tasks.get("[simple.previousTask/]"));
+    SimpleImpl [simple.name/] = new SimpleImpl([simple.name/], tasks.get("[simple.task/]"), tasks.get("[simple.previousTasks/]"));
+	[simple.name/].setName([simple.name/]);
+	[simple.name/].setTask([simple.task/]);
+	[simple.name/].setPreviousTask([simple.previousTasks]);
 	transitions.put("[simple/]","[simple.name/]");
-	[/for]*/
+	[/for]
 	
 	
 	}		

@@ -38,7 +38,7 @@
       <details key="noMoreThanOneOutReferenceForTasks" value="&#xA;&#x9;&#x9;&#x9;self.transition->size() &lt; 2"/>
     </eAnnotations>
     <eOperations name="doJob"/>
-    <eOperations name="setReady" eType="#//Task">
+    <eOperations name="setReady">
       <eParameters name="previousTasks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TaskState"/>
@@ -52,6 +52,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
+        eType="#//Task"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" interface="true"
       eSuperTypes="#//Node">
@@ -133,6 +135,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MainSystem">
+    <eOperations name="start"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="workflows" upperBound="-1"
         eType="#//Workflow" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"

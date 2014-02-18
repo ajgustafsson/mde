@@ -26,6 +26,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/Description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/Result"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute engine.ecore#//Task/data"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Task/previousTasks"/>
       <genOperations ecoreOperation="engine.ecore#//Task/doJob"/>
       <genOperations ecoreOperation="engine.ecore#//Task/setReady">
         <genParameters ecoreParameter="engine.ecore#//Task/setReady/previousTasks"/>
@@ -62,6 +63,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//MainSystem/users"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//MainSystem/userGroups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//MainSystem/permissions"/>
+      <genOperations ecoreOperation="engine.ecore#//MainSystem/start"/>
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//UserGroup">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//UserGroup/permissions"/>

@@ -2,7 +2,6 @@
  */
 package Engine;
 
-import java.math.BigInteger;
 import org.eclipse.emf.common.util.EList;
 
 
@@ -16,13 +15,14 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link Engine.Task#getState <em>State</em>}</li>
- *   <li>{@link Engine.Task#isIsEnd <em>Is End</em>}</li>
- *   <li>{@link Engine.Task#isIsStart <em>Is Start</em>}</li>
+ *   <li>{@link Engine.Task#isEnd <em>End</em>}</li>
+ *   <li>{@link Engine.Task#isStart <em>Start</em>}</li>
  *   <li>{@link Engine.Task#getPermission <em>Permission</em>}</li>
  *   <li>{@link Engine.Task#getTransition <em>Transition</em>}</li>
  *   <li>{@link Engine.Task#getDescription <em>Description</em>}</li>
  *   <li>{@link Engine.Task#getResult <em>Result</em>}</li>
  *   <li>{@link Engine.Task#getData <em>Data</em>}</li>
+ *   <li>{@link Engine.Task#getPreviousTasks <em>Previous Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,58 +62,58 @@ public interface Task extends Node {
 	void setState(TaskState value);
 
 	/**
-	 * Returns the value of the '<em><b>Is End</b></em>' attribute.
+	 * Returns the value of the '<em><b>End</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is End</em>' attribute isn't clear,
+	 * If the meaning of the '<em>End</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is End</em>' attribute.
-	 * @see #setIsEnd(boolean)
-	 * @see Engine.EnginePackage#getTask_IsEnd()
+	 * @return the value of the '<em>End</em>' attribute.
+	 * @see #setEnd(boolean)
+	 * @see Engine.EnginePackage#getTask_End()
 	 * @model default="false" required="true"
 	 * @generated
 	 */
-	boolean isIsEnd();
+	boolean isEnd();
 
 	/**
-	 * Sets the value of the '{@link Engine.Task#isIsEnd <em>Is End</em>}' attribute.
+	 * Sets the value of the '{@link Engine.Task#isEnd <em>End</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is End</em>' attribute.
-	 * @see #isIsEnd()
+	 * @param value the new value of the '<em>End</em>' attribute.
+	 * @see #isEnd()
 	 * @generated
 	 */
-	void setIsEnd(boolean value);
+	void setEnd(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Start</b></em>' attribute.
+	 * Returns the value of the '<em><b>Start</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Start</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Start</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Start</em>' attribute.
-	 * @see #setIsStart(boolean)
-	 * @see Engine.EnginePackage#getTask_IsStart()
+	 * @return the value of the '<em>Start</em>' attribute.
+	 * @see #setStart(boolean)
+	 * @see Engine.EnginePackage#getTask_Start()
 	 * @model default="false" required="true"
 	 * @generated
 	 */
-	boolean isIsStart();
+	boolean isStart();
 
 	/**
-	 * Sets the value of the '{@link Engine.Task#isIsStart <em>Is Start</em>}' attribute.
+	 * Sets the value of the '{@link Engine.Task#isStart <em>Start</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Start</em>' attribute.
-	 * @see #isIsStart()
+	 * @param value the new value of the '<em>Start</em>' attribute.
+	 * @see #isStart()
 	 * @generated
 	 */
-	void setIsStart(boolean value);
+	void setStart(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Data</b></em>' attribute.
@@ -140,6 +140,22 @@ public interface Task extends Node {
 	 * @generated
 	 */
 	void setData(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Previous Tasks</b></em>' reference list.
+	 * The list contents are of type {@link Engine.Task}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Previous Tasks</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Previous Tasks</em>' reference list.
+	 * @see Engine.EnginePackage#getTask_PreviousTasks()
+	 * @model
+	 * @generated
+	 */
+	EList<Task> getPreviousTasks();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,7 +202,7 @@ public interface Task extends Node {
 	/**
 	 * Returns the value of the '<em><b>Transition</b></em>' reference list.
 	 * The list contents are of type {@link Engine.Transition}.
-	 * It is bidirectional and its opposite is '{@link Engine.Transition#getPreviousTask <em>Previous Task</em>}'.
+	 * It is bidirectional and its opposite is '{@link Engine.Transition#getPreviousTasks <em>Previous Tasks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Transition</em>' reference isn't clear,
@@ -195,8 +211,8 @@ public interface Task extends Node {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transition</em>' reference list.
 	 * @see Engine.EnginePackage#getTask_Transition()
-	 * @see Engine.Transition#getPreviousTask
-	 * @model opposite="previousTask"
+	 * @see Engine.Transition#getPreviousTasks
+	 * @model opposite="previousTasks"
 	 * @generated
 	 */
 	EList<Transition> getTransition();
@@ -236,12 +252,12 @@ public interface Task extends Node {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' attribute.
-	 * @see #setResult(BigInteger)
+	 * @see #setResult(int)
 	 * @see Engine.EnginePackage#getTask_Result()
 	 * @model
 	 * @generated
 	 */
-	BigInteger getResult();
+	int getResult();
 
 	/**
 	 * Sets the value of the '{@link Engine.Task#getResult <em>Result</em>}' attribute.
@@ -251,6 +267,6 @@ public interface Task extends Node {
 	 * @see #getResult()
 	 * @generated
 	 */
-	void setResult(BigInteger value);
+	void setResult(int value);
 
 } // Task

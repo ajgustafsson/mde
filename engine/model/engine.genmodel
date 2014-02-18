@@ -13,26 +13,30 @@
     <genClasses ecoreClass="engine.ecore#//Workflow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//Workflow/nodes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Workflow/name"/>
+      <genOperations ecoreOperation="engine.ecore#//Workflow/start">
+        <genParameters ecoreParameter="engine.ecore#//Workflow/start/user"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="engine.ecore#//Node">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Node/name"/>
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//Task">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/state"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/isEnd"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/isStart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/end"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/start"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Task/permission"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Task/transition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/Description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Task/Result"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute engine.ecore#//Task/data"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Task/previousTasks"/>
       <genOperations ecoreOperation="engine.ecore#//Task/doJob"/>
       <genOperations ecoreOperation="engine.ecore#//Task/setReady">
         <genParameters ecoreParameter="engine.ecore#//Task/setReady/previousTasks"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="engine.ecore#//Transition">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Transition/previousTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Transition/previousTasks"/>
       <genOperations ecoreOperation="engine.ecore#//Transition/transit"/>
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//Split">
@@ -62,6 +66,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//MainSystem/users"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//MainSystem/userGroups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//MainSystem/permissions"/>
+      <genOperations ecoreOperation="engine.ecore#//MainSystem/start">
+        <genParameters ecoreParameter="engine.ecore#//MainSystem/start/userName"/>
+        <genParameters ecoreParameter="engine.ecore#//MainSystem/start/workflowName"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//UserGroup">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//UserGroup/permissions"/>

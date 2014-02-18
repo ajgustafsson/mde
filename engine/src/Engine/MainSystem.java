@@ -90,4 +90,12 @@ public interface MainSystem extends EObject {
 	 */
 	EList<Permission> getPermissions();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void start(String userName, String workflowName);
+
 } // MainSystem

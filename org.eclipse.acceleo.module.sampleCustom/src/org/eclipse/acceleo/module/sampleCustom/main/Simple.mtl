@@ -29,6 +29,7 @@ public class [aSimple.eClass().name/] extends [aSimple.eClass().eSuperTypes.name
 	public String getPrevTask() {
 		return prevTask;
 	}
+
 }
 [/file]
 [/template]

@@ -19,5 +19,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TransitionValidator {
 	boolean validate();
 
+	boolean validatePreviousTasks(EList<Task> value);
+
 	boolean validatePreviousTask(EList<Task> value);
 }

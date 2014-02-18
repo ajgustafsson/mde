@@ -2,9 +2,6 @@
  */
 package Engine.impl;
 
-import Engine.EnginePackage;
-import Engine.Switch;
-import Engine.Task;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
@@ -17,6 +14,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import Engine.EnginePackage;
+import Engine.Switch;
+import Engine.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link Engine.impl.SwitchImpl#getName <em>Name</em>}</li>
- *   <li>{@link Engine.impl.SwitchImpl#getPreviousTask <em>Previous Task</em>}</li>
+ *   <li>{@link Engine.impl.SwitchImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
  *   <li>{@link Engine.impl.SwitchImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
@@ -53,14 +53,14 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	 */
 	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getPreviousTask() <em>Previous Task</em>}' reference list.
+	 * The cached value of the '{@link #getPreviousTasks() <em>Previous Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreviousTask()
+	 * @see #getPreviousTasks()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Task> previousTask;
+	protected EList<Task> previousTasks;
 	/**
 	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -115,11 +115,11 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Task> getPreviousTask() {
-		if (previousTask == null) {
-			previousTask = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.SWITCH__PREVIOUS_TASK, EnginePackage.TASK__TRANSITION);
+	public EList<Task> getPreviousTasks() {
+		if (previousTasks == null) {
+			previousTasks = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.SWITCH__PREVIOUS_TASKS, EnginePackage.TASK__TRANSITION);
 		}
-		return previousTask;
+		return previousTasks;
 	}
 
 	/**
@@ -137,13 +137,16 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		int result = previousTasks.get(0).getResult();
+		Task nextTask = tasks.get(result);
+		
+		nextTask.setReady(previousTasks);
+		
 	}
+	
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,8 +157,8 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EnginePackage.SWITCH__PREVIOUS_TASK:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPreviousTask()).basicAdd(otherEnd, msgs);
+			case EnginePackage.SWITCH__PREVIOUS_TASKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPreviousTasks()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -168,8 +171,8 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EnginePackage.SWITCH__PREVIOUS_TASK:
-				return ((InternalEList<?>)getPreviousTask()).basicRemove(otherEnd, msgs);
+			case EnginePackage.SWITCH__PREVIOUS_TASKS:
+				return ((InternalEList<?>)getPreviousTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -184,8 +187,8 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 		switch (featureID) {
 			case EnginePackage.SWITCH__NAME:
 				return getName();
-			case EnginePackage.SWITCH__PREVIOUS_TASK:
-				return getPreviousTask();
+			case EnginePackage.SWITCH__PREVIOUS_TASKS:
+				return getPreviousTasks();
 			case EnginePackage.SWITCH__TASKS:
 				return getTasks();
 		}
@@ -204,9 +207,9 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 			case EnginePackage.SWITCH__NAME:
 				setName((String)newValue);
 				return;
-			case EnginePackage.SWITCH__PREVIOUS_TASK:
-				getPreviousTask().clear();
-				getPreviousTask().addAll((Collection<? extends Task>)newValue);
+			case EnginePackage.SWITCH__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
+				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
 			case EnginePackage.SWITCH__TASKS:
 				getTasks().clear();
@@ -227,8 +230,8 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 			case EnginePackage.SWITCH__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case EnginePackage.SWITCH__PREVIOUS_TASK:
-				getPreviousTask().clear();
+			case EnginePackage.SWITCH__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
 				return;
 			case EnginePackage.SWITCH__TASKS:
 				getTasks().clear();
@@ -247,8 +250,8 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 		switch (featureID) {
 			case EnginePackage.SWITCH__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case EnginePackage.SWITCH__PREVIOUS_TASK:
-				return previousTask != null && !previousTask.isEmpty();
+			case EnginePackage.SWITCH__PREVIOUS_TASKS:
+				return previousTasks != null && !previousTasks.isEmpty();
 			case EnginePackage.SWITCH__TASKS:
 				return tasks != null && !tasks.isEmpty();
 		}

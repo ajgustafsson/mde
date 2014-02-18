@@ -98,13 +98,22 @@ public interface EnginePackage extends EPackage {
 	int WORKFLOW_FEATURE_COUNT = 2;
 
 	/**
+	 * The operation id for the '<em>Start</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW___START__USER = 0;
+
+	/**
 	 * The number of operations of the '<em>Workflow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WORKFLOW_OPERATION_COUNT = 0;
+	int WORKFLOW_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link Engine.Node <em>Node</em>}' class.
@@ -172,22 +181,22 @@ public interface EnginePackage extends EPackage {
 	int TASK__STATE = NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Is End</b></em>' attribute.
+	 * The feature id for the '<em><b>End</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__IS_END = NODE_FEATURE_COUNT + 1;
+	int TASK__END = NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Start</b></em>' attribute.
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__IS_START = NODE_FEATURE_COUNT + 2;
+	int TASK__START = NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Permission</b></em>' reference.
@@ -235,13 +244,22 @@ public interface EnginePackage extends EPackage {
 	int TASK__DATA = NODE_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__PREVIOUS_TASKS = NODE_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 8;
+	int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Do Job</em>' operation.
@@ -290,13 +308,13 @@ public interface EnginePackage extends EPackage {
 	int TRANSITION__NAME = NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__PREVIOUS_TASK = NODE_FEATURE_COUNT + 0;
+	int TRANSITION__PREVIOUS_TASKS = NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
@@ -345,13 +363,13 @@ public interface EnginePackage extends EPackage {
 	int SPLIT__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPLIT__PREVIOUS_TASK = TRANSITION__PREVIOUS_TASK;
+	int SPLIT__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
@@ -409,13 +427,13 @@ public interface EnginePackage extends EPackage {
 	int MERGE__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE__PREVIOUS_TASK = TRANSITION__PREVIOUS_TASK;
+	int MERGE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -473,13 +491,13 @@ public interface EnginePackage extends EPackage {
 	int SIMPLE__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE__PREVIOUS_TASK = TRANSITION__PREVIOUS_TASK;
+	int SIMPLE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -537,13 +555,13 @@ public interface EnginePackage extends EPackage {
 	int IF_ELSE__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_ELSE__PREVIOUS_TASK = TRANSITION__PREVIOUS_TASK;
+	int IF_ELSE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
@@ -601,13 +619,13 @@ public interface EnginePackage extends EPackage {
 	int SWITCH__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH__PREVIOUS_TASK = TRANSITION__PREVIOUS_TASK;
+	int SWITCH__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
@@ -665,13 +683,13 @@ public interface EnginePackage extends EPackage {
 	int WAIT_FOR_ONE__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Previous Task</b></em>' reference list.
+	 * The feature id for the '<em><b>Previous Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WAIT_FOR_ONE__PREVIOUS_TASK = TRANSITION__PREVIOUS_TASK;
+	int WAIT_FOR_ONE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -811,13 +829,22 @@ public interface EnginePackage extends EPackage {
 	int MAIN_SYSTEM_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Start</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAIN_SYSTEM___START__STRING_STRING = 0;
+
+	/**
 	 * The number of operations of the '<em>Main System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAIN_SYSTEM_OPERATION_COUNT = 0;
+	int MAIN_SYSTEM_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link Engine.impl.UserGroupImpl <em>User Group</em>}' class.
@@ -946,6 +973,16 @@ public interface EnginePackage extends EPackage {
 	EAttribute getWorkflow_Name();
 
 	/**
+	 * Returns the meta object for the '{@link Engine.Workflow#start(Engine.User) <em>Start</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start</em>' operation.
+	 * @see Engine.Workflow#start(Engine.User)
+	 * @generated
+	 */
+	EOperation getWorkflow__Start__User();
+
+	/**
 	 * Returns the meta object for class '{@link Engine.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -988,26 +1025,26 @@ public interface EnginePackage extends EPackage {
 	EAttribute getTask_State();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Engine.Task#isIsEnd <em>Is End</em>}'.
+	 * Returns the meta object for the attribute '{@link Engine.Task#isEnd <em>End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is End</em>'.
-	 * @see Engine.Task#isIsEnd()
+	 * @return the meta object for the attribute '<em>End</em>'.
+	 * @see Engine.Task#isEnd()
 	 * @see #getTask()
 	 * @generated
 	 */
-	EAttribute getTask_IsEnd();
+	EAttribute getTask_End();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Engine.Task#isIsStart <em>Is Start</em>}'.
+	 * Returns the meta object for the attribute '{@link Engine.Task#isStart <em>Start</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Start</em>'.
-	 * @see Engine.Task#isIsStart()
+	 * @return the meta object for the attribute '<em>Start</em>'.
+	 * @see Engine.Task#isStart()
 	 * @see #getTask()
 	 * @generated
 	 */
-	EAttribute getTask_IsStart();
+	EAttribute getTask_Start();
 
 	/**
 	 * Returns the meta object for the attribute '{@link Engine.Task#getData <em>Data</em>}'.
@@ -1019,6 +1056,17 @@ public interface EnginePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTask_Data();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Engine.Task#getPreviousTasks <em>Previous Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Previous Tasks</em>'.
+	 * @see Engine.Task#getPreviousTasks()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EReference getTask_PreviousTasks();
 
 	/**
 	 * Returns the meta object for the '{@link Engine.Task#doJob() <em>Do Job</em>}' operation.
@@ -1095,15 +1143,15 @@ public interface EnginePackage extends EPackage {
 	EClass getTransition();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Engine.Transition#getPreviousTask <em>Previous Task</em>}'.
+	 * Returns the meta object for the reference list '{@link Engine.Transition#getPreviousTasks <em>Previous Tasks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Previous Task</em>'.
-	 * @see Engine.Transition#getPreviousTask()
+	 * @return the meta object for the reference list '<em>Previous Tasks</em>'.
+	 * @see Engine.Transition#getPreviousTasks()
 	 * @see #getTransition()
 	 * @generated
 	 */
-	EReference getTransition_PreviousTask();
+	EReference getTransition_PreviousTasks();
 
 	/**
 	 * Returns the meta object for the '{@link Engine.Transition#transit() <em>Transit</em>}' operation.
@@ -1328,6 +1376,16 @@ public interface EnginePackage extends EPackage {
 	EReference getMainSystem_Permissions();
 
 	/**
+	 * Returns the meta object for the '{@link Engine.MainSystem#start(java.lang.String, java.lang.String) <em>Start</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start</em>' operation.
+	 * @see Engine.MainSystem#start(java.lang.String, java.lang.String)
+	 * @generated
+	 */
+	EOperation getMainSystem__Start__String_String();
+
+	/**
 	 * Returns the meta object for class '{@link Engine.UserGroup <em>User Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1440,6 +1498,14 @@ public interface EnginePackage extends EPackage {
 		EAttribute WORKFLOW__NAME = eINSTANCE.getWorkflow_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Start</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation WORKFLOW___START__USER = eINSTANCE.getWorkflow__Start__User();
+
+		/**
 		 * The meta object literal for the '{@link Engine.Node <em>Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1476,20 +1542,20 @@ public interface EnginePackage extends EPackage {
 		EAttribute TASK__STATE = eINSTANCE.getTask_State();
 
 		/**
-		 * The meta object literal for the '<em><b>Is End</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>End</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TASK__IS_END = eINSTANCE.getTask_IsEnd();
+		EAttribute TASK__END = eINSTANCE.getTask_End();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Start</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Start</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TASK__IS_START = eINSTANCE.getTask_IsStart();
+		EAttribute TASK__START = eINSTANCE.getTask_Start();
 
 		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
@@ -1498,6 +1564,14 @@ public interface EnginePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TASK__DATA = eINSTANCE.getTask_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Previous Tasks</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK__PREVIOUS_TASKS = eINSTANCE.getTask_PreviousTasks();
 
 		/**
 		 * The meta object literal for the '<em><b>Do Job</b></em>' operation.
@@ -1558,12 +1632,12 @@ public interface EnginePackage extends EPackage {
 		EClass TRANSITION = eINSTANCE.getTransition();
 
 		/**
-		 * The meta object literal for the '<em><b>Previous Task</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Previous Tasks</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSITION__PREVIOUS_TASK = eINSTANCE.getTransition_PreviousTask();
+		EReference TRANSITION__PREVIOUS_TASKS = eINSTANCE.getTransition_PreviousTasks();
 
 		/**
 		 * The meta object literal for the '<em><b>Transit</b></em>' operation.
@@ -1748,6 +1822,14 @@ public interface EnginePackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAIN_SYSTEM__PERMISSIONS = eINSTANCE.getMainSystem_Permissions();
+
+		/**
+		 * The meta object literal for the '<em><b>Start</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAIN_SYSTEM___START__STRING_STRING = eINSTANCE.getMainSystem__Start__String_String();
 
 		/**
 		 * The meta object literal for the '{@link Engine.impl.UserGroupImpl <em>User Group</em>}' class.

@@ -2,13 +2,7 @@
  */
 package Engine.impl;
 
-import Engine.EnginePackage;
-import Engine.Permission;
-import Engine.Task;
-import Engine.TaskState;
-import Engine.Transition;
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigInteger;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,8 +11,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import Engine.EnginePackage;
+import Engine.Permission;
+import Engine.Task;
+import Engine.TaskState;
+import Engine.Transition;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,13 +29,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Engine.impl.TaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getState <em>State</em>}</li>
- *   <li>{@link Engine.impl.TaskImpl#isIsEnd <em>Is End</em>}</li>
- *   <li>{@link Engine.impl.TaskImpl#isIsStart <em>Is Start</em>}</li>
+ *   <li>{@link Engine.impl.TaskImpl#isEnd <em>End</em>}</li>
+ *   <li>{@link Engine.impl.TaskImpl#isStart <em>Start</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getPermission <em>Permission</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getTransition <em>Transition</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getResult <em>Result</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getData <em>Data</em>}</li>
+ *   <li>{@link Engine.impl.TaskImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,44 +84,44 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	protected TaskState state = STATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsEnd() <em>Is End</em>}' attribute.
+	 * The default value of the '{@link #isEnd() <em>End</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsEnd()
+	 * @see #isEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_END_EDEFAULT = false;
+	protected static final boolean END_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsEnd() <em>Is End</em>}' attribute.
+	 * The cached value of the '{@link #isEnd() <em>End</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsEnd()
+	 * @see #isEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isEnd = IS_END_EDEFAULT;
+	protected boolean end = END_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsStart() <em>Is Start</em>}' attribute.
+	 * The default value of the '{@link #isStart() <em>Start</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsStart()
+	 * @see #isStart()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_START_EDEFAULT = false;
+	protected static final boolean START_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsStart() <em>Is Start</em>}' attribute.
+	 * The cached value of the '{@link #isStart() <em>Start</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsStart()
+	 * @see #isStart()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isStart = IS_START_EDEFAULT;
+	protected boolean start = START_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPermission() <em>Permission</em>}' reference.
@@ -170,7 +171,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger RESULT_EDEFAULT = null;
+	protected static final int RESULT_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' attribute.
@@ -180,7 +181,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * @generated
 	 * @ordered
 	 */
-	protected BigInteger result = RESULT_EDEFAULT;
+	protected int result = RESULT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getData() <em>Data</em>}' attribute.
@@ -201,6 +202,16 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * @ordered
 	 */
 	protected String data = DATA_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPreviousTasks() <em>Previous Tasks</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreviousTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Task> previousTasks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -268,8 +279,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsEnd() {
-		return isEnd;
+	public boolean isEnd() {
+		return end;
 	}
 
 	/**
@@ -277,11 +288,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsEnd(boolean newIsEnd) {
-		boolean oldIsEnd = isEnd;
-		isEnd = newIsEnd;
+	public void setEnd(boolean newEnd) {
+		boolean oldEnd = end;
+		end = newEnd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EnginePackage.TASK__IS_END, oldIsEnd, isEnd));
+			eNotify(new ENotificationImpl(this, Notification.SET, EnginePackage.TASK__END, oldEnd, end));
 	}
 
 	/**
@@ -289,8 +300,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsStart() {
-		return isStart;
+	public boolean isStart() {
+		return start;
 	}
 
 	/**
@@ -298,11 +309,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsStart(boolean newIsStart) {
-		boolean oldIsStart = isStart;
-		isStart = newIsStart;
+	public void setStart(boolean newStart) {
+		boolean oldStart = start;
+		start = newStart;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EnginePackage.TASK__IS_START, oldIsStart, isStart));
+			eNotify(new ENotificationImpl(this, Notification.SET, EnginePackage.TASK__START, oldStart, start));
 	}
 
 	/**
@@ -331,10 +342,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doJob() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public EList<Task> getPreviousTasks() {
+		if (previousTasks == null) {
+			previousTasks = new EObjectResolvingEList<Task>(Task.class, this, EnginePackage.TASK__PREVIOUS_TASKS);
+		}
+		return previousTasks;
 	}
 
 	/**
@@ -342,10 +354,19 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReady(EList previousTasks) {
+	public void doJob() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	public void setReady(EList previousTasks) {
+		this.previousTasks.addAll(previousTasks);
+		this.state = TaskState.PROCESSING;
 	}
 
 	/**
@@ -422,7 +443,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 */
 	public EList<Transition> getTransition() {
 		if (transition == null) {
-			transition = new EObjectWithInverseResolvingEList.ManyInverse<Transition>(Transition.class, this, EnginePackage.TASK__TRANSITION, EnginePackage.TRANSITION__PREVIOUS_TASK);
+			transition = new EObjectWithInverseResolvingEList.ManyInverse<Transition>(Transition.class, this, EnginePackage.TASK__TRANSITION, EnginePackage.TRANSITION__PREVIOUS_TASKS);
 		}
 		return transition;
 	}
@@ -453,7 +474,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BigInteger getResult() {
+	public int getResult() {
 		return result;
 	}
 
@@ -462,8 +483,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(BigInteger newResult) {
-		BigInteger oldResult = result;
+	public void setResult(int newResult) {
+		int oldResult = result;
 		result = newResult;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EnginePackage.TASK__RESULT, oldResult, result));
@@ -481,10 +502,10 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return getName();
 			case EnginePackage.TASK__STATE:
 				return getState();
-			case EnginePackage.TASK__IS_END:
-				return isIsEnd();
-			case EnginePackage.TASK__IS_START:
-				return isIsStart();
+			case EnginePackage.TASK__END:
+				return isEnd();
+			case EnginePackage.TASK__START:
+				return isStart();
 			case EnginePackage.TASK__PERMISSION:
 				if (resolve) return getPermission();
 				return basicGetPermission();
@@ -496,6 +517,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return getResult();
 			case EnginePackage.TASK__DATA:
 				return getData();
+			case EnginePackage.TASK__PREVIOUS_TASKS:
+				return getPreviousTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -515,11 +538,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			case EnginePackage.TASK__STATE:
 				setState((TaskState)newValue);
 				return;
-			case EnginePackage.TASK__IS_END:
-				setIsEnd((Boolean)newValue);
+			case EnginePackage.TASK__END:
+				setEnd((Boolean)newValue);
 				return;
-			case EnginePackage.TASK__IS_START:
-				setIsStart((Boolean)newValue);
+			case EnginePackage.TASK__START:
+				setStart((Boolean)newValue);
 				return;
 			case EnginePackage.TASK__PERMISSION:
 				setPermission((Permission)newValue);
@@ -532,10 +555,14 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				setDescription((String)newValue);
 				return;
 			case EnginePackage.TASK__RESULT:
-				setResult((BigInteger)newValue);
+				setResult((Integer)newValue);
 				return;
 			case EnginePackage.TASK__DATA:
 				setData((String)newValue);
+				return;
+			case EnginePackage.TASK__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
+				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -555,11 +582,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			case EnginePackage.TASK__STATE:
 				setState(STATE_EDEFAULT);
 				return;
-			case EnginePackage.TASK__IS_END:
-				setIsEnd(IS_END_EDEFAULT);
+			case EnginePackage.TASK__END:
+				setEnd(END_EDEFAULT);
 				return;
-			case EnginePackage.TASK__IS_START:
-				setIsStart(IS_START_EDEFAULT);
+			case EnginePackage.TASK__START:
+				setStart(START_EDEFAULT);
 				return;
 			case EnginePackage.TASK__PERMISSION:
 				setPermission((Permission)null);
@@ -575,6 +602,9 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return;
 			case EnginePackage.TASK__DATA:
 				setData(DATA_EDEFAULT);
+				return;
+			case EnginePackage.TASK__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -592,10 +622,10 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case EnginePackage.TASK__STATE:
 				return state != STATE_EDEFAULT;
-			case EnginePackage.TASK__IS_END:
-				return isEnd != IS_END_EDEFAULT;
-			case EnginePackage.TASK__IS_START:
-				return isStart != IS_START_EDEFAULT;
+			case EnginePackage.TASK__END:
+				return end != END_EDEFAULT;
+			case EnginePackage.TASK__START:
+				return start != START_EDEFAULT;
 			case EnginePackage.TASK__PERMISSION:
 				return permission != null;
 			case EnginePackage.TASK__TRANSITION:
@@ -603,9 +633,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			case EnginePackage.TASK__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case EnginePackage.TASK__RESULT:
-				return RESULT_EDEFAULT == null ? result != null : !RESULT_EDEFAULT.equals(result);
+				return result != RESULT_EDEFAULT;
 			case EnginePackage.TASK__DATA:
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
+			case EnginePackage.TASK__PREVIOUS_TASKS:
+				return previousTasks != null && !previousTasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -642,10 +674,10 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		result.append(name);
 		result.append(", state: ");
 		result.append(state);
-		result.append(", isEnd: ");
-		result.append(isEnd);
-		result.append(", isStart: ");
-		result.append(isStart);
+		result.append(", end: ");
+		result.append(end);
+		result.append(", start: ");
+		result.append(start);
 		result.append(", Description: ");
 		result.append(description);
 		result.append(", Result: ");

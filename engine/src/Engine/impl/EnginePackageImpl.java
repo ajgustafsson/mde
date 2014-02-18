@@ -243,6 +243,15 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getWorkflow__Start__User() {
+		return workflowEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -279,7 +288,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTask_IsEnd() {
+	public EAttribute getTask_End() {
 		return (EAttribute)taskEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -288,7 +297,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTask_IsStart() {
+	public EAttribute getTask_Start() {
 		return (EAttribute)taskEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -299,6 +308,15 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 */
 	public EAttribute getTask_Data() {
 		return (EAttribute)taskEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTask_PreviousTasks() {
+		return (EReference)taskEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -369,7 +387,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_PreviousTask() {
+	public EReference getTransition_PreviousTasks() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -567,6 +585,15 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMainSystem__Start__String_String() {
+		return mainSystemEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUserGroup() {
 		return userGroupEClass;
 	}
@@ -647,24 +674,26 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		workflowEClass = createEClass(WORKFLOW);
 		createEReference(workflowEClass, WORKFLOW__NODES);
 		createEAttribute(workflowEClass, WORKFLOW__NAME);
+		createEOperation(workflowEClass, WORKFLOW___START__USER);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
 
 		taskEClass = createEClass(TASK);
 		createEAttribute(taskEClass, TASK__STATE);
-		createEAttribute(taskEClass, TASK__IS_END);
-		createEAttribute(taskEClass, TASK__IS_START);
+		createEAttribute(taskEClass, TASK__END);
+		createEAttribute(taskEClass, TASK__START);
 		createEReference(taskEClass, TASK__PERMISSION);
 		createEReference(taskEClass, TASK__TRANSITION);
 		createEAttribute(taskEClass, TASK__DESCRIPTION);
 		createEAttribute(taskEClass, TASK__RESULT);
 		createEAttribute(taskEClass, TASK__DATA);
+		createEReference(taskEClass, TASK__PREVIOUS_TASKS);
 		createEOperation(taskEClass, TASK___DO_JOB);
 		createEOperation(taskEClass, TASK___SET_READY__ELIST);
 
 		transitionEClass = createEClass(TRANSITION);
-		createEReference(transitionEClass, TRANSITION__PREVIOUS_TASK);
+		createEReference(transitionEClass, TRANSITION__PREVIOUS_TASKS);
 		createEOperation(transitionEClass, TRANSITION___TRANSIT);
 
 		splitEClass = createEClass(SPLIT);
@@ -694,6 +723,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		createEReference(mainSystemEClass, MAIN_SYSTEM__USERS);
 		createEReference(mainSystemEClass, MAIN_SYSTEM__USER_GROUPS);
 		createEReference(mainSystemEClass, MAIN_SYSTEM__PERMISSIONS);
+		createEOperation(mainSystemEClass, MAIN_SYSTEM___START__STRING_STRING);
 
 		userGroupEClass = createEClass(USER_GROUP);
 		createEReference(userGroupEClass, USER_GROUP__PERMISSIONS);
@@ -748,26 +778,30 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		initEReference(getWorkflow_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflow_Name(), ecorePackage.getEString(), "name", null, 0, 1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = initEOperation(getWorkflow__Start__User(), null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUser(), "user", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTask_State(), this.getTaskState(), "state", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTask_IsEnd(), ecorePackage.getEBoolean(), "isEnd", "false", 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTask_IsStart(), ecorePackage.getEBoolean(), "isStart", "false", 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTask_End(), ecorePackage.getEBoolean(), "end", "false", 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTask_Start(), ecorePackage.getEBoolean(), "start", "false", 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTask_Permission(), this.getPermission(), null, "permission", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTask_Transition(), this.getTransition(), this.getTransition_PreviousTask(), "transition", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTask_Transition(), this.getTransition(), this.getTransition_PreviousTasks(), "transition", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_Description(), ecorePackage.getEString(), "Description", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTask_Result(), ecorePackage.getEBigInteger(), "Result", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTask_Result(), ecorePackage.getEInt(), "Result", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_Data(), ecorePackage.getEString(), "data", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTask_PreviousTasks(), this.getTask(), null, "previousTasks", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getTask__DoJob(), null, "doJob", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getTask__SetReady__EList(), null, "setReady", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getTask__SetReady__EList(), null, "setReady", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEEList(), "previousTasks", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(transitionEClass, Transition.class, "Transition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_PreviousTask(), this.getTask(), this.getTask_Transition(), "previousTask", null, 0, -1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_PreviousTasks(), this.getTask(), this.getTask_Transition(), "previousTasks", null, 0, -1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getTransition__Transit(), null, "transit", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -798,6 +832,10 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		initEReference(getMainSystem_Users(), this.getUser(), null, "users", null, 0, -1, MainSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMainSystem_UserGroups(), this.getUserGroup(), null, "userGroups", null, 0, -1, MainSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMainSystem_Permissions(), this.getPermission(), null, "permissions", null, 0, -1, MainSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getMainSystem__Start__String_String(), null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "userName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "workflowName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(userGroupEClass, UserGroup.class, "UserGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserGroup_Permissions(), this.getPermission(), null, "permissions", null, 0, -1, UserGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

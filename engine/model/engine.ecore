@@ -22,6 +22,9 @@
       <details key="endExistsOnce" value="&#xA;&#x9;&#x9;&#x9;Task.allInstances()->select(t | t.isEnd = true)->size() = 1"/>
       <details key="onlyOneTransitionAllowedToReferenceSameTask" value="&#xA;&#x9;&#x9;&#x9;let allRefs : Bag = Split.allInstances().tasks->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Merge.allInstances().task)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Switch.allInstances().tasks)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(IfElse.allInstances().tasks)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(WaitForOne.allInstances().task)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Simple.allInstances().task),&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;uniqueRef : Set = Split.allInstances().tasks->asSet()->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Merge.allInstances().task->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Switch.allInstances().tasks->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(IfElse.allInstances().tasks->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(WaitForOne.allInstances().task->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Simple.allInstances().task->asSet())&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; uniqueRef->size() = allRefs->size()"/>
     </eAnnotations>
+    <eOperations name="start">
+      <eParameters name="user" eType="#//User"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//Node" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -42,21 +45,23 @@
       <eParameters name="previousTasks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TaskState"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEnd" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStart" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="permission" eType="#//Permission"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transition" upperBound="-1"
-        eType="#//Transition" eOpposite="#//Transition/previousTask"/>
+        eType="#//Transition" eOpposite="#//Transition/previousTasks"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
+        eType="#//Task"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" interface="true"
       eSuperTypes="#//Node">
     <eOperations name="transit"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previousTask" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
         eType="#//Task" eOpposite="#//Task/transition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Split" eSuperTypes="#//Transition">
@@ -103,7 +108,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TaskState">
     <eLiterals name="NOT_PROCESSED"/>
-    <eLiterals name="PROCESSING" value="1"/>
+    <eLiterals name="PROCESSING" value="1" literal="PROCESSING"/>
     <eLiterals name="PROCESSED" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Switch" eSuperTypes="#//Transition">
@@ -133,6 +138,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MainSystem">
+    <eOperations name="start">
+      <eParameters name="userName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="workflowName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="workflows" upperBound="-1"
         eType="#//Workflow" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"

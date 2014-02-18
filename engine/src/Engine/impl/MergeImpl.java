@@ -5,8 +5,11 @@ package Engine.impl;
 import Engine.EnginePackage;
 import Engine.Merge;
 import Engine.Task;
+import Engine.TaskState;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -25,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link Engine.impl.MergeImpl#getName <em>Name</em>}</li>
- *   <li>{@link Engine.impl.MergeImpl#getPreviousTask <em>Previous Task</em>}</li>
+ *   <li>{@link Engine.impl.MergeImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
  *   <li>{@link Engine.impl.MergeImpl#getTask <em>Task</em>}</li>
  * </ul>
  * </p>
@@ -52,14 +55,14 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	 */
 	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getPreviousTask() <em>Previous Task</em>}' reference list.
+	 * The cached value of the '{@link #getPreviousTasks() <em>Previous Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreviousTask()
+	 * @see #getPreviousTasks()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Task> previousTask;
+	protected EList<Task> previousTasks;
 	/**
 	 * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -114,11 +117,11 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Task> getPreviousTask() {
-		if (previousTask == null) {
-			previousTask = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.MERGE__PREVIOUS_TASK, EnginePackage.TASK__TRANSITION);
+	public EList<Task> getPreviousTasks() {
+		if (previousTasks == null) {
+			previousTasks = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.MERGE__PREVIOUS_TASKS, EnginePackage.TASK__TRANSITION);
 		}
-		return previousTask;
+		return previousTasks;
 	}
 
 	/**
@@ -162,12 +165,20 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		
+		boolean allDone = true;
+		for (Task task : previousTasks) {
+			if (!task.getState().equals(TaskState.PROCESSED)) {
+				allDone = false;
+				break;
+			}
+		}
+		
+		if (allDone) {
+			task.setReady(previousTasks);
+		}
 	}
 
 	/**
@@ -179,8 +190,8 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EnginePackage.MERGE__PREVIOUS_TASK:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPreviousTask()).basicAdd(otherEnd, msgs);
+			case EnginePackage.MERGE__PREVIOUS_TASKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPreviousTasks()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -193,8 +204,8 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EnginePackage.MERGE__PREVIOUS_TASK:
-				return ((InternalEList<?>)getPreviousTask()).basicRemove(otherEnd, msgs);
+			case EnginePackage.MERGE__PREVIOUS_TASKS:
+				return ((InternalEList<?>)getPreviousTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,8 +220,8 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 		switch (featureID) {
 			case EnginePackage.MERGE__NAME:
 				return getName();
-			case EnginePackage.MERGE__PREVIOUS_TASK:
-				return getPreviousTask();
+			case EnginePackage.MERGE__PREVIOUS_TASKS:
+				return getPreviousTasks();
 			case EnginePackage.MERGE__TASK:
 				if (resolve) return getTask();
 				return basicGetTask();
@@ -230,9 +241,9 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 			case EnginePackage.MERGE__NAME:
 				setName((String)newValue);
 				return;
-			case EnginePackage.MERGE__PREVIOUS_TASK:
-				getPreviousTask().clear();
-				getPreviousTask().addAll((Collection<? extends Task>)newValue);
+			case EnginePackage.MERGE__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
+				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
 			case EnginePackage.MERGE__TASK:
 				setTask((Task)newValue);
@@ -252,8 +263,8 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 			case EnginePackage.MERGE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case EnginePackage.MERGE__PREVIOUS_TASK:
-				getPreviousTask().clear();
+			case EnginePackage.MERGE__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
 				return;
 			case EnginePackage.MERGE__TASK:
 				setTask((Task)null);
@@ -272,8 +283,8 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 		switch (featureID) {
 			case EnginePackage.MERGE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case EnginePackage.MERGE__PREVIOUS_TASK:
-				return previousTask != null && !previousTask.isEmpty();
+			case EnginePackage.MERGE__PREVIOUS_TASKS:
+				return previousTasks != null && !previousTasks.isEmpty();
 			case EnginePackage.MERGE__TASK:
 				return task != null;
 		}

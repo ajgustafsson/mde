@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link Engine.impl.IfElseImpl#getName <em>Name</em>}</li>
- *   <li>{@link Engine.impl.IfElseImpl#getPreviousTask <em>Previous Task</em>}</li>
+ *   <li>{@link Engine.impl.IfElseImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
  *   <li>{@link Engine.impl.IfElseImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
@@ -53,14 +53,14 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	 */
 	protected String name = NAME_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getPreviousTask() <em>Previous Task</em>}' reference list.
+	 * The cached value of the '{@link #getPreviousTasks() <em>Previous Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPreviousTask()
+	 * @see #getPreviousTasks()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Task> previousTask;
+	protected EList<Task> previousTasks;
 	/**
 	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -115,11 +115,11 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Task> getPreviousTask() {
-		if (previousTask == null) {
-			previousTask = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.IF_ELSE__PREVIOUS_TASK, EnginePackage.TASK__TRANSITION);
+	public EList<Task> getPreviousTasks() {
+		if (previousTasks == null) {
+			previousTasks = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.IF_ELSE__PREVIOUS_TASKS, EnginePackage.TASK__TRANSITION);
 		}
-		return previousTask;
+		return previousTasks;
 	}
 
 	/**
@@ -137,12 +137,10 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		int result = previousTasks.get(0).getResult();
+		tasks.get(result).setReady(previousTasks);
 	}
 
 	/**
@@ -154,8 +152,8 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EnginePackage.IF_ELSE__PREVIOUS_TASK:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPreviousTask()).basicAdd(otherEnd, msgs);
+			case EnginePackage.IF_ELSE__PREVIOUS_TASKS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPreviousTasks()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -168,8 +166,8 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EnginePackage.IF_ELSE__PREVIOUS_TASK:
-				return ((InternalEList<?>)getPreviousTask()).basicRemove(otherEnd, msgs);
+			case EnginePackage.IF_ELSE__PREVIOUS_TASKS:
+				return ((InternalEList<?>)getPreviousTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -184,8 +182,8 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 		switch (featureID) {
 			case EnginePackage.IF_ELSE__NAME:
 				return getName();
-			case EnginePackage.IF_ELSE__PREVIOUS_TASK:
-				return getPreviousTask();
+			case EnginePackage.IF_ELSE__PREVIOUS_TASKS:
+				return getPreviousTasks();
 			case EnginePackage.IF_ELSE__TASKS:
 				return getTasks();
 		}
@@ -204,9 +202,9 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 			case EnginePackage.IF_ELSE__NAME:
 				setName((String)newValue);
 				return;
-			case EnginePackage.IF_ELSE__PREVIOUS_TASK:
-				getPreviousTask().clear();
-				getPreviousTask().addAll((Collection<? extends Task>)newValue);
+			case EnginePackage.IF_ELSE__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
+				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
 			case EnginePackage.IF_ELSE__TASKS:
 				getTasks().clear();
@@ -227,8 +225,8 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 			case EnginePackage.IF_ELSE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case EnginePackage.IF_ELSE__PREVIOUS_TASK:
-				getPreviousTask().clear();
+			case EnginePackage.IF_ELSE__PREVIOUS_TASKS:
+				getPreviousTasks().clear();
 				return;
 			case EnginePackage.IF_ELSE__TASKS:
 				getTasks().clear();
@@ -247,8 +245,8 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 		switch (featureID) {
 			case EnginePackage.IF_ELSE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case EnginePackage.IF_ELSE__PREVIOUS_TASK:
-				return previousTask != null && !previousTask.isEmpty();
+			case EnginePackage.IF_ELSE__PREVIOUS_TASKS:
+				return previousTasks != null && !previousTasks.isEmpty();
 			case EnginePackage.IF_ELSE__TASKS:
 				return tasks != null && !tasks.isEmpty();
 		}

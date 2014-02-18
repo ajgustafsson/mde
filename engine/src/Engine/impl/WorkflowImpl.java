@@ -2,14 +2,11 @@
  */
 package Engine.impl;
 
-import Engine.EnginePackage;
-import Engine.Node;
-import Engine.Task;
-import Engine.User;
-import Engine.Workflow;
-
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Scanner;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,6 +17,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import Engine.EnginePackage;
+import Engine.Node;
+import Engine.Permission;
+import Engine.Task;
+import Engine.TaskState;
+import Engine.User;
+import Engine.UserGroup;
+import Engine.Workflow;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,9 +126,41 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 	 * <!-- end-user-doc -->
 	 */
 	public void start(User user) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		
+		Task startTask = getStartTask();
+		if (checkThatUserCanExecuteTask(startTask, user)) {
+			startTask.doJob();
+		}
+		if (!startTask.isEnd()) {
+			boolean running = true;
+			while (running) {
+				List<Task> executableTasks = getExecutableTasks();
+				Task toRun = null;
+				boolean correctTaskName = false;
+				while (!correctTaskName) {
+					
+					printExecutableTasks(executableTasks);
+					Scanner sc = new Scanner(System.in);
+					String taskNameToStart = sc.nextLine();
+					toRun = getTaskFromName(name, executableTasks);
+					if (toRun != null) {
+						correctTaskName = true;
+					} else {
+						System.out.println("Task [" + taskNameToStart + "] isn't a valid task.");
+					}
+				}
+				
+				if (checkThatUserCanExecuteTask(toRun, user)) {
+					toRun.doJob();
+					if (toRun.isEnd()) {
+						running = false;
+					}
+				}		
+				
+			}
+			
+		}
+		
 	}
 
 	private Task getStartTask() {
@@ -137,10 +175,48 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 		throw new UnsupportedOperationException("No task with isStart == true can be found.");
 	}
 	
-//	private List<Task> getExecutableTasks() {
-//		
-//	}
+	private boolean checkThatUserCanExecuteTask(Task startTask, User user) {
+		Permission permission = startTask.getPermission();
+		
+		EList<UserGroup> groups = user.getGroups();
+		
+		//check if user is part of a group that has the required permission
+		
+		return true;		
+		
+	}
 
+	private List<Task> getExecutableTasks() {
+		
+		List<Task> executableTasks = new ArrayList<>();
+		for (Node node : this.nodes) {
+			if (node instanceof Task) {
+				Task task = (Task) node;
+				if (task.getState() == TaskState.PROCESSING) {
+					executableTasks.add(task);
+				}
+			}
+		}
+		
+		return executableTasks;
+	}
+
+	private void printExecutableTasks(List<Task> executableTasks) {
+		System.out.println("Which task do you want to start? (Type the name of the task you want to start)");
+		for (Task task : executableTasks) {
+			System.out.println(task.getName());
+		}
+	}
+	
+	private Task getTaskFromName(String name, Collection<Task> tasks) {
+		for (Task task : tasks) {
+			if (task.getName().equals(name)) {
+				return task;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

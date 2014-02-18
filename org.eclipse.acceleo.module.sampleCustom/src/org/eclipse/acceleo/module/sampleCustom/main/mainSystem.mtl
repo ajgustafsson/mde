@@ -7,18 +7,17 @@
 [file (aMainSystem.eClass().name + '.java', false, 'UTF-8')]
 public class [aMainSystem.eClass().name/] {
 
-	[aMainSystem.createNode()/]
 	}
 	[for (workflow : Workflow | aMainSystem.workflows)]
 	[file (workflow.eClass().name + '.java', false, 'UTF-8')]
 public class [workflow.eClass().name/] {
 
-	public List<Node> nodes = new List<>();
+	public List<Task> tasks = new ArrayList<>();
 	
 	public [workflow.name/] {
-	[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)))]
+	[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
     [task.eClass().name/] [task.name/] = new [task.eClass().name/]();
-	nodes.add(n);
+	tasks.add(n);
 	[/for]
 	}		
 }
@@ -28,27 +27,6 @@ public class [workflow.eClass().name/] {
 
 [/file]
 [/template]
-
-[template public createNode()]
-[file ('Node' + '.java', false, 'UTF-8')]
-public abstract class Node {
- 
-	private String name = "undefined";
-   
-
-	public getName() {
-		return this.name;
-	}
-
-	public setName(String name) {
-		this.name = name;
-	}
-
-}
-
-[/file]
-[/template]
-
 
 [template public instansiateNode(node : Node)]
 [file ('noodes' + '.java', false, 'UTF-8')]

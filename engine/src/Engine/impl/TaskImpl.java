@@ -4,6 +4,8 @@ package Engine.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Scanner;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -14,6 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import Engine.EnginePackage;
 import Engine.Permission;
 import Engine.Task;
@@ -352,14 +355,34 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void doJob() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		System.out.println("----------- Data from previous tasks: -----------\n");
+		for (Task task : previousTasks) {
+			System.out.println(task.getName() + ":");
+			System.out.println(task.getData());
+		}
+		System.out.println("----------- End of data from previous tasks -----------\n");
+	
+		System.out.println("----------- Task description: -----------\n");
+		System.out.println(this.description);
+		System.out.println("----------- Type or past any data that is required for next step in the workflow: -----------\n");
+		Scanner input = new Scanner(System.in);
+		String dataInput = input.nextLine();
+		this.data = dataInput;
+		
+		printHelpToDecideHowItWent();
+		
+		
 	}
 	
+	private void printHelpToDecideHowItWent() {
+		Transition next = this.transition.get(0);
+		
+//		next.getPreviousTasks()
+		
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

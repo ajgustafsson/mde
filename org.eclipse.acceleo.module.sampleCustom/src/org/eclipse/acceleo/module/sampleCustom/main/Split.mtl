@@ -6,7 +6,20 @@
 [comment @main/]
 [file (aSplit.eClass().name + '.java', false, 'UTF-8')]
 
-public class [aSplit.eClass()
+public class [aSplit.eClass().name/] implements [aSplit.eClass().eSuperTypes.name/] {
+	
+	private List<Task> tasks;
+
+	public void transit(Task prevTask) {
+		List<Task> previousTasks = new ArrayList([aSplit.previousTask/]);
+				
+		for (Task next : task) {
+			next.setPreviousTasks(previousTasks);
+			next.setState(State.PROCESSING);		
+		}	
+	}
+
+}
 
 
 [/file]

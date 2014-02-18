@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module mainSystem('Group2')]
+[module MainSystem('Group2')]
 
 
 [template public mainSystem(aMainSystem : MainSystem)]

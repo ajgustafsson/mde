@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module task('Group2')]
+[module Task('Group2')]
 
 
 [template public task(aTask : Task)]

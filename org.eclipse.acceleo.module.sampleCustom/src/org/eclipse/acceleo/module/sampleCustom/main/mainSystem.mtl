@@ -12,13 +12,23 @@ public class [aMainSystem.eClass().name/] {
 	[file (workflow.eClass().name + '.java', false, 'UTF-8')]
 public class [workflow.eClass().name/] {
 
-	public List<Task> tasks = new ArrayList<>();
-	
+	public HashMap<String,Task> tasks = new HashMap<String,Task>();
+	public HashMap<String,Transition> transitions = new HashMap<String,Transition>();
+
+
+
+
 	public [workflow.name/] {
 	[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
-    [task.eClass().name/] [task.name/] = new [task.eClass().name/]();
-	tasks.add(n);
+    [task.eClass().name/] [task.name/] = new [task.eClass().name/]([task.Description/], [task.state/], [task.isEnd/], [task.isStart/], null);
+	tasks.put([task/],[task.name/]);
 	[/for]
+	[for (simple : Simple | workflow.nodes->select(oclIsKindOf(Simple)).oclAsType(Simple))]
+    [simple.eClass().name/] [simple.name/] = new [simple.eClass().name/]([simple.name/], tasks.get([simple.task/]), tasks.get([simple.previousTask/]));
+	transitions.put([simple/],[simple.name/]);
+	[/for]
+	
+	
 	}		
 }
 	[/file]

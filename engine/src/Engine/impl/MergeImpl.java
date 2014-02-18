@@ -5,8 +5,11 @@ package Engine.impl;
 import Engine.EnginePackage;
 import Engine.Merge;
 import Engine.Task;
+import Engine.TaskState;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -162,12 +165,20 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		
+		boolean allDone = true;
+		for (Task task : previousTask) {
+			if (!task.getState().equals(TaskState.PROCESSED)) {
+				allDone = false;
+				break;
+			}
+		}
+		
+		if (allDone) {
+			task.setReady(previousTask);
+		}
 	}
 
 	/**

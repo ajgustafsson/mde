@@ -5,8 +5,11 @@ package Engine.impl;
 import Engine.EnginePackage;
 import Engine.Switch;
 import Engine.Task;
+
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigInteger;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -140,10 +143,13 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	 * @generated
 	 */
 	public void transit() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Task prevTask = previousTask.get(0);
+		
+		
+		
 	}
+	
+
 
 	/**
 	 * <!-- begin-user-doc -->

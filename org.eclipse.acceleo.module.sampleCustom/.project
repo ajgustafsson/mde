@@ -3,6 +3,7 @@
 	<name>org.eclipse.acceleo.module.sampleCustom</name>
 	<comment></comment>
 	<projects>
+		<project>engine</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

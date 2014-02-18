@@ -216,9 +216,9 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 *
 	 */
-	protected TaskImpl() {
+	public TaskImpl() {
 		super();
 	}
 

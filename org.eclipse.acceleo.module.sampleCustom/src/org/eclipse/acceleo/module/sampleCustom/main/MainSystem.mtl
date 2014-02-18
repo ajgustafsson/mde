@@ -1,36 +1,55 @@
 [comment encoding = UTF-8 /]
 [module MainSystem('Group2')]
 
-
 [template public mainSystem(aMainSystem : MainSystem)]
 [comment @main/]
 [file (aMainSystem.eClass().name + '.java', false, 'UTF-8')]
 public class [aMainSystem.eClass().name/] {
+	
 
 	}
 	[for (workflow : Workflow | aMainSystem.workflows)]
 	[file (workflow.eClass().name + '.java', false, 'UTF-8')]
+package model;
+import java.util.HashMap;
+import Engine.EnginePackage;
+import Engine.impl.TaskImpl;
+import Engine.TaskState;
+
 public class [workflow.eClass().name/] {
-
-	public HashMap<String,Task> tasks = new HashMap<String,Task>();
-	public HashMap<String,Transition> transitions = new HashMap<String,Transition>();
-
+	
+//	public HashMap<String,Transition> transitions = new HashMap<String,Transition>();
 
 
 
-	public [workflow.name/] {
+
+	public Workflow() {}
+
+
+	public static void main(String args) {
+	HashMap<String,TaskImpl> tasks = new HashMap<String,TaskImpl>();
+
 	[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
-    [task.eClass().name/] [task.name/] = new [task.eClass().name/]([task.Description/], [task.state/], [task.isEnd/], [task.isStart/], null);
-	tasks.put([task/],[task.name/]);
+	TaskImpl [task.name/] = new TaskImpl();
+	[task.name/].setName("[task.name/]");
+	[task.name/].setState(TaskState.[task.state/]);
+	[task.name/].setEnd([task.end/]);
+	[task.name/].setStart([task.start/]);
+	tasks.put([task.name/].getName(), [task.name/]);
+	System.out.println([task.name/].getName() + [task.name/].getState());
+	
 	[/for]
+}
 	[for (simple : Simple | workflow.nodes->select(oclIsKindOf(Simple)).oclAsType(Simple))]
-    [simple.eClass().name/] [simple.name/] = new [simple.eClass().name/]([simple.name/], tasks.get([simple.task/]), tasks.get([simple.previousTask/]));
-	transitions.put([simple/],[simple.name/]);
+    SimpleImpl [simple.name/] = new SimpleImpl([simple.name/], tasks.get("[simple.task/]"), tasks.get("[simple.previousTasks/]"));
+	[simple.name/].setName([simple.name/]);
+	[simple.name/].setTask([simple.task/]);
+	[simple.name/].setPreviousTask([simple.previousTasks]);
+	transitions.put("[simple/]","[simple.name/]");
 	[/for]
 	
 	
 	}		
-}
 	[/file]
 	[/for]
 

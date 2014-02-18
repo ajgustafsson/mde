@@ -11,16 +11,17 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Workflow">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne startExistsOnce endExistsOnce onlyOneTransitionAllowedToReferenceSameTask"/>
+      <details key="constraints" value="numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne startExistsOnce endExistsOnce onlyOneTransitionAllowedToReferenceSameTask uniqeNamesForTasks"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge"
-          value="&#xA;&#x9;&#x9;&#x9;let numberOfSplits : Integer = Split.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfMerges : Integer = Merge.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),&#xA;&#x9;&#x9;&#x9;numberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTask->size())->sum() in&#xA;&#x9;&#x9;&#x9;&#x9;numberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits"/>
+          value="&#xA;&#x9;&#x9;&#x9;let numberOfSplits : Integer = Split.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfMerges : Integer = Merge.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),&#xA;&#x9;&#x9;&#x9;numberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTasks->size())->sum() in&#xA;&#x9;&#x9;&#x9;&#x9;numberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits"/>
       <details key="numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne"
-          value="&#xA;&#x9;&#x9;&#x9;let numberOfIfElse : Integer = IfElse.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfSwitch : Integer = Switch.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), &#xA;&#x9;&#x9;&#x9;numberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),&#xA;&#x9;&#x9;&#x9;numberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),&#xA;&#x9;&#x9;&#x9;numberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTask->size())->sum() in&#xA;&#x9;&#x9;&#x9;&#x9;numberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch"/>
+          value="&#xA;&#x9;&#x9;&#x9;let numberOfIfElse : Integer = IfElse.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfSwitch : Integer = Switch.allInstances()->size(),&#xA;&#x9;&#x9;&#x9;numberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), &#xA;&#x9;&#x9;&#x9;numberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),&#xA;&#x9;&#x9;&#x9;numberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),&#xA;&#x9;&#x9;&#x9;numberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTasks->size())->sum() in&#xA;&#x9;&#x9;&#x9;&#x9;numberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch"/>
       <details key="startExistsOnce" value="&#xA;&#x9;&#x9;&#x9;Task.allInstances()->select(t | t.isStart = true)->size() = 1"/>
       <details key="endExistsOnce" value="&#xA;&#x9;&#x9;&#x9;Task.allInstances()->select(t | t.isEnd = true)->size() = 1"/>
       <details key="onlyOneTransitionAllowedToReferenceSameTask" value="&#xA;&#x9;&#x9;&#x9;let allRefs : Bag = Split.allInstances().tasks->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Merge.allInstances().task)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Switch.allInstances().tasks)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(IfElse.allInstances().tasks)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(WaitForOne.allInstances().task)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Simple.allInstances().task),&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;uniqueRef : Set = Split.allInstances().tasks->asSet()->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Merge.allInstances().task->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Switch.allInstances().tasks->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(IfElse.allInstances().tasks->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(WaitForOne.allInstances().task->asSet())->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;union(Simple.allInstances().task->asSet())&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; uniqueRef->size() = allRefs->size()"/>
+      <details key="uniqeNamesForTasks" value="&#xA;&#x9;&#x9;&#x9;self.nodes->select(t | t.oclIsKindOf(Task))->forAll(p1, p2 | p1 &lt;> p2 implies p1.name &lt;> p2.name)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//Node" containment="true"/>
@@ -66,7 +67,7 @@
       <details key="constraints" value="splitMustHaveOneIncomingTask noOutReferencesToStart"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="splitMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTask->size() = 1"/>
+      <details key="splitMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.isStart = true)->size() = 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="2" upperBound="-1"
@@ -77,7 +78,7 @@
       <details key="constraints" value="mergeMustHaveMoreThanOneIncomingTask noOutReferencesToStart"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="mergeMustHaveMoreThanOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTask->size() > 1"/>
+      <details key="mergeMustHaveMoreThanOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() > 1"/>
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.isStart = true)->size() = 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
@@ -87,7 +88,7 @@
       <details key="constraints" value="simpleMustHaveOneIncomingTask noOutReferencesToStart"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="simpleMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTask->size() = 1"/>
+      <details key="simpleMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.isStart = true)->size() = 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
@@ -97,7 +98,7 @@
       <details key="constraints" value="ifElseMustHaveOneIncomingTask noOutReferencesToStart"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ifElseMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTask->size() = 1"/>
+      <details key="ifElseMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.isStart = true)->size() = 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="2" upperBound="2"
@@ -113,7 +114,7 @@
       <details key="constraints" value="switchMustHaveOneIncomingTask noOutReferencesToStart"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="switchMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTask->size() = 1"/>
+      <details key="switchMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.isStart = true)->size() = 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="3" upperBound="-1"
@@ -124,7 +125,7 @@
       <details key="constraints" value="waitForOneMustHaveTwoIncomingTasks noOutReferencesToStart"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="waitForOneMustHaveTwoIncomingTasks" value="&#xA;&#x9;&#x9;&#x9;self.previousTask->size() > 1"/>
+      <details key="waitForOneMustHaveTwoIncomingTasks" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() > 1"/>
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.isStart = true)->size() = 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>

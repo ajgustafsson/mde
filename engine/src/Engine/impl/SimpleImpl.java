@@ -164,7 +164,7 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doJob(Task prevTask) {
+	public void transit() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -288,8 +288,8 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case EnginePackage.SIMPLE___DO_JOB__TASK:
-				doJob((Task)arguments.get(0));
+			case EnginePackage.SIMPLE___TRANSIT:
+				transit();
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

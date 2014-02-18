@@ -142,6 +142,22 @@ public interface Task extends Node {
 	void setData(String value);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void doJob();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model previousTasksMany="false"
+	 * @generated
+	 */
+	void setReady(EList previousTasks);
+
+	/**
 	 * Returns the value of the '<em><b>Permission</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>

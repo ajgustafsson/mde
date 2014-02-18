@@ -164,7 +164,7 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doJob(Task prevTask) {
+	public void transit() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -288,8 +288,8 @@ public class MergeImpl extends MinimalEObjectImpl.Container implements Merge {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case EnginePackage.MERGE___DO_JOB__TASK:
-				doJob((Task)arguments.get(0));
+			case EnginePackage.MERGE___TRANSIT:
+				transit();
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

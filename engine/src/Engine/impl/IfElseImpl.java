@@ -139,7 +139,7 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doJob(Task prevTask) {
+	public void transit() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -263,8 +263,8 @@ public class IfElseImpl extends MinimalEObjectImpl.Container implements IfElse {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case EnginePackage.IF_ELSE___DO_JOB__TASK:
-				doJob((Task)arguments.get(0));
+			case EnginePackage.IF_ELSE___TRANSIT:
+				transit();
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

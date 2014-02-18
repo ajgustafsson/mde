@@ -136,8 +136,8 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(workflow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateWorkflow_numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge(workflow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateWorkflow_numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne(workflow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateWorkflow_numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge(workflow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateWorkflow_numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWorkflow_startExistsOnce(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWorkflow_endExistsOnce(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWorkflow_onlyOneTransitionAllowedToReferenceSameTask(workflow, diagnostics, context);
@@ -145,12 +145,12 @@ public class EngineValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge constraint of '<em>Workflow</em>'.
+	 * The cached validation expression for the numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge constraint of '<em>Workflow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String WORKFLOW__NUMBER_OF_OUTGOING_FROM_SPLIT_EQUALS_NUMBER_OF_INGOING_TO_MERGE__EEXPRESSION = "\n" +
+	protected static final String WORKFLOW__NUMBER_OF_OUTGOING_FROM_SPLIT_PLUS_THE_DIFFERENCES_BETWEEN_NUMBER_OF_MERGES_AND_SPLITS_EQUALS_NUMBER_OF_INGOING_TO_MERGE__EEXPRESSION = "\n" +
 		"\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n" +
 		"\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n" +
 		"\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n" +
@@ -158,12 +158,12 @@ public class EngineValidator extends EObjectValidator {
 		"\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits";
 
 	/**
-	 * Validates the numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge constraint of '<em>Workflow</em>'.
+	 * Validates the numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge constraint of '<em>Workflow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateWorkflow_numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge(Workflow workflow, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateWorkflow_numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge(Workflow workflow, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(EnginePackage.Literals.WORKFLOW,
@@ -171,20 +171,20 @@ public class EngineValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "numberOfOutgoingFromSplitEqualsNumberOfIngoingToMerge",
-				 WORKFLOW__NUMBER_OF_OUTGOING_FROM_SPLIT_EQUALS_NUMBER_OF_INGOING_TO_MERGE__EEXPRESSION,
+				 "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge",
+				 WORKFLOW__NUMBER_OF_OUTGOING_FROM_SPLIT_PLUS_THE_DIFFERENCES_BETWEEN_NUMBER_OF_MERGES_AND_SPLITS_EQUALS_NUMBER_OF_INGOING_TO_MERGE__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
 	}
 
 	/**
-	 * The cached validation expression for the numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne constraint of '<em>Workflow</em>'.
+	 * The cached validation expression for the numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne constraint of '<em>Workflow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String WORKFLOW__NUMBER_OF_OUTGOING_FROM_SWITCH_AND_IF_ELSE_EQUALS_NUMBER_OF_INGOING_TO_WAIT_FOR_ONE__EEXPRESSION = "\n" +
+	protected static final String WORKFLOW__NUMBER_OF_OUTGOING_FROM_SWITCH_AND_IF_ELSE_PLUS_THE_DIFFERENCES_BETWEEN_NUMBER_OF_WAIT_FOR_ONE_AND_IF_ELSE_MINUS_SWITCHES_EQUALS_NUMBER_OF_INGOING_TO_WAIT_FOR_ONE__EEXPRESSION = "\n" +
 		"\t\t\tlet numberOfIfElse : Integer = IfElse.allInstances()->size(),\n" +
 		"\t\t\tnumberOfSwitch : Integer = Switch.allInstances()->size(),\n" +
 		"\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n" +
@@ -194,12 +194,12 @@ public class EngineValidator extends EObjectValidator {
 		"\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch";
 
 	/**
-	 * Validates the numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne constraint of '<em>Workflow</em>'.
+	 * Validates the numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne constraint of '<em>Workflow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateWorkflow_numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne(Workflow workflow, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateWorkflow_numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne(Workflow workflow, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
 			validate
 				(EnginePackage.Literals.WORKFLOW,
@@ -207,8 +207,8 @@ public class EngineValidator extends EObjectValidator {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "numberOfOutgoingFromSwitchAndIfElseEqualsNumberOfIngoingToWaitForOne",
-				 WORKFLOW__NUMBER_OF_OUTGOING_FROM_SWITCH_AND_IF_ELSE_EQUALS_NUMBER_OF_INGOING_TO_WAIT_FOR_ONE__EEXPRESSION,
+				 "numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne",
+				 WORKFLOW__NUMBER_OF_OUTGOING_FROM_SWITCH_AND_IF_ELSE_PLUS_THE_DIFFERENCES_BETWEEN_NUMBER_OF_WAIT_FOR_ONE_AND_IF_ELSE_MINUS_SWITCHES_EQUALS_NUMBER_OF_INGOING_TO_WAIT_FOR_ONE__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

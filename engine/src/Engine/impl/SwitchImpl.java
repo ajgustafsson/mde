@@ -139,7 +139,7 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void doJob(Task prevTask) {
+	public void transit() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -263,8 +263,8 @@ public class SwitchImpl extends MinimalEObjectImpl.Container implements Switch {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case EnginePackage.SWITCH___DO_JOB__TASK:
-				doJob((Task)arguments.get(0));
+			case EnginePackage.SWITCH___TRANSIT:
+				transit();
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

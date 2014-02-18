@@ -21,7 +21,7 @@ Package Engine <Group2>
     Reference permission : Permission
     Reference transition : Transition<<0..*>>
     Attribute Description : EString
-    Attribute Result : EBigInteger
+    Attribute Result : EInt
     Attribute data : EString
     Operation doJob() : void
     Operation setReady(EEList) : void

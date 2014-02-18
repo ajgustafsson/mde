@@ -30,14 +30,6 @@ public class [aSimple.eClass().name/] extends [aSimple.eClass().eSuperTypes.name
 		return prevTask;
 	}
 
-	public void transit() {
-		if (this.prevTask.getState().equals(State.PROCESSED)) {		
-			this.task.addPreviousTasks(this.prevTask);
-			this.task.setState(State.PROCESSING);
-		}
-	}
-
-
 }
 [/file]
 [/template]

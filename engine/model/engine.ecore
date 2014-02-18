@@ -37,8 +37,9 @@
       <details key="noOutReferencesForEnd" value="&#xA;&#x9;&#x9;&#x9;if self.isEnd = true then &#xA;&#x9;&#x9;&#x9;&#x9;self.transition->size() = 0&#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif"/>
       <details key="noMoreThanOneOutReferenceForTasks" value="&#xA;&#x9;&#x9;&#x9;self.transition->size() &lt; 2"/>
     </eAnnotations>
-    <eOperations name="doJob">
-      <eParameters name="tasks" eType="#//Task"/>
+    <eOperations name="doJob"/>
+    <eOperations name="setReady">
+      <eParameters name="previousTasks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TaskState"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEnd" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -54,9 +55,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" interface="true"
       eSuperTypes="#//Node">
-    <eOperations name="transit">
-      <eParameters name="prevTask" eType="#//Task"/>
-    </eOperations>
+    <eOperations name="transit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousTask" upperBound="-1"
         eType="#//Task" eOpposite="#//Task/transition"/>
   </eClassifiers>

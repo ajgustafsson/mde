@@ -38,7 +38,7 @@
       <details key="noMoreThanOneOutReferenceForTasks" value="&#xA;&#x9;&#x9;&#x9;self.transition->size() &lt; 2"/>
     </eAnnotations>
     <eOperations name="doJob"/>
-    <eOperations name="setReady">
+    <eOperations name="setReady" eType="#//Task">
       <eParameters name="previousTasks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TaskState"/>
@@ -48,7 +48,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="permission" eType="#//Permission"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transition" upperBound="-1"
-        eType="#//Transition" eOpposite="#//Transition/previousTask"/>
+        eType="#//Transition" eOpposite="#//Transition/previousTasks"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -56,7 +56,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" interface="true"
       eSuperTypes="#//Node">
     <eOperations name="transit"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previousTask" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
         eType="#//Task" eOpposite="#//Task/transition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Split" eSuperTypes="#//Transition">

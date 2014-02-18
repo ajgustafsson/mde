@@ -6,7 +6,7 @@
 [comment @main/]
 [file (aMainSystem.eClass().name + '.java', false, 'UTF-8')]
 public class [aMainSystem.eClass().name/] {
-
+dosans snygga branch
 	[aMainSystem.createNode()/]
 	}
 	[for (workflow : Workflow | aMainSystem.workflows)]

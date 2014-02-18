@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link Engine.Transition#getPreviousTask <em>Previous Task</em>}</li>
+ *   <li>{@link Engine.Transition#getPreviousTasks <em>Previous Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,22 +24,22 @@ import org.eclipse.emf.common.util.EList;
 public interface Transition extends Node {
 
 	/**
-	 * Returns the value of the '<em><b>Previous Task</b></em>' reference list.
+	 * Returns the value of the '<em><b>Previous Tasks</b></em>' reference list.
 	 * The list contents are of type {@link Engine.Task}.
 	 * It is bidirectional and its opposite is '{@link Engine.Task#getTransition <em>Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Previous Task</em>' reference isn't clear,
+	 * If the meaning of the '<em>Previous Tasks</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Previous Task</em>' reference list.
-	 * @see Engine.EnginePackage#getTransition_PreviousTask()
+	 * @return the value of the '<em>Previous Tasks</em>' reference list.
+	 * @see Engine.EnginePackage#getTransition_PreviousTasks()
 	 * @see Engine.Task#getTransition
 	 * @model opposite="transition"
 	 * @generated
 	 */
-	EList<Task> getPreviousTask();
+	EList<Task> getPreviousTasks();
 
 	/**
 	 * <!-- begin-user-doc -->

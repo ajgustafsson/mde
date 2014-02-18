@@ -7,6 +7,7 @@
 package Engine.validation;
 
 import Engine.Permission;
+import Engine.Task;
 import Engine.TaskState;
 import Engine.Transition;
 
@@ -24,6 +25,10 @@ public interface TaskValidator {
 	boolean validate();
 
 	boolean validateState(TaskState value);
+	boolean validateEnd(boolean value);
+
+	boolean validateStart(boolean value);
+
 	boolean validateIsEnd(boolean value);
 	boolean validateIsStart(boolean value);
 	boolean validatePermission(Permission value);
@@ -33,4 +38,6 @@ public interface TaskValidator {
 
 	boolean validateResult(BigInteger value);
 	boolean validateData(String value);
+
+	boolean validatePreviousTasks(EList<Task> value);
 }

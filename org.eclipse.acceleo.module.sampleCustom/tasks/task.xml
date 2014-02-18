@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="Task" name="org.eclipse.acceleo.module.sampleCustom">
-    <property name="ECLIPSE_HOME" value="../../../../../../../Applications/eclipse kepler"/>
-    <property name="ECLIPSE_WORKSPACE" value="../../.."/>
+    <property name="ECLIPSE_HOME" value="../../../../../../../Applications/eclipse-model"/>
+    <property name="ECLIPSE_WORKSPACE" value="../../../../workspace-model"/>
 
     <!-- The classpath with only the dependencies used by the project -->
     <path id="org.eclipse.acceleo.module.sampleCustom.libraryclasspath">

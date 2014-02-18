@@ -10,24 +10,26 @@ Package Engine <Group2>
   Class Workflow
     Reference nodes : Node<<0..*>>
     Attribute name : EString
+    Operation start(EString) : void
 
   Class Node
     Attribute name : EString
 
   Class Task -> Node
     Attribute state : TaskState
-    Attribute isEnd : EBoolean<<1..1>>
-    Attribute isStart : EBoolean<<1..1>>
+    Attribute end : EBoolean<<1..1>>
+    Attribute start : EBoolean<<1..1>>
     Reference permission : Permission
     Reference transition : Transition<<0..*>>
     Attribute Description : EString
     Attribute Result : EInt
     Attribute data : EString
+    Reference previousTasks : Task<<0..*>>
     Operation doJob() : void
     Operation setReady(EEList) : void
 
   Class Transition -> Node
-    Reference previousTask : Task<<0..*>>
+    Reference previousTasks : Task<<0..*>>
     Operation transit() : void
 
   Class Split -> Transition
@@ -57,6 +59,7 @@ Package Engine <Group2>
     Reference users : User<<0..*>>
     Reference userGroups : UserGroup<<0..*>>
     Reference permissions : Permission<<0..*>>
+    Operation start(EString, EString) : void
 
   Class UserGroup
     Reference permissions : Permission<<0..*>>

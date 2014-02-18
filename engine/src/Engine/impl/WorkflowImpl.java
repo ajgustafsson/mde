@@ -4,8 +4,12 @@ package Engine.impl;
 
 import Engine.EnginePackage;
 import Engine.Node;
+import Engine.Task;
 import Engine.Workflow;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -113,6 +117,42 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 */
+	public void start(String userName) {
+		
+		Task startTask = getStartTask();
+		
+		boolean running = true;
+		
+		while (running) {
+			
+			
+			
+			
+		}
+		
+	
+	}
+	
+	private Task getStartTask() {
+		for (Node node : this.nodes) {
+			if (node instanceof Task) {
+				Task task = (Task) node;
+				if (task.isStart()) {
+					return task;
+				}
+			}
+		}
+		throw new UnsupportedOperationException("No task with isStart == true can be found.");
+	}
+	
+//	private List<Task> getExecutableTasks() {
+//		
+//	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -192,6 +232,21 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case EnginePackage.WORKFLOW___START__STRING:
+				start((String)arguments.get(0));
+				return null;
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -71,11 +71,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="splitMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
-<<<<<<< HEAD
-      <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.isStart = true)->size() = 0"/>
-=======
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.start = true)->size() = 0"/>
->>>>>>> e1503765ff5cc7ea1af744e0cc9e25224ef2ffbd
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="2" upperBound="-1"
         eType="#//Task"/>
@@ -86,11 +82,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="mergeMustHaveMoreThanOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() > 1"/>
-<<<<<<< HEAD
-      <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.isStart = true)->size() = 0"/>
-=======
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.start = true)->size() = 0"/>
->>>>>>> e1503765ff5cc7ea1af744e0cc9e25224ef2ffbd
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
   </eClassifiers>
@@ -100,11 +92,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="simpleMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
-<<<<<<< HEAD
-      <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.isStart = true)->size() = 0"/>
-=======
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.start = true)->size() = 0"/>
->>>>>>> e1503765ff5cc7ea1af744e0cc9e25224ef2ffbd
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
   </eClassifiers>
@@ -114,11 +102,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ifElseMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
-<<<<<<< HEAD
-      <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.isStart = true)->size() = 0"/>
-=======
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.start = true)->size() = 0"/>
->>>>>>> e1503765ff5cc7ea1af744e0cc9e25224ef2ffbd
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="2" upperBound="2"
         eType="#//Task"/>
@@ -134,11 +118,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="switchMustHaveOneIncomingTask" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() = 1"/>
-<<<<<<< HEAD
-      <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.isStart = true)->size() = 0"/>
-=======
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.tasks->select(t | t.start = true)->size() = 0"/>
->>>>>>> e1503765ff5cc7ea1af744e0cc9e25224ef2ffbd
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="3" upperBound="-1"
         eType="#//Task"/>
@@ -149,11 +129,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="waitForOneMustHaveTwoIncomingTasks" value="&#xA;&#x9;&#x9;&#x9;self.previousTasks->size() > 1"/>
-<<<<<<< HEAD
-      <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.isStart = true)->size() = 0"/>
-=======
       <details key="noOutReferencesToStart" value="&#xA;&#x9;&#x9;&#x9;self.task->select(t | t.start = true)->size() = 0"/>
->>>>>>> e1503765ff5cc7ea1af744e0cc9e25224ef2ffbd
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
   </eClassifiers>

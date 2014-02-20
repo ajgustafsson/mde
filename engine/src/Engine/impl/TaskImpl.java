@@ -358,9 +358,11 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 */
 	public void doJob() {
 		System.out.println("----------- Data from previous tasks: -----------\n");
-		for (Task task : previousTasks) {
-			System.out.println(task.getName() + ":");
-			System.out.println(task.getData());
+		if (previousTasks != null) {			
+			for (Task task : previousTasks) {
+				System.out.println(task.getName() + ":");
+				System.out.println(task.getData());
+			}
 		}
 		System.out.println("----------- End of data from previous tasks -----------\n");
 	
@@ -373,7 +375,7 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		
 		printHelpToDecideHowItWent();
 		
-		
+		this.transition.get(0).transit();
 	}
 	
 	private void printHelpToDecideHowItWent() {

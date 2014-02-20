@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see Engine.EnginePackage#getSplit()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='splitMustHaveOneIncomingTask noOutReferencesToStart'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot splitMustHaveOneIncomingTask='\n\t\t\tself.previousTask->size() = 1' noOutReferencesToStart='\n\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot splitMustHaveOneIncomingTask='\n\t\t\tself.previousTasks->size() = 1' noOutReferencesToStart='\n\t\t\tself.tasks->select(t | t.start = true)->size() = 0'"
  * @generated
  */
 public interface Split extends Transition {

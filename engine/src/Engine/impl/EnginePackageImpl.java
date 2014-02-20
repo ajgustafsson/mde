@@ -898,7 +898,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		  (workflowEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne startExistsOnce endExistsOnce onlyOneTransitionAllowedToReferenceSameTask"
+			 "constraints", "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne startExistsOnce endExistsOnce onlyOneTransitionAllowedToReferenceSameTask uniqeNamesForTasks"
 		   });			
 		addAnnotation
 		  (taskEClass, 
@@ -956,60 +956,61 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		  (workflowEClass, 
 		   source, 
 		   new String[] {
-			 "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge", "\n\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTask->size())->sum() in\n\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits",
-			 "numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne", "\n\t\t\tlet numberOfIfElse : Integer = IfElse.allInstances()->size(),\n\t\t\tnumberOfSwitch : Integer = Switch.allInstances()->size(),\n\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n\t\t\tnumberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTask->size())->sum() in\n\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch",
-			 "startExistsOnce", "\n\t\t\tTask.allInstances()->select(t | t.isStart = true)->size() = 1",
-			 "endExistsOnce", "\n\t\t\tTask.allInstances()->select(t | t.isEnd = true)->size() = 1",
-			 "onlyOneTransitionAllowedToReferenceSameTask", "\n\t\t\tlet allRefs : Bag = Split.allInstances().tasks->\n\t\t\t\t\t\t\t\tunion(Merge.allInstances().task)->\n\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks)->\n\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks)->\n\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task)->\n\t\t\t\t\t\t\t\tunion(Simple.allInstances().task),\t\t\t\t\t\t\t\t\n\t\t\tuniqueRef : Set = Split.allInstances().tasks->asSet()->\n\t\t\t\t\t\t\t\tunion(Merge.allInstances().task->asSet())->\n\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks->asSet())->\n\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks->asSet())->\n\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task->asSet())->\n\t\t\t\t\t\t\t\tunion(Simple.allInstances().task->asSet())\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tin\n\t\t\t\t\t\t uniqueRef->size() = allRefs->size()"
+			 "numberOfOutgoingFromSplitPlusTheDifferencesBetweenNumberOfMergesAndSplitsEqualsNumberOfIngoingToMerge", "\n\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTasks->size())->sum() in\n\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits",
+			 "numberOfOutgoingFromSwitchAndIfElsePlusTheDifferencesBetweenNumberOfWaitForOneAndIfElseMinusSwitchesEqualsNumberOfIngoingToWaitForOne", "\n\t\t\tlet numberOfIfElse : Integer = IfElse.allInstances()->size(),\n\t\t\tnumberOfSwitch : Integer = Switch.allInstances()->size(),\n\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n\t\t\tnumberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),\n\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTasks->size())->sum() in\n\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch",
+			 "startExistsOnce", "\n\t\t\tTask.allInstances()->select(t | t.start = true)->size() = 1",
+			 "endExistsOnce", "\n\t\t\tTask.allInstances()->select(t | t.end = true)->size() = 1",
+			 "onlyOneTransitionAllowedToReferenceSameTask", "\n\t\t\tlet allRefs : Bag = Split.allInstances().tasks->\n\t\t\t\t\t\t\t\tunion(Merge.allInstances().task)->\n\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks)->\n\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks)->\n\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task)->\n\t\t\t\t\t\t\t\tunion(Simple.allInstances().task),\t\t\t\t\t\t\t\t\n\t\t\tuniqueRef : Set = Split.allInstances().tasks->asSet()->\n\t\t\t\t\t\t\t\tunion(Merge.allInstances().task->asSet())->\n\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks->asSet())->\n\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks->asSet())->\n\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task->asSet())->\n\t\t\t\t\t\t\t\tunion(Simple.allInstances().task->asSet())\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tin\n\t\t\t\t\t\t uniqueRef->size() = allRefs->size()",
+			 "uniqeNamesForTasks", "\n\t\t\tself.nodes->select(t | t.oclIsKindOf(Task))->forAll(p1, p2 | p1 <> p2 implies p1.name <> p2.name)"
 		   });			
 		addAnnotation
 		  (taskEClass, 
 		   source, 
 		   new String[] {
-			 "noOutReferencesForEnd", "\n\t\t\tif self.isEnd = true then \n\t\t\t\tself.transition->size() = 0\n\t\t\telse \n\t\t\t\ttrue\n\t\t\tendif",
+			 "noOutReferencesForEnd", "\n\t\t\tif self.end = true then \n\t\t\t\tself.transition->size() = 0\n\t\t\telse \n\t\t\t\ttrue\n\t\t\tendif",
 			 "noMoreThanOneOutReferenceForTasks", "\n\t\t\tself.transition->size() < 2"
 		   });			
 		addAnnotation
 		  (splitEClass, 
 		   source, 
 		   new String[] {
-			 "splitMustHaveOneIncomingTask", "\n\t\t\tself.previousTask->size() = 1",
-			 "noOutReferencesToStart", "\n\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0"
+			 "splitMustHaveOneIncomingTask", "\n\t\t\tself.previousTasks->size() = 1",
+			 "noOutReferencesToStart", "\n\t\t\tself.tasks->select(t | t.start = true)->size() = 0"
 		   });			
 		addAnnotation
 		  (mergeEClass, 
 		   source, 
 		   new String[] {
-			 "mergeMustHaveMoreThanOneIncomingTask", "\n\t\t\tself.previousTask->size() > 1",
-			 "noOutReferencesToStart", "\n\t\t\tself.task->select(t | t.isStart = true)->size() = 0"
+			 "mergeMustHaveMoreThanOneIncomingTask", "\n\t\t\tself.previousTasks->size() > 1",
+			 "noOutReferencesToStart", "\n\t\t\tself.task->select(t | t.start = true)->size() = 0"
 		   });			
 		addAnnotation
 		  (simpleEClass, 
 		   source, 
 		   new String[] {
-			 "simpleMustHaveOneIncomingTask", "\n\t\t\tself.previousTask->size() = 1",
-			 "noOutReferencesToStart", "\n\t\t\tself.task->select(t | t.isStart = true)->size() = 0"
+			 "simpleMustHaveOneIncomingTask", "\n\t\t\tself.previousTasks->size() = 1",
+			 "noOutReferencesToStart", "\n\t\t\tself.task->select(t | t.start = true)->size() = 0"
 		   });			
 		addAnnotation
 		  (ifElseEClass, 
 		   source, 
 		   new String[] {
-			 "ifElseMustHaveOneIncomingTask", "\n\t\t\tself.previousTask->size() = 1",
-			 "noOutReferencesToStart", "\n\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0"
+			 "ifElseMustHaveOneIncomingTask", "\n\t\t\tself.previousTasks->size() = 1",
+			 "noOutReferencesToStart", "\n\t\t\tself.tasks->select(t | t.start = true)->size() = 0"
 		   });			
 		addAnnotation
 		  (switchEClass, 
 		   source, 
 		   new String[] {
-			 "switchMustHaveOneIncomingTask", "\n\t\t\tself.previousTask->size() = 1",
-			 "noOutReferencesToStart", "\n\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0"
+			 "switchMustHaveOneIncomingTask", "\n\t\t\tself.previousTasks->size() = 1",
+			 "noOutReferencesToStart", "\n\t\t\tself.tasks->select(t | t.start = true)->size() = 0"
 		   });			
 		addAnnotation
 		  (waitForOneEClass, 
 		   source, 
 		   new String[] {
-			 "waitForOneMustHaveTwoIncomingTasks", "\n\t\t\tself.previousTask->size() > 1",
-			 "noOutReferencesToStart", "\n\t\t\tself.task->select(t | t.isStart = true)->size() = 0"
+			 "waitForOneMustHaveTwoIncomingTasks", "\n\t\t\tself.previousTasks->size() > 1",
+			 "noOutReferencesToStart", "\n\t\t\tself.task->select(t | t.start = true)->size() = 0"
 		   });
 	}
 

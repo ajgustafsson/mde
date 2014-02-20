@@ -20,4 +20,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.acceleo.module.sampleCustom.main
+Import-Package: Engine
 

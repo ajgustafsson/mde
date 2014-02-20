@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see Engine.EnginePackage#getTask()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='noOutReferencesForEnd noMoreThanOneOutReferenceForTasks'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot noOutReferencesForEnd='\n\t\t\tif self.isEnd = true then \n\t\t\t\tself.transition->size() = 0\n\t\t\telse \n\t\t\t\ttrue\n\t\t\tendif' noMoreThanOneOutReferenceForTasks='\n\t\t\tself.transition->size() < 2'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot noOutReferencesForEnd='\n\t\t\tif self.end = true then \n\t\t\t\tself.transition->size() = 0\n\t\t\telse \n\t\t\t\ttrue\n\t\t\tendif' noMoreThanOneOutReferenceForTasks='\n\t\t\tself.transition->size() < 2'"
  * @generated
  */
 public interface Task extends Node {

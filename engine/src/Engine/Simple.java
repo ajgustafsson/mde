@@ -17,7 +17,7 @@ package Engine;
  *
  * @see Engine.EnginePackage#getSimple()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='simpleMustHaveOneIncomingTask noOutReferencesToStart'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot simpleMustHaveOneIncomingTask='\n\t\t\tself.previousTask->size() = 1' noOutReferencesToStart='\n\t\t\tself.task->select(t | t.isStart = true)->size() = 0'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot simpleMustHaveOneIncomingTask='\n\t\t\tself.previousTasks->size() = 1' noOutReferencesToStart='\n\t\t\tself.task->select(t | t.start = true)->size() = 0'"
  * @generated
  */
 public interface Simple extends Transition {

@@ -141,6 +141,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateWorkflow_startExistsOnce(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWorkflow_endExistsOnce(workflow, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWorkflow_onlyOneTransitionAllowedToReferenceSameTask(workflow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateWorkflow_uniqeNamesForTasks(workflow, diagnostics, context);
 		return result;
 	}
 
@@ -154,7 +155,7 @@ public class EngineValidator extends EObjectValidator {
 		"\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n" +
 		"\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n" +
 		"\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n" +
-		"\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTask->size())->sum() in\n" +
+		"\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTasks->size())->sum() in\n" +
 		"\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits";
 
 	/**
@@ -190,7 +191,7 @@ public class EngineValidator extends EObjectValidator {
 		"\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n" +
 		"\t\t\tnumberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),\n" +
 		"\t\t\tnumberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),\n" +
-		"\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTask->size())->sum() in\n" +
+		"\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTasks->size())->sum() in\n" +
 		"\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch";
 
 	/**
@@ -221,7 +222,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__START_EXISTS_ONCE__EEXPRESSION = "\n" +
-		"\t\t\tTask.allInstances()->select(t | t.isStart = true)->size() = 1";
+		"\t\t\tTask.allInstances()->select(t | t.start = true)->size() = 1";
 
 	/**
 	 * Validates the startExistsOnce constraint of '<em>Workflow</em>'.
@@ -251,7 +252,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__END_EXISTS_ONCE__EEXPRESSION = "\n" +
-		"\t\t\tTask.allInstances()->select(t | t.isEnd = true)->size() = 1";
+		"\t\t\tTask.allInstances()->select(t | t.end = true)->size() = 1";
 
 	/**
 	 * Validates the endExistsOnce constraint of '<em>Workflow</em>'.
@@ -318,6 +319,36 @@ public class EngineValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the uniqeNamesForTasks constraint of '<em>Workflow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String WORKFLOW__UNIQE_NAMES_FOR_TASKS__EEXPRESSION = "\n" +
+		"\t\t\tself.nodes->select(t | t.oclIsKindOf(Task))->forAll(p1, p2 | p1 <> p2 implies p1.name <> p2.name)";
+
+	/**
+	 * Validates the uniqeNamesForTasks constraint of '<em>Workflow</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWorkflow_uniqeNamesForTasks(Workflow workflow, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(EnginePackage.Literals.WORKFLOW,
+				 workflow,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "uniqeNamesForTasks",
+				 WORKFLOW__UNIQE_NAMES_FOR_TASKS__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -353,7 +384,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String TASK__NO_OUT_REFERENCES_FOR_END__EEXPRESSION = "\n" +
-		"\t\t\tif self.isEnd = true then \n" +
+		"\t\t\tif self.end = true then \n" +
 		"\t\t\t\tself.transition->size() = 0\n" +
 		"\t\t\telse \n" +
 		"\t\t\t\ttrue\n" +
@@ -446,7 +477,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SPLIT__SPLIT_MUST_HAVE_ONE_INCOMING_TASK__EEXPRESSION = "\n" +
-		"\t\t\tself.previousTask->size() = 1";
+		"\t\t\tself.previousTasks->size() = 1";
 
 	/**
 	 * Validates the splitMustHaveOneIncomingTask constraint of '<em>Split</em>'.
@@ -476,7 +507,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SPLIT__NO_OUT_REFERENCES_TO_START__EEXPRESSION = "\n" +
-		"\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0";
+		"\t\t\tself.tasks->select(t | t.start = true)->size() = 0";
 
 	/**
 	 * Validates the noOutReferencesToStart constraint of '<em>Split</em>'.
@@ -526,7 +557,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String MERGE__MERGE_MUST_HAVE_MORE_THAN_ONE_INCOMING_TASK__EEXPRESSION = "\n" +
-		"\t\t\tself.previousTask->size() > 1";
+		"\t\t\tself.previousTasks->size() > 1";
 
 	/**
 	 * Validates the mergeMustHaveMoreThanOneIncomingTask constraint of '<em>Merge</em>'.
@@ -556,7 +587,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String MERGE__NO_OUT_REFERENCES_TO_START__EEXPRESSION = "\n" +
-		"\t\t\tself.task->select(t | t.isStart = true)->size() = 0";
+		"\t\t\tself.task->select(t | t.start = true)->size() = 0";
 
 	/**
 	 * Validates the noOutReferencesToStart constraint of '<em>Merge</em>'.
@@ -606,7 +637,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SIMPLE__SIMPLE_MUST_HAVE_ONE_INCOMING_TASK__EEXPRESSION = "\n" +
-		"\t\t\tself.previousTask->size() = 1";
+		"\t\t\tself.previousTasks->size() = 1";
 
 	/**
 	 * Validates the simpleMustHaveOneIncomingTask constraint of '<em>Simple</em>'.
@@ -636,7 +667,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SIMPLE__NO_OUT_REFERENCES_TO_START__EEXPRESSION = "\n" +
-		"\t\t\tself.task->select(t | t.isStart = true)->size() = 0";
+		"\t\t\tself.task->select(t | t.start = true)->size() = 0";
 
 	/**
 	 * Validates the noOutReferencesToStart constraint of '<em>Simple</em>'.
@@ -686,7 +717,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String IF_ELSE__IF_ELSE_MUST_HAVE_ONE_INCOMING_TASK__EEXPRESSION = "\n" +
-		"\t\t\tself.previousTask->size() = 1";
+		"\t\t\tself.previousTasks->size() = 1";
 
 	/**
 	 * Validates the ifElseMustHaveOneIncomingTask constraint of '<em>If Else</em>'.
@@ -716,7 +747,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String IF_ELSE__NO_OUT_REFERENCES_TO_START__EEXPRESSION = "\n" +
-		"\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0";
+		"\t\t\tself.tasks->select(t | t.start = true)->size() = 0";
 
 	/**
 	 * Validates the noOutReferencesToStart constraint of '<em>If Else</em>'.
@@ -766,7 +797,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SWITCH__SWITCH_MUST_HAVE_ONE_INCOMING_TASK__EEXPRESSION = "\n" +
-		"\t\t\tself.previousTask->size() = 1";
+		"\t\t\tself.previousTasks->size() = 1";
 
 	/**
 	 * Validates the switchMustHaveOneIncomingTask constraint of '<em>Switch</em>'.
@@ -796,7 +827,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SWITCH__NO_OUT_REFERENCES_TO_START__EEXPRESSION = "\n" +
-		"\t\t\tself.tasks->select(t | t.isStart = true)->size() = 0";
+		"\t\t\tself.tasks->select(t | t.start = true)->size() = 0";
 
 	/**
 	 * Validates the noOutReferencesToStart constraint of '<em>Switch</em>'.
@@ -846,7 +877,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WAIT_FOR_ONE__WAIT_FOR_ONE_MUST_HAVE_TWO_INCOMING_TASKS__EEXPRESSION = "\n" +
-		"\t\t\tself.previousTask->size() > 1";
+		"\t\t\tself.previousTasks->size() > 1";
 
 	/**
 	 * Validates the waitForOneMustHaveTwoIncomingTasks constraint of '<em>Wait For One</em>'.
@@ -876,7 +907,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WAIT_FOR_ONE__NO_OUT_REFERENCES_TO_START__EEXPRESSION = "\n" +
-		"\t\t\tself.task->select(t | t.isStart = true)->size() = 0";
+		"\t\t\tself.task->select(t | t.start = true)->size() = 0";
 
 	/**
 	 * Validates the noOutReferencesToStart constraint of '<em>Wait For One</em>'.

@@ -4,14 +4,54 @@
 [template public mainSystem(aMainSystem : MainSystem)]
 [comment @main/]
 [file (aMainSystem.eClass().name + '.java', false, 'UTF-8')]
+
+package model;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import Engine.EngineFactory;
+import Engine.Node;
+import Engine.Task;
+import Engine.TaskState;
+import Engine.Workflow;
+
 public class [aMainSystem.eClass().name/] {
 	
-
-	}
+	Map<String, Workflow> workflows = new HashMap<>();
+	
+	public [aMainSystem.eClass().name/]() {
+		
 	[for (workflow : Workflow | aMainSystem.workflows)]
-	[file (workflow.eClass().name + '.java', false, 'UTF-8')]
+
+		Workflow [workflow.name/] = EngineFactory.eINSTANCE.createWorkflow();
+		List<Node> nodes = [workflow.name/].getNodes();
+		[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
+		
+			Task [task.name/] = EngineFactory.eINSTANCE.createTask();
+			[task.name/].setName("[task.name/]");
+			[task.name/].setState(TaskState.[task.state/]);
+			[task.name/].setEnd([task.end/]);
+			[task.name/].setStart([task.start/]);
+			nodes.put([task.name/].getName(), [task.name/]);
+			System.out.println([task.name/].getName() + [task.name/].getState());
+
+[comment]	`		[task.transition./][/comment]
+			
+		[/for]
+
+	workflows.put("[workflow.name/]", [workflow.name/]);
+	[/for]
+	}
+
+
+}
+	
+[for (workflow : Workflow | aMainSystem.workflows)]
+[file (workflow.eClass().name + '.java', false, 'UTF-8')]
 package model;
-import java.util.HashMap;
+import java.util.Map;
 import Engine.EnginePackage;
 import Engine.impl.TaskImpl;
 import Engine.TaskState;
@@ -27,24 +67,26 @@ public class [workflow.eClass().name/] {
 
 
 	public static void main(String args) {
-	HashMap<String,TaskImpl> tasks = new HashMap<String,TaskImpl>();
-
-	[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
-	TaskImpl [task.name/] = new TaskImpl();
-	[task.name/].setName("[task.name/]");
-	[task.name/].setState(TaskState.[task.state/]);
-	[task.name/].setEnd([task.end/]);
-	[task.name/].setStart([task.start/]);
-	tasks.put([task.name/].getName(), [task.name/]);
-	System.out.println([task.name/].getName() + [task.name/].getState());
+		Map<String,TaskImpl> tasks = new HashMap<String,TaskImpl>();
 	
-	[/for]
-}
+		[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
+		
+			Task [task.name/] = EngineFactory.createTask();
+			[task.name/].setName("[task.name/]");
+			[task.name/].setState(TaskState.[task.state/]);
+			[task.name/].setEnd([task.end/]);
+			[task.name/].setStart([task.start/]);
+			tasks.put([task.name/].getName(), [task.name/]);
+			tasks.put("asdf", [task/]);
+			System.out.println([task.name/].getName() + [task.name/].getState());
+			
+		[/for]
+	}
 	[for (simple : Simple | workflow.nodes->select(oclIsKindOf(Simple)).oclAsType(Simple))]
     SimpleImpl [simple.name/] = new SimpleImpl([simple.name/], tasks.get("[simple.task/]"), tasks.get("[simple.previousTasks/]"));
 	[simple.name/].setName([simple.name/]);
 	[simple.name/].setTask([simple.task/]);
-	[simple.name/].setPreviousTask([simple.previousTasks]);
+[comment]	[simple.name/].setPreviousTask([simple.previousTasks]);[/comment]
 	transitions.put("[simple/]","[simple.name/]");
 	[/for]
 	

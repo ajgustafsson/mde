@@ -43,13 +43,13 @@ public class [e.name.toUpperFirst()/] extends [e.eSuperTypes.name/] {
 [for (relation : EReference | eClass.eAllReferences)]
 [if (relation.eType.instanceClassName = null)]
 [if (relation.upperBound > 1)]
-	private List<[relation.eType.name/]> [relation.name.replace(' ', '')/];
+	private List<[relation.eType.name/]> [relation.name.replace(' ', '')/] = new ArrayList<[relation.eType.name/]>();
 [else]
 	private [relation.eType.name/] [relation.name.replace(' ', '')/];
 [/if]
 [else]
 [if (relation.upperBound > 1)]
-	private List<[relation.eType.instanceClassName/]> [relation.name.replace(' ', '')/];
+	private List<[relation.eType.instanceClassName/]> [relation.name.replace(' ', '')/] = new ArrayList<[relation.eType.instanceClassName/]>();
 [else]
 	private [relation.eType.instanceClassName/] [relation.name.replace(' ', '')/];
 [/if]

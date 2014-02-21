@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@bddce4e (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -6,7 +7,7 @@ public class Simple extends Transition {
 		private java.lang.String name;
 	
 	
-		private List<Task> previousTasks;
+		private List<Task> previousTasks = new ArrayList<Task>();
 	
 		private Task task;
 	
@@ -48,11 +49,8 @@ public class Simple extends Transition {
 	
 	
 
-
-	// Start of user code Simple
+	//Start of user code Simple
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@749bc72a (name: Transition) (instanceClassName: null) (abstract: true, interface: true)
 package model;
 
 import java.util.*;
@@ -6,7 +7,7 @@ public class Transition extends Node {
 		private java.lang.String name;
 	
 	
-		private List<Task> previousTasks;
+		private List<Task> previousTasks = new ArrayList<Task>();
 	
 	
 	public void transit(
@@ -38,11 +39,8 @@ public class Transition extends Node {
 	
 	
 
-
-	// Start of user code Transition
+	//Start of user code Transition
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@79122a7f (name: Split) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -6,9 +7,9 @@ public class Split extends Transition {
 		private java.lang.String name;
 	
 	
-		private List<Task> previousTasks;
+		private List<Task> previousTasks = new ArrayList<Task>();
 	
-		private List<Task> tasks;
+		private List<Task> tasks = new ArrayList<Task>();
 	
 	
 	public void transit(
@@ -50,11 +51,8 @@ public class Split extends Transition {
 	
 	
 
-
-	// Start of user code Split
+	//Start of user code Split
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

@@ -1,16 +1,17 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@169619fb (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
 public class MainSystem {
 
 	
-		private List<Workflow> workflows;
+		private List<Workflow> workflows = new ArrayList<Workflow>();
 	
-		private List<User> users;
+		private List<User> users = new ArrayList<User>();
 	
-		private List<UserGroup> userGroups;
+		private List<UserGroup> userGroups = new ArrayList<UserGroup>();
 	
-		private List<Permission> permissions;
+		private List<Permission> permissions = new ArrayList<Permission>();
 	
 	
 	public void start(java.lang.String var1
@@ -57,11 +58,8 @@ public class MainSystem {
 	
 	
 
-
-	// Start of user code MainSystem
+	//Start of user code MainSystem
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

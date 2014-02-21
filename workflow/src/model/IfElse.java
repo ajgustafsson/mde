@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@5859a9fb (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -6,9 +7,9 @@ public class IfElse extends Transition {
 		private java.lang.String name;
 	
 	
-		private List<Task> previousTasks;
+		private List<Task> previousTasks = new ArrayList<Task>();
 	
-		private List<Task> tasks;
+		private List<Task> tasks = new ArrayList<Task>();
 	
 	
 	public void transit(
@@ -55,11 +56,8 @@ public class IfElse extends Transition {
 	
 	
 
-
-	// Start of user code IfElse
+	//Start of user code IfElse
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

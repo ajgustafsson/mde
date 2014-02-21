@@ -1,15 +1,13 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@3137b4fd (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
-
-import model.Task;
-import model.TaskState;
 public class Merge extends Transition {
 
 		private java.lang.String name;
 	
 	
-		private List<Task> previousTasks;
+		private List<Task> previousTasks = new ArrayList<Task>();
 	
 		private Task task;
 	
@@ -61,11 +59,8 @@ public class Merge extends Transition {
 	
 	
 
-
-	// Start of user code Merge
+	//Start of user code Merge
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

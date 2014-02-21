@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@2a6a472 (name: UserGroup) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -6,7 +7,7 @@ public class UserGroup {
 		private java.lang.String name;
 	
 	
-		private List<Permission> permissions;
+		private List<Permission> permissions = new ArrayList<Permission>();
 	
 	
 	
@@ -28,11 +29,8 @@ public class UserGroup {
 	
 	
 
-
-	// Start of user code UserGroup
+	//Start of user code UserGroup
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@58dd951c (name: Permission) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -18,11 +19,8 @@ public class Permission {
 	
 	
 
-
-	// Start of user code Permission
+	//Start of user code Permission
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

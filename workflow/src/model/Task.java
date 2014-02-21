@@ -1,9 +1,7 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@5558b53b (name: Task) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
-
-import model.Task;
-import model.TaskState;
 public class Task extends Node {
 
 		private java.lang.String name;
@@ -23,9 +21,9 @@ public class Task extends Node {
 	
 		private Permission permission;
 	
-		private List<Transition> transition;
+		private List<Transition> transition = new ArrayList<Transition>();
 	
-		private List<Task> previousTasks;
+		private List<Task> previousTasks = new ArrayList<Task>();
 	
 	
 	public void doJob(
@@ -74,8 +72,14 @@ public class Task extends Node {
 		// End of user code
 	}
 	
-	public void setReady(List previousTasks) {
+	public void setReady(
+	// Start of user code operation.name
+	List<Task> previousTasks
+	// End of user code
+	) {
 		// Start of user code setReady
+		System.out.println(this.previousTasks);
+		System.out.println(previousTasks);
 		this.previousTasks.addAll(previousTasks);
 		this.state = TaskState.PROCESSING;
 		// End of user code
@@ -164,11 +168,8 @@ public class Task extends Node {
 	
 	
 
-
-	// Start of user code Task
+	//Start of user code Task
 	// TODO should be implemented
 	// End of user code
-
 }
-
 

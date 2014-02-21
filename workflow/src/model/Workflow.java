@@ -1,3 +1,4 @@
+//org.eclipse.emf.ecore.impl.EClassImpl@109a94ab (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -6,10 +7,9 @@ public class Workflow {
 		private java.lang.String name;
 	
 	
-		private List<Node> nodes;
+		private List<Node> nodes = new ArrayList<Node>();
 	
 	
-
 	public void start(User var1
 	) {
 	
@@ -88,8 +88,7 @@ public class Workflow {
 	
 	
 
-
-	// Start of user code Workflow
+	//Start of user code Workflow
 	private Task getStartTask() {
 		for (Node node : this.nodes) {
 			if (node instanceof Task) {
@@ -146,7 +145,5 @@ public class Workflow {
 		}
 	}
 	// End of user code
-
 }
-
 

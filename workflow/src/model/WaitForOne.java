@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@11b09ba9 (name: WaitForOne) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@4b2f0eb4 (name: WaitForOne) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -12,7 +12,11 @@ public class WaitForOne extends Transition {
 		private Task task;
 	
 	
-	public void transit() {
+	public void transit(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code transit
 		// TODO should be implemented
 		// End of user code

@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@5a765561 (name: User) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@143f9469 (name: User) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;

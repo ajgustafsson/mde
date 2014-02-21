@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@70fe5163 (name: Task) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@4cd8b12a (name: Task) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -12,7 +12,7 @@ public class Task extends Node {
 	
 		private boolean start;
 	
-		private java.lang.String Description;
+		private java.lang.String description;
 	
 		private int Result;
 	
@@ -26,13 +26,21 @@ public class Task extends Node {
 		private List<Task> previousTasks;
 	
 	
-	public void doJob() {
+	public void doJob(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code doJob
 		// TODO should be implemented
 		// End of user code
 	}
 	
-	public void setReady() {
+	public void setReady(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code setReady
 		// TODO should be implemented
 		// End of user code
@@ -71,12 +79,12 @@ public class Task extends Node {
 		return start; 
 	}
 	
-	public void setDescription(java.lang.String Description) {
-		this.Description = Description;
+	public void setDescription(java.lang.String description) {
+		this.description = description;
 	}
 	
 	public java.lang.String getDescription() {
-		return Description; 
+		return description; 
 	}
 	
 	public void setResult(int Result) {

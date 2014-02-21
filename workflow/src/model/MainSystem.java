@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@647d2087 (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@ee9b84e (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -14,7 +14,10 @@ public class MainSystem {
 		private List<Permission> permissions;
 	
 	
-	public void start() {
+	public void start(java.lang.String var1
+	, java.lang.String var2
+	) {
+	
 		// Start of user code start
 		// TODO should be implemented
 		// End of user code

@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@40c1b4df (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@58979f7c (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -10,7 +10,9 @@ public class Workflow {
 		private List<Node> nodes;
 	
 	
-	public void start() {
+	public void start(User var1
+	) {
+	
 		// Start of user code start
 		// TODO should be implemented
 		// End of user code

@@ -48,9 +48,7 @@
       <details key="noMoreThanOneOutReferenceForTasks" value="&#xA;&#x9;&#x9;&#x9;self.transition->size() &lt; 2"/>
     </eAnnotations>
     <eOperations name="doJob"/>
-    <eOperations name="setReady">
-      <eParameters name="previousTasks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
-    </eOperations>
+    <eOperations name="setReady"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//TaskState"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
@@ -59,7 +57,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="permission" eType="#//Permission"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transition" upperBound="-1"
         eType="#//Transition" eOpposite="#//Transition/previousTasks"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"

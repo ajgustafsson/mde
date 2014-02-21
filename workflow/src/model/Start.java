@@ -12,6 +12,12 @@ public class Start {
 
 		Task myStart = new Task();
 		myStart.setName("myStart");
+		myStart.setDescription("do start");
+
+		Permission Banking = new Permission();
+		Banking.setName("Banking");
+		myStart.setPermission(Banking);
+
 		myStart.setState(TaskState.NOT_PROCESSED);
 		myStart.setEnd(false);
 		myStart.setStart(true);
@@ -20,6 +26,12 @@ public class Start {
 
 		Task myEnd = new Task();
 		myEnd.setName("myEnd");
+		myEnd.setDescription("do end");
+
+		Permission Public = new Permission();
+		Public.setName("Public");
+		myEnd.setPermission(Public);
+
 		myEnd.setState(TaskState.NOT_PROCESSED);
 		myEnd.setEnd(true);
 		myEnd.setStart(false);

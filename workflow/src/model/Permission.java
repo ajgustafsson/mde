@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@3ebf1be9 (name: Permission) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@6380ab41 (name: Permission) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;

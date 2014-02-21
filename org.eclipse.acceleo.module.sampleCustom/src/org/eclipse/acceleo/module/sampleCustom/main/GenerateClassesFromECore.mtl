@@ -19,6 +19,10 @@ public class [e.name.toUpperFirst()/] extends [e.eSuperTypes.name/] {
 	[e.generateRelations()/]
 	[e.generateMethods()/]
 	[e.generateGettersAndSetters()/]
+
+	//[protected (e.name)]
+	//	y0lo
+	//[/protected]
 }
 
 [/file]

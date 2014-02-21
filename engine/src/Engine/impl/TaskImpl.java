@@ -407,16 +407,17 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			dataInput = input.nextLine();
 
 			this.result = Integer.parseInt(dataInput);
-
+			System.out.println(this.transition.get(0));
+			System.out.println("----------- Done executing " + this.name + " -----------\n");
+			this.setState(TaskState.PROCESSED);
 			this.transition.get(0).transit();
 			
-			System.out.println("----------- Done executing " + this.name + " -----------\n");
-
+			
 			
 		} finally {
-			if (input != null) {
-				input.close();
-			}
+		//	if (input != null) {
+	//			input.close();
+	//		}
 		}
 	}
 

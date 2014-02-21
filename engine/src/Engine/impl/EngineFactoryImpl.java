@@ -69,6 +69,7 @@ public class EngineFactoryImpl extends EFactoryImpl implements EngineFactory {
 			case EnginePackage.MAIN_SYSTEM: return createMainSystem();
 			case EnginePackage.USER_GROUP: return createUserGroup();
 			case EnginePackage.PERMISSION: return createPermission();
+			case EnginePackage.RESULT_TASK: return createResultTask();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -222,6 +223,16 @@ public class EngineFactoryImpl extends EFactoryImpl implements EngineFactory {
 	public Permission createPermission() {
 		PermissionImpl permission = new PermissionImpl();
 		return permission;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResultTask createResultTask() {
+		ResultTaskImpl resultTask = new ResultTaskImpl();
+		return resultTask;
 	}
 
 	/**

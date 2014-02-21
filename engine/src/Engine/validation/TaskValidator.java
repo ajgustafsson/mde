@@ -40,4 +40,6 @@ public interface TaskValidator {
 	boolean validateData(String value);
 
 	boolean validatePreviousTasks(EList<Task> value);
+
+	boolean validateChoice(String value);
 }

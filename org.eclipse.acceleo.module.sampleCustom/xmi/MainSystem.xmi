@@ -11,7 +11,8 @@
         name="Customer wants a bank loan"
         start="true"
         permission="//@permissions.1"
-        transition="//@workflows.0/@nodes.1"/>
+        transition="//@workflows.0/@nodes.1"
+        Description="Get necesseary personal information from customer. (Name, age and income)"/>
     <nodes xsi:type="G2:Simple"
         name="Check if worthy"
         previousTasks="//@workflows.0/@nodes.0"
@@ -19,16 +20,25 @@
     <nodes xsi:type="G2:Task"
         name="Is the customer credit worthy?"
         end="true"
+        transition="//@workflows.0/@nodes.3"
+        Description="Contact credit central and see whether the customer is credit worthy or not. If yes set result to 1 otherwise set the result to 0."
         previousTasks="//@workflows.0/@nodes.0"/>
     <nodes xsi:type="G2:IfElse"
-        name="worthy?"
-        tasks="//@workflows.0/@nodes.4 //@workflows.0/@nodes.5"/>
+        name="Is the customer credit worthy?"
+        previousTasks="//@workflows.0/@nodes.2"
+        tasks="//@workflows.0/@nodes.4 //@workflows.0/@nodes.6"/>
     <nodes xsi:type="G2:Task"
         name="Determine size of bank loan"
+        Description="Determine how big the loan should be."
         previousTasks="//@workflows.0/@nodes.2"/>
     <nodes xsi:type="G2:Task"
+        Description="Decide which kind of loan the customer wants."/>
+    <nodes xsi:type="G2:Task"
         name="Denied"
+        Description="Explain to the customer why he's denied a loan."
         previousTasks="//@workflows.0/@nodes.2"/>
+    <nodes xsi:type="G2:Simple"
+        name="choose type"/>
   </workflows>
   <users name="Lena"/>
   <users name="Leif"/>

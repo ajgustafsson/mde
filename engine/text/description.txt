@@ -30,6 +30,7 @@ Package Engine <Group2>
 
   Class Transition -> Node
     Reference previousTasks : Task<<0..*>>
+    Reference resultTasks : ResultTask<<0..*>>
     Operation transit() : void
 
   Class Split -> Transition
@@ -67,6 +68,11 @@ Package Engine <Group2>
 
   Class Permission
     Attribute name : EString
+
+  Class ResultTask
+    Reference task : Task<<1..1>>
+    Attribute ResultName : EString
+    Attribute Result : EInt
 
   Enum TaskState
     Literal NOT_PROCESSED = 0

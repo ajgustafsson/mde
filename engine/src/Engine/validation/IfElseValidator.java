@@ -6,8 +6,8 @@
  */
 package Engine.validation;
 
+import Engine.Choice;
 import Engine.Task;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface IfElseValidator {
 	boolean validate();
+
+	boolean validateChoices(EList<Choice> value);
 
 	boolean validateTasks(EList<Task> value);
 }

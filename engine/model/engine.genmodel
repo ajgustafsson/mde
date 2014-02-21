@@ -37,6 +37,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="engine.ecore#//Transition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//Transition/previousTasks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference engine.ecore#//Transition/resultTasks"/>
       <genOperations ecoreOperation="engine.ecore#//Transition/transit"/>
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//Split">
@@ -77,6 +78,11 @@
     </genClasses>
     <genClasses ecoreClass="engine.ecore#//Permission">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//Permission/name"/>
+    </genClasses>
+    <genClasses ecoreClass="engine.ecore#//ResultTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference engine.ecore#//ResultTask/task"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//ResultTask/ResultName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute engine.ecore#//ResultTask/Result"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -3,6 +3,7 @@
 package Engine.impl;
 
 import Engine.EnginePackage;
+import Engine.ResultTask;
 import Engine.Task;
 import Engine.WaitForOne;
 import java.lang.reflect.InvocationTargetException;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -26,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Engine.impl.WaitForOneImpl#getName <em>Name</em>}</li>
  *   <li>{@link Engine.impl.WaitForOneImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
+ *   <li>{@link Engine.impl.WaitForOneImpl#getResultTasks <em>Result Tasks</em>}</li>
  *   <li>{@link Engine.impl.WaitForOneImpl#getTask <em>Task</em>}</li>
  * </ul>
  * </p>
@@ -60,6 +63,15 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 	 * @ordered
 	 */
 	protected EList<Task> previousTasks;
+	/**
+	 * The cached value of the '{@link #getResultTasks() <em>Result Tasks</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResultTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ResultTask> resultTasks;
 	/**
 	 * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -119,6 +131,18 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 			previousTasks = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.WAIT_FOR_ONE__PREVIOUS_TASKS, EnginePackage.TASK__TRANSITION);
 		}
 		return previousTasks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ResultTask> getResultTasks() {
+		if (resultTasks == null) {
+			resultTasks = new EObjectContainmentEList<ResultTask>(ResultTask.class, this, EnginePackage.WAIT_FOR_ONE__RESULT_TASKS);
+		}
+		return resultTasks;
 	}
 
 	/**
@@ -192,6 +216,8 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 		switch (featureID) {
 			case EnginePackage.WAIT_FOR_ONE__PREVIOUS_TASKS:
 				return ((InternalEList<?>)getPreviousTasks()).basicRemove(otherEnd, msgs);
+			case EnginePackage.WAIT_FOR_ONE__RESULT_TASKS:
+				return ((InternalEList<?>)getResultTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -208,6 +234,8 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 				return getName();
 			case EnginePackage.WAIT_FOR_ONE__PREVIOUS_TASKS:
 				return getPreviousTasks();
+			case EnginePackage.WAIT_FOR_ONE__RESULT_TASKS:
+				return getResultTasks();
 			case EnginePackage.WAIT_FOR_ONE__TASK:
 				if (resolve) return getTask();
 				return basicGetTask();
@@ -231,6 +259,10 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 				getPreviousTasks().clear();
 				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
+			case EnginePackage.WAIT_FOR_ONE__RESULT_TASKS:
+				getResultTasks().clear();
+				getResultTasks().addAll((Collection<? extends ResultTask>)newValue);
+				return;
 			case EnginePackage.WAIT_FOR_ONE__TASK:
 				setTask((Task)newValue);
 				return;
@@ -252,6 +284,9 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 			case EnginePackage.WAIT_FOR_ONE__PREVIOUS_TASKS:
 				getPreviousTasks().clear();
 				return;
+			case EnginePackage.WAIT_FOR_ONE__RESULT_TASKS:
+				getResultTasks().clear();
+				return;
 			case EnginePackage.WAIT_FOR_ONE__TASK:
 				setTask((Task)null);
 				return;
@@ -271,6 +306,8 @@ public class WaitForOneImpl extends MinimalEObjectImpl.Container implements Wait
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case EnginePackage.WAIT_FOR_ONE__PREVIOUS_TASKS:
 				return previousTasks != null && !previousTasks.isEmpty();
+			case EnginePackage.WAIT_FOR_ONE__RESULT_TASKS:
+				return resultTasks != null && !resultTasks.isEmpty();
 			case EnginePackage.WAIT_FOR_ONE__TASK:
 				return task != null;
 		}

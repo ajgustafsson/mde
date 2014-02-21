@@ -317,13 +317,22 @@ public interface EnginePackage extends EPackage {
 	int TRANSITION__PREVIOUS_TASKS = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__RESULT_TASKS = NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Transit</em>' operation.
@@ -370,6 +379,15 @@ public interface EnginePackage extends EPackage {
 	 * @ordered
 	 */
 	int SPLIT__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
+
+	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPLIT__RESULT_TASKS = TRANSITION__RESULT_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
@@ -436,6 +454,15 @@ public interface EnginePackage extends EPackage {
 	int MERGE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
+
+	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -498,6 +525,15 @@ public interface EnginePackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
+
+	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -564,6 +600,15 @@ public interface EnginePackage extends EPackage {
 	int IF_ELSE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_ELSE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
+
+	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -628,6 +673,15 @@ public interface EnginePackage extends EPackage {
 	int SWITCH__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWITCH__RESULT_TASKS = TRANSITION__RESULT_TASKS;
+
+	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -690,6 +744,15 @@ public interface EnginePackage extends EPackage {
 	 * @ordered
 	 */
 	int WAIT_FOR_ONE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
+
+	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WAIT_FOR_ONE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -930,6 +993,61 @@ public interface EnginePackage extends EPackage {
 	int PERMISSION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link Engine.impl.ResultTaskImpl <em>Result Task</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Engine.impl.ResultTaskImpl
+	 * @see Engine.impl.EnginePackageImpl#getResultTask()
+	 * @generated
+	 */
+	int RESULT_TASK = 14;
+
+	/**
+	 * The feature id for the '<em><b>Task</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TASK__TASK = 0;
+
+	/**
+	 * The feature id for the '<em><b>Result Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TASK__RESULT_NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TASK__RESULT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Result Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TASK_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Result Task</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TASK_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link Engine.TaskState <em>Task State</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -937,7 +1055,7 @@ public interface EnginePackage extends EPackage {
 	 * @see Engine.impl.EnginePackageImpl#getTaskState()
 	 * @generated
 	 */
-	int TASK_STATE = 14;
+	int TASK_STATE = 15;
 
 
 	/**
@@ -1152,6 +1270,17 @@ public interface EnginePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransition_PreviousTasks();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Engine.Transition#getResultTasks <em>Result Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Result Tasks</em>'.
+	 * @see Engine.Transition#getResultTasks()
+	 * @see #getTransition()
+	 * @generated
+	 */
+	EReference getTransition_ResultTasks();
 
 	/**
 	 * Returns the meta object for the '{@link Engine.Transition#transit() <em>Transit</em>}' operation.
@@ -1439,6 +1568,49 @@ public interface EnginePackage extends EPackage {
 	EAttribute getPermission_Name();
 
 	/**
+	 * Returns the meta object for class '{@link Engine.ResultTask <em>Result Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Result Task</em>'.
+	 * @see Engine.ResultTask
+	 * @generated
+	 */
+	EClass getResultTask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Engine.ResultTask#getResult <em>Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Result</em>'.
+	 * @see Engine.ResultTask#getResult()
+	 * @see #getResultTask()
+	 * @generated
+	 */
+	EAttribute getResultTask_Result();
+
+	/**
+	 * Returns the meta object for the reference '{@link Engine.ResultTask#getTask <em>Task</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Task</em>'.
+	 * @see Engine.ResultTask#getTask()
+	 * @see #getResultTask()
+	 * @generated
+	 */
+	EReference getResultTask_Task();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Engine.ResultTask#getResultName <em>Result Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Result Name</em>'.
+	 * @see Engine.ResultTask#getResultName()
+	 * @see #getResultTask()
+	 * @generated
+	 */
+	EAttribute getResultTask_ResultName();
+
+	/**
 	 * Returns the meta object for enum '{@link Engine.TaskState <em>Task State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1638,6 +1810,14 @@ public interface EnginePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__PREVIOUS_TASKS = eINSTANCE.getTransition_PreviousTasks();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSITION__RESULT_TASKS = eINSTANCE.getTransition_ResultTasks();
 
 		/**
 		 * The meta object literal for the '<em><b>Transit</b></em>' operation.
@@ -1874,6 +2054,40 @@ public interface EnginePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PERMISSION__NAME = eINSTANCE.getPermission_Name();
+
+		/**
+		 * The meta object literal for the '{@link Engine.impl.ResultTaskImpl <em>Result Task</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Engine.impl.ResultTaskImpl
+		 * @see Engine.impl.EnginePackageImpl#getResultTask()
+		 * @generated
+		 */
+		EClass RESULT_TASK = eINSTANCE.getResultTask();
+
+		/**
+		 * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULT_TASK__RESULT = eINSTANCE.getResultTask_Result();
+
+		/**
+		 * The meta object literal for the '<em><b>Task</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESULT_TASK__TASK = eINSTANCE.getResultTask_Task();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULT_TASK__RESULT_NAME = eINSTANCE.getResultTask_ResultName();
 
 		/**
 		 * The meta object literal for the '{@link Engine.TaskState <em>Task State</em>}' enum.

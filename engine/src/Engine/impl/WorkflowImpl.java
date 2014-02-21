@@ -142,11 +142,18 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 					printExecutableTasks(executableTasks);
 					Scanner sc = new Scanner(System.in);
 					String taskNameToStart = sc.nextLine();
-					toRun = getTaskFromName(name, executableTasks);
+					try {
+						int id = Integer.parseInt(taskNameToStart);
+						if (id < executableTasks.size()) {
+							toRun = executableTasks.get(id);
+						}
+					} catch (NumberFormatException e) {						
+					}
+					
 					if (toRun != null) {
 						correctTaskName = true;
 					} else {
-						System.out.println("Task [" + taskNameToStart + "] isn't a valid task.");
+						System.out.println("Task ID " + taskNameToStart + " isn't a valid task ID.");
 					}
 				}
 				
@@ -202,19 +209,11 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 	}
 
 	private void printExecutableTasks(List<Task> executableTasks) {
-		System.out.println("Which task do you want to start? (Type the name of the task you want to start)");
-		for (Task task : executableTasks) {
-			System.out.println(task.getName());
+		System.out.println("Which task do you want to start? (Type the ID of the task you want to start)");
+		for (int i = 0; i < executableTasks.size(); i++) {
+			Task task = executableTasks.get(0);
+			System.out.println("Task ID: " + i + " (" + task.getName() + ")");
 		}
-	}
-	
-	private Task getTaskFromName(String name, Collection<Task> tasks) {
-		for (Task task : tasks) {
-			if (task.getName().equals(name)) {
-				return task;
-			}
-		}
-		return null;
 	}
 	
 	/**

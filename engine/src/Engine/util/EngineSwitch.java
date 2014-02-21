@@ -164,6 +164,12 @@ public class EngineSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EnginePackage.RESULT_TASK: {
+				ResultTask resultTask = (ResultTask)theEObject;
+				T result = caseResultTask(resultTask);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -375,6 +381,21 @@ public class EngineSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePermission(Permission object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Result Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Result Task</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResultTask(ResultTask object) {
 		return null;
 	}
 

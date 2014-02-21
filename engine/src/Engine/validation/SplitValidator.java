@@ -7,7 +7,6 @@
 package Engine.validation;
 
 import Engine.Task;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

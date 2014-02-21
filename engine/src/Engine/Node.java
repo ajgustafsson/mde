@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see Engine.EnginePackage#getNode()
  * @model interface="true" abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nameMustBePresent'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot nameMustBePresent='\n\t\t\tself.name.oclIsUndefined() = false '"
  * @generated
  */
 public interface Node extends EObject {

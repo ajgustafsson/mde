@@ -130,6 +130,15 @@ public interface EngineFactory extends EFactory {
 	Permission createPermission();
 
 	/**
+	 * Returns a new object of class '<em>Result Task</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Result Task</em>'.
+	 * @generated
+	 */
+	ResultTask createResultTask();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

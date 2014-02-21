@@ -1,5 +1,5 @@
-package org.eclipse.acceleo.module.sampleCustom.genv1;
 
+package org.eclipse.acceleo.module.sampleCustom.genv1;
 
 import java.util.Map;
 
@@ -16,14 +16,12 @@ import Engine.User;
 import Engine.Workflow;
 
 public class Starter {
+	
 
 	public static void main(String[] args) {
-			
-		//load xmi model through *.xmi file
 		
-		//arg[0] == user and arg[1] == 1
-	
-		//init model
+		String username = args[ 0 ];
+		String workflowName = args[ 1 ];
 		EnginePackage.eINSTANCE.eClass();
 		
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
@@ -31,22 +29,46 @@ public class Starter {
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 	    m.put("xmi", new XMIResourceFactoryImpl());
 
-	    // Obtain a new resource set
 	    ResourceSet resSet = new ResourceSetImpl();
 	    
-	    // Get the resource
-	    Resource resource = resSet.getResource(URI.createURI("xmi/MainSystem.xmi"), true);
-	    // Get the first model element and cast it to the right type, in my
-	    // example everything is hierarchical included in this first node
-	    MainSystem system = (MainSystem) resource.getContents().get(0);
-	    
-	    Workflow workflow = system.getWorkflows().get(0);
-	    
-	    User user = system.getUsers().get(0);
+    	Resource resource = resSet.getResource(URI.createURI("xmi/MainSystem1.xmi"), true);
+	
+		MainSystem system = (MainSystem) resource.getContents().get(0);
+			
+		Workflow workflow = getWorkflow(workflowName, system.getWorkflows());
+		if (workflow == null) {
+	    	throw new NullPointerException("No workflow can be found with name: " + workflowName);
+	    }
+		    
+	    User user = getUser(username, system.getUsers());
+	    if (user == null) {
+	    	throw new NullPointerException("No user can be found with name: " + user);
+	    }  
 	    
 	    workflow.start(user);
-			
-			
+					
 	}
+
+	private static User getUser(String username, EList<User> users) {
+		for (User user : users) {
+			if (user.getName().equals(username)) {
+				return user;
+			}
+		}
+		return null;	
+	}   
 	
+	private static Workflow getWorkflow(String workflowName, EList<Workflow> workflows) {
+		for (Workflow wf : workflows) {
+			if (wf.getName().equals(workflowName)) {
+				return wf;
+			}
+		}
+		return null;
+	}
 }
+
+
+
+
+

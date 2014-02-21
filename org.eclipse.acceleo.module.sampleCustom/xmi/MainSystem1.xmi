@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ASCII"?>
+<G2:MainSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:G2="Group2"
+    xsi:schemaLocation="Group2 engine.ecore">
+  <workflows
+      name="w1">
+    <nodes xsi:type="G2:Task"
+        name="Get customer information"
+        start="true"
+        transition="//@workflows.0/@nodes.1"
+        Description="Gather personal information about the customer:"/>
+    <nodes xsi:type="G2:Simple"
+        name="nextTask"
+        previousTasks="//@workflows.0/@nodes.0"
+        task="//@workflows.0/@nodes.2"/>
+    <nodes xsi:type="G2:Task"
+        name="Check if customer is credit worthy"
+        transition="//@workflows.0/@nodes.3"
+        Description="Check if customer is credit worthy:"
+        previousTasks="//@workflows.0/@nodes.0"/>
+    <nodes xsi:type="G2:IfElse"
+        name="Is he credit worthy?"
+        previousTasks="//@workflows.0/@nodes.2 //@workflows.0/@nodes.4"
+        tasks="//@workflows.0/@nodes.4 //@workflows.0/@nodes.5"/>
+    <nodes xsi:type="G2:Task"
+        name="Denied"
+        transition="//@workflows.0/@nodes.3"
+        Description="Explain to customer that he isn't eligeable for any loans."
+        previousTasks="//@workflows.0/@nodes.2"
+        choice="No"/>
+    <nodes xsi:type="G2:Task"
+        name="Determine wished size of bank loan"
+        Description="Ask the user and input in the data how much the customer what to loan:"
+        previousTasks="//@workflows.0/@nodes.2"
+        choice="Yes"/>
+  </workflows>
+  <users name="Lena"/>
+</G2:MainSystem>

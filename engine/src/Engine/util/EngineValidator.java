@@ -114,6 +114,8 @@ public class EngineValidator extends EObjectValidator {
 				return validateUserGroup((UserGroup)value, diagnostics, context);
 			case EnginePackage.PERMISSION:
 				return validatePermission((Permission)value, diagnostics, context);
+			case EnginePackage.RESULT_TASK:
+				return validateResultTask((ResultTask)value, diagnostics, context);
 			case EnginePackage.TASK_STATE:
 				return validateTaskState((TaskState)value, diagnostics, context);
 			default:
@@ -152,10 +154,10 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__NUMBER_OF_OUTGOING_FROM_SPLIT_PLUS_THE_DIFFERENCES_BETWEEN_NUMBER_OF_MERGES_AND_SPLITS_EQUALS_NUMBER_OF_INGOING_TO_MERGE__EEXPRESSION = "\n" +
-		"\t\t\tlet numberOfSplits : Integer = Split.allInstances()->size(),\n" +
-		"\t\t\tnumberOfMerges : Integer = Merge.allInstances()->size(),\n" +
-		"\t\t\tnumberOfOutgoingSplits : Integer = Split.allInstances()->collect(tasks->size())->sum(),\n" +
-		"\t\t\tnumberOfIngoingMerge : Integer = Merge.allInstances()->collect(previousTasks->size())->sum() in\n" +
+		"\t\t\tlet numberOfSplits : Integer = self.nodes->select(t| t.oclIsKindOf(Split))->size(),\n" +
+		"\t\t\tnumberOfMerges : Integer = self.nodes->select(t| t.oclIsKindOf(Merge))->size(),\n" +
+		"\t\t\tnumberOfOutgoingSplits : Integer = self.nodes->select(t| t.oclIsKindOf(Split))->collect(s: Split | s.tasks->size())->sum(),\n" +
+		"\t\t\tnumberOfIngoingMerge : Integer = self.nodes->select(t| t.oclIsKindOf(Merge))->collect(m: Merge | m.previousTasks->size())->sum() in\n" +
 		"\t\t\t\tnumberOfIngoingMerge = numberOfOutgoingSplits + numberOfMerges - numberOfSplits";
 
 	/**
@@ -186,12 +188,12 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__NUMBER_OF_OUTGOING_FROM_SWITCH_AND_IF_ELSE_PLUS_THE_DIFFERENCES_BETWEEN_NUMBER_OF_WAIT_FOR_ONE_AND_IF_ELSE_MINUS_SWITCHES_EQUALS_NUMBER_OF_INGOING_TO_WAIT_FOR_ONE__EEXPRESSION = "\n" +
-		"\t\t\tlet numberOfIfElse : Integer = IfElse.allInstances()->size(),\n" +
-		"\t\t\tnumberOfSwitch : Integer = Switch.allInstances()->size(),\n" +
-		"\t\t\tnumberOfWaitForOne : Integer = WaitForOne.allInstances()->size(), \n" +
-		"\t\t\tnumberOfOutgoingSwitch : Integer = Switch.allInstances()->collect(tasks->size())->sum(),\n" +
-		"\t\t\tnumberOfOutgoingIfElse : Integer = IfElse.allInstances()->collect(tasks->size())->sum(),\n" +
-		"\t\t\tnumberOfIngoingWaitForOne : Integer = WaitForOne.allInstances()->collect(previousTasks->size())->sum() in\n" +
+		"\t\t\tlet numberOfIfElse : Integer = self.nodes->select(t| t.oclIsKindOf(IfElse))->size(),\n" +
+		"\t\t\tnumberOfSwitch : Integer = self.nodes->select(t| t.oclIsKindOf(Switch))->size(),\n" +
+		"\t\t\tnumberOfWaitForOne : Integer = self.nodes->select(t| t.oclIsKindOf(WaitForOne))->size(), \n" +
+		"\t\t\tnumberOfOutgoingSwitch : Integer = self.nodes->select(t| t.oclIsKindOf(Switch))->collect(s: Switch | s.tasks->size())->sum(),\n" +
+		"\t\t\tnumberOfOutgoingIfElse : Integer = self.nodes->select(t| t.oclIsKindOf(IfElse))->collect(s: IfElse | s.tasks->size())->sum(),\n" +
+		"\t\t\tnumberOfIngoingWaitForOne : Integer = self.nodes->select(t| t.oclIsKindOf(WaitForOne))->collect(s: WaitForOne | s.previousTasks->size())->sum() in\n" +
 		"\t\t\t\tnumberOfIngoingWaitForOne = numberOfOutgoingSwitch + numberOfOutgoingIfElse + numberOfWaitForOne - numberOfIfElse - numberOfSwitch";
 
 	/**
@@ -222,7 +224,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__START_EXISTS_ONCE__EEXPRESSION = "\n" +
-		"\t\t\tTask.allInstances()->select(t | t.start = true)->size() = 1";
+		"\t\t\tself.nodes->select(n| n.oclIsKindOf(Task))->select(t: Task | t.start = true)->size() = 1";
 
 	/**
 	 * Validates the startExistsOnce constraint of '<em>Workflow</em>'.
@@ -252,7 +254,7 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__END_EXISTS_ONCE__EEXPRESSION = "\n" +
-		"\t\t\tTask.allInstances()->select(t | t.end = true)->size() = 1";
+		"\t\t\tself.nodes->select(n| n.oclIsKindOf(Task))->select(t: Task | t.end = true)->size() = 1";
 
 	/**
 	 * Validates the endExistsOnce constraint of '<em>Workflow</em>'.
@@ -282,18 +284,18 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String WORKFLOW__ONLY_ONE_TRANSITION_ALLOWED_TO_REFERENCE_SAME_TASK__EEXPRESSION = "\n" +
-		"\t\t\tlet allRefs : Bag = Split.allInstances().tasks->\n" +
-		"\t\t\t\t\t\t\t\tunion(Merge.allInstances().task)->\n" +
-		"\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks)->\n" +
-		"\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks)->\n" +
-		"\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task)->\n" +
-		"\t\t\t\t\t\t\t\tunion(Simple.allInstances().task),\t\t\t\t\t\t\t\t\n" +
-		"\t\t\tuniqueRef : Set = Split.allInstances().tasks->asSet()->\n" +
-		"\t\t\t\t\t\t\t\tunion(Merge.allInstances().task->asSet())->\n" +
-		"\t\t\t\t\t\t\t\tunion(Switch.allInstances().tasks->asSet())->\n" +
-		"\t\t\t\t\t\t\t\tunion(IfElse.allInstances().tasks->asSet())->\n" +
-		"\t\t\t\t\t\t\t\tunion(WaitForOne.allInstances().task->asSet())->\n" +
-		"\t\t\t\t\t\t\t\tunion(Simple.allInstances().task->asSet())\t\t\t\t\t\t\t\t\t\n" +
+		"\t\t\tlet allRefs : Bag = self.nodes->select(t| t.oclIsKindOf(Split))->collect(s: Split | s.tasks)->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(Merge))->collect(m: Merge | m.task))->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(Switch))->collect(s: Switch | s.tasks))->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(IfElse))->collect(i: IfElse | i.tasks))->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(WaitForOne))->collect(w: WaitForOne | w.task))->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(Simple))->collect(s: Simple | s.task)),\t\t\t\t\t\t\t\t\n" +
+		"\t\t\tuniqueRef : Set = self.nodes->select(t| t.oclIsKindOf(Split))->collect(s: Split | s.tasks)->asSet()->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(Merge))->collect(m: Merge | m.task)->asSet())->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(Switch))->collect(s: Switch | s.tasks)->asSet())->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(IfElse))->collect(i: IfElse | i.tasks)->asSet())->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(WaitForOne))->collect(w: WaitForOne | w.task)->asSet())->\n" +
+		"\t\t\t\t\t\t\t\tunion(self.nodes->select(t| t.oclIsKindOf(Simple))->collect(s: Simple | s.task)->asSet())\t\t\t\t\t\t\t\t\t\n" +
 		"\t\t\t\t\t\t\t\tin\n" +
 		"\t\t\t\t\t\t uniqueRef->size() = allRefs->size()";
 
@@ -354,7 +356,47 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateNode(Node node, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(node, diagnostics, context);
+		if (!validate_NoCircularContainment(node, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(node, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(node, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the nameMustBePresent constraint of '<em>Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NODE__NAME_MUST_BE_PRESENT__EEXPRESSION = "\n" +
+		"\t\t\tself.name.oclIsUndefined() = false ";
+
+	/**
+	 * Validates the nameMustBePresent constraint of '<em>Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNode_nameMustBePresent(Node node, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(EnginePackage.Literals.NODE,
+				 node,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "nameMustBePresent",
+				 NODE__NAME_MUST_BE_PRESENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -372,6 +414,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(task, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(task, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(task, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(task, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTask_noOutReferencesForEnd(task, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTask_noMoreThanOneOutReferenceForTasks(task, diagnostics, context);
 		return result;
@@ -447,7 +490,17 @@ public class EngineValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTransition(Transition transition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(transition, diagnostics, context);
+		if (!validate_NoCircularContainment(transition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(transition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(transition, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -465,6 +518,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(split, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(split, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(split, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(split, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSplit_splitMustHaveOneIncomingTask(split, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSplit_noOutReferencesToStart(split, diagnostics, context);
 		return result;
@@ -545,6 +599,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(merge, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(merge, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(merge, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(merge, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMerge_mergeMustHaveMoreThanOneIncomingTask(merge, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMerge_noOutReferencesToStart(merge, diagnostics, context);
 		return result;
@@ -625,6 +680,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(simple, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(simple, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(simple, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(simple, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSimple_simpleMustHaveOneIncomingTask(simple, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSimple_noOutReferencesToStart(simple, diagnostics, context);
 		return result;
@@ -705,6 +761,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(ifElse, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(ifElse, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(ifElse, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(ifElse, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIfElse_ifElseMustHaveOneIncomingTask(ifElse, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIfElse_noOutReferencesToStart(ifElse, diagnostics, context);
 		return result;
@@ -785,6 +842,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(switch_, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(switch_, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(switch_, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(switch_, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSwitch_switchMustHaveOneIncomingTask(switch_, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSwitch_noOutReferencesToStart(switch_, diagnostics, context);
 		return result;
@@ -865,6 +923,7 @@ public class EngineValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(waitForOne, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(waitForOne, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(waitForOne, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNode_nameMustBePresent(waitForOne, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWaitForOne_waitForOneMustHaveTwoIncomingTasks(waitForOne, diagnostics, context);
 		if (result || diagnostics != null) result &= validateWaitForOne_noOutReferencesToStart(waitForOne, diagnostics, context);
 		return result;
@@ -964,6 +1023,15 @@ public class EngineValidator extends EObjectValidator {
 	 */
 	public boolean validatePermission(Permission permission, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(permission, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateResultTask(ResultTask resultTask, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(resultTask, diagnostics, context);
 	}
 
 	/**

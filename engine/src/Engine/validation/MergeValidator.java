@@ -6,6 +6,7 @@
  */
 package Engine.validation;
 
+import Engine.ResultTask;
 import Engine.Task;
 
 /**
@@ -16,6 +17,8 @@ import Engine.Task;
  */
 public interface MergeValidator {
 	boolean validate();
+
+	boolean validateTask(ResultTask value);
 
 	boolean validateTask(Task value);
 }

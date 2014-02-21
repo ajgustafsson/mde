@@ -3,6 +3,7 @@
 package Engine.impl;
 
 import Engine.EnginePackage;
+import Engine.ResultTask;
 import Engine.Split;
 import Engine.Task;
 import java.lang.reflect.InvocationTargetException;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -27,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Engine.impl.SplitImpl#getName <em>Name</em>}</li>
  *   <li>{@link Engine.impl.SplitImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
+ *   <li>{@link Engine.impl.SplitImpl#getResultTasks <em>Result Tasks</em>}</li>
  *   <li>{@link Engine.impl.SplitImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
@@ -61,6 +64,15 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 	 * @ordered
 	 */
 	protected EList<Task> previousTasks;
+	/**
+	 * The cached value of the '{@link #getResultTasks() <em>Result Tasks</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResultTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ResultTask> resultTasks;
 	/**
 	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -127,6 +139,18 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ResultTask> getResultTasks() {
+		if (resultTasks == null) {
+			resultTasks = new EObjectContainmentEList<ResultTask>(ResultTask.class, this, EnginePackage.SPLIT__RESULT_TASKS);
+		}
+		return resultTasks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Task> getTasks() {
 		if (tasks == null) {
 			tasks = new EObjectResolvingEList<Task>(Task.class, this, EnginePackage.SPLIT__TASKS);
@@ -169,6 +193,8 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 		switch (featureID) {
 			case EnginePackage.SPLIT__PREVIOUS_TASKS:
 				return ((InternalEList<?>)getPreviousTasks()).basicRemove(otherEnd, msgs);
+			case EnginePackage.SPLIT__RESULT_TASKS:
+				return ((InternalEList<?>)getResultTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -185,6 +211,8 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 				return getName();
 			case EnginePackage.SPLIT__PREVIOUS_TASKS:
 				return getPreviousTasks();
+			case EnginePackage.SPLIT__RESULT_TASKS:
+				return getResultTasks();
 			case EnginePackage.SPLIT__TASKS:
 				return getTasks();
 		}
@@ -206,6 +234,10 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 			case EnginePackage.SPLIT__PREVIOUS_TASKS:
 				getPreviousTasks().clear();
 				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
+				return;
+			case EnginePackage.SPLIT__RESULT_TASKS:
+				getResultTasks().clear();
+				getResultTasks().addAll((Collection<? extends ResultTask>)newValue);
 				return;
 			case EnginePackage.SPLIT__TASKS:
 				getTasks().clear();
@@ -229,6 +261,9 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 			case EnginePackage.SPLIT__PREVIOUS_TASKS:
 				getPreviousTasks().clear();
 				return;
+			case EnginePackage.SPLIT__RESULT_TASKS:
+				getResultTasks().clear();
+				return;
 			case EnginePackage.SPLIT__TASKS:
 				getTasks().clear();
 				return;
@@ -248,6 +283,8 @@ public class SplitImpl extends MinimalEObjectImpl.Container implements Split {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case EnginePackage.SPLIT__PREVIOUS_TASKS:
 				return previousTasks != null && !previousTasks.isEmpty();
+			case EnginePackage.SPLIT__RESULT_TASKS:
+				return resultTasks != null && !resultTasks.isEmpty();
 			case EnginePackage.SPLIT__TASKS:
 				return tasks != null && !tasks.isEmpty();
 		}

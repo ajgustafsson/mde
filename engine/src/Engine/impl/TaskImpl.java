@@ -366,20 +366,34 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		}
 		System.out.println("----------- End of data from previous tasks -----------\n");
 	
-		System.out.println("----------- Task description: -----------\n");
+		System.out.println("----------- " + this.name + " description: -----------\n");
 		System.out.println(this.description);
 		System.out.println("----------- Type or past any data that is required for next step in the workflow: -----------\n");
 		Scanner input = new Scanner(System.in);
 		String dataInput = input.nextLine();
 		this.data = dataInput;
 		
-		printHelpToDecideHowItWent();
+//		printHelpToDecideHowItWent();
 		
 		this.transition.get(0).transit();
 	}
 	
 	private void printHelpToDecideHowItWent() {
 		Transition next = this.transition.get(0);
+		next.getResultTasks();
+		
+		System.out.println("What's the result of the task?");
+		for (int i = 0; i < next.getResultT.size(); i++) {
+			Task task = this.tasks.get(i);
+			System.out.println("Choice ID: " + i +  " (" + task.getChoice() + ")");
+		}
+		Scanner input = new Scanner(System.in);
+		String dataInput = input.nextLine();
+		
+		int result = Integer.parseInt(dataInput);
+		Task nextTask = tasks.get(result);
+		
+		nextTask.setReady(previousTasks);
 		
 //		next.getPreviousTasks()
 		

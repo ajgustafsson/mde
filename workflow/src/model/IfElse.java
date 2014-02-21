@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@5a7171bc (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@1cad1d7b (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -14,7 +14,14 @@ public class IfElse extends Transition {
 	
 	public void transit() {
 		// Start of user code transit
-		// TODO should be implemented
+		if (previousTasks.get(0).getResult() == 0) {
+			//negative outcome of the if else
+			tasks.get(0).setReady(previousTasks);			
+		} else {
+			tasks.get(1).setReady(previousTasks);
+		}
+		
+		tasks.get(previousTasks.get(0).getResult());
 		// End of user code
 	}
 	
@@ -44,5 +51,12 @@ public class IfElse extends Transition {
 	}
 	
 	
+
+
+	// Start of user code IfElse
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

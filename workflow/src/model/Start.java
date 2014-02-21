@@ -6,43 +6,43 @@ import  java.util.*;
 
 public class Start {
 	
-	public static void main() {
+	public static void main(String[] args) {
 		Map<String,Transition> transitions = new HashMap<String,Transition>();
 		Map<String,Task> tasks = new HashMap<String,Task>();
 
-		Task myStart = new Task();
-		myStart.setName("myStart");
-		myStart.setState(TaskState.NOT_PROCESSED);
-		myStart.setEnd(false);
-		myStart.setStart(true);
-		tasks.put(myStart.getName(), myStart);
-		System.out.println(myStart.getName() + myStart.getState());
+		Task task1 = new Task();
+		task1.setName("task1");
+		task1.setState(TaskState.NOT_PROCESSED);
+		task1.setEnd(false);
+		task1.setStart(true);
+		tasks.put(task1.getName(), task1);
+		System.out.println(task1.getName() + task1.getState());
 
-		Task myEnd = new Task();
-		myEnd.setName("myEnd");
-		myEnd.setState(TaskState.NOT_PROCESSED);
-		myEnd.setEnd(true);
-		myEnd.setStart(false);
-		tasks.put(myEnd.getName(), myEnd);
-		System.out.println(myEnd.getName() + myEnd.getState());
+		Task task2 = new Task();
+		task2.setName("task2");
+		task2.setState(TaskState.NOT_PROCESSED);
+		task2.setEnd(true);
+		task2.setStart(false);
+		tasks.put(task2.getName(), task2);
+		System.out.println(task2.getName() + task2.getState());
 
-		Simple mySimple = new Simple();
+		Simple simple1 = new Simple();
 			
 		
-		mySimple.setName("mySimple");
-		Task temp = tasks.get("myStart");
+		simple1.setName("simple1");
+		Task temp = tasks.get("task1");
 
 		List<Task> tempList = new ArrayList<Task>();
 		tempList.add(temp);
-		mySimple.setPreviousTasks(tempList);
+		simple1.setPreviousTasks(tempList);
 
 		List<Transition> tempList2 = new ArrayList<Transition>();
-		tempList2.add(mySimple);
+		tempList2.add(simple1);
 		temp.setTransition(tempList2);
 
-		mySimple.setTask(tasks.get("myEnd"));
+		simple1.setTask(tasks.get("task2"));
 
-		transitions.put("mySimple",mySimple);
+		transitions.put("simple1",simple1);
 		
 
 		Workflow w1 = new Workflow();
@@ -53,7 +53,18 @@ public class Start {
 		
 	
 		// Start of user code main
-		//
+		User user = new User();
+		user.setName("Eva");
+		Permission perm = new Permission();
+		perm.setName("perm");
+		UserGroup grupp = new UserGroup();
+		grupp.setName("grupp");
+		List<Permission> permList = new ArrayList<Permission>();
+		permList.add(perm);
+		grupp.setPermissions(permList);
+		List<UserGroup> gruppList = new ArrayList<UserGroup>();
+		user.setGroups(gruppList);
+		w1.start(user);
 		// End of user code
     }
 

@@ -1,7 +1,10 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@5d1f6f6f (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@31c4b6bf (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
+
+import model.Task;
+import model.TaskState;
 public class Merge extends Transition {
 
 		private java.lang.String name;
@@ -14,7 +17,17 @@ public class Merge extends Transition {
 	
 	public void transit() {
 		// Start of user code transit
-		// TODO should be implemented
+		boolean allDone = true;
+		for (Task task : previousTasks) {
+			if (!task.getState().equals(TaskState.PROCESSED)) {
+				allDone = false;
+				break;
+			}
+		}
+		
+		if (allDone) {
+			task.setReady(previousTasks);
+		}
 		// End of user code
 	}
 	
@@ -44,5 +57,12 @@ public class Merge extends Transition {
 	}
 	
 	
+
+
+	// Start of user code Merge
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@40c1b4df (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@3613a81b (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -10,9 +10,60 @@ public class Workflow {
 		private List<Node> nodes;
 	
 	
-	public void start() {
+	public void start(User user) {
 		// Start of user code start
-		// TODO should be implemented
+		Task startTask = getStartTask();
+		if (checkThatUserCanExecuteTask(startTask, user)) {
+			startTask.doJob();
+		} else {
+			System.out.println("You cannot do this task!");
+		}
+		if (!startTask.getEnd()) {
+			boolean running = true;
+			while (running) {
+				List<Task> executableTasks = getExecutableTasks();
+				Task toRun = null;
+				if (executableTasks.size() == 1) {
+					toRun = executableTasks.get(0);
+					if(toRun.getEnd()) {
+						toRun.doJob();
+						break;
+					}
+					toRun.doJob();
+				}
+				Scanner sc = null;
+				try {
+					while (toRun == null) {
+						printExecutableTasks(executableTasks);
+						sc = new Scanner(System.in);
+						String taskNameToStart = sc.nextLine();
+						try {
+							int id = Integer.parseInt(taskNameToStart);
+							if (id < executableTasks.size()) {
+								toRun = executableTasks.get(id);
+							}
+						} catch (NumberFormatException e) {
+						}
+
+						if (toRun == null) {
+							System.out.println("Task ID " + taskNameToStart
+									+ " isn't a valid task ID.");
+						}
+						if (checkThatUserCanExecuteTask(toRun, user)) {
+							toRun.doJob();
+							if (toRun.getEnd()) {
+								running = false;
+							}
+						} else {
+							System.out
+									.println("Sorry, you don't have permission to do that!");
+						}
+					}
+				} finally {
+
+				}
+			}
+		}
 		// End of user code
 	}
 	
@@ -34,5 +85,66 @@ public class Workflow {
 	}
 	
 	
+
+
+	// Start of user code Workflow
+	private Task getStartTask() {
+		for (Node node : this.nodes) {
+			if (node instanceof Task) {
+				Task task = (Task) node;
+				if (task.getStart()) {
+					return task;
+				}
+			}
+		}
+		throw new UnsupportedOperationException(
+				"No task with isStart == true can be found.");
+	}
+	
+	private boolean checkThatUserCanExecuteTask(Task task, User user) {
+		Permission permission = task.getPermission();
+
+		if (permission != null) {
+
+			List<UserGroup> groups = user.getGroups();
+
+			for (UserGroup group : groups) {
+				if (group.getPermissions().contains(permission)) {
+					return true;
+				}
+			}
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	private List<Task> getExecutableTasks() {
+
+		List<Task> executableTasks = new ArrayList<>();
+		for (Node node : this.nodes) {
+			if (node instanceof Task) {
+				Task task = (Task) node;
+				if (task.getState() == TaskState.PROCESSING) {
+					executableTasks.add(task);
+				}
+			}
+		}
+
+		return executableTasks;
+	}
+
+	
+	private void printExecutableTasks(List<Task> executableTasks) {
+		System.out
+				.println("Which task do you want to start? (Type the ID of the task you want to start)");
+		for (int i = 0; i < executableTasks.size(); i++) {
+			Task task = executableTasks.get(i);
+			System.out.println("Task ID: " + i + " (" + task.getName() + ")");
+		}
+	}
+	// End of user code
+
 }
+
 

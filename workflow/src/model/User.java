@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@5a765561 (name: User) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@2af4173c (name: User) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -28,5 +28,12 @@ public class User {
 	}
 	
 	
+
+
+	// Start of user code User
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

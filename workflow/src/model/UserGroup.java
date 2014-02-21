@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@2fb8e76 (name: UserGroup) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@7a5a71ad (name: UserGroup) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -28,5 +28,12 @@ public class UserGroup {
 	}
 	
 	
+
+
+	// Start of user code UserGroup
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

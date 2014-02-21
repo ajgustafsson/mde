@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@1d3a3d5c (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@42ab2f68 (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -14,7 +14,7 @@ public class Simple extends Transition {
 	
 	public void transit() {
 		// Start of user code transit
-		int i = 99999;
+		task.setReady(previousTasks);	
 		// End of user code
 	}
 	
@@ -44,5 +44,12 @@ public class Simple extends Transition {
 	}
 	
 	
+
+
+	// Start of user code Simple
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

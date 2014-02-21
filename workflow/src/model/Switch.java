@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@744e95fb (name: Switch) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@67249d98 (name: Switch) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -14,7 +14,7 @@ public class Switch extends Transition {
 	
 	public void transit() {
 		// Start of user code transit
-		// TODO should be implemented
+		tasks.get(previousTasks.get(0).getResult()).setReady(previousTasks);
 		// End of user code
 	}
 	
@@ -44,5 +44,12 @@ public class Switch extends Transition {
 	}
 	
 	
+
+
+	// Start of user code Switch
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

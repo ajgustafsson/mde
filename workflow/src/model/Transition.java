@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@19a93cb1 (name: Transition) (instanceClassName: null) (abstract: true, interface: true)
+//org.eclipse.emf.ecore.impl.EClassImpl@2f343f46 (name: Transition) (instanceClassName: null) (abstract: true, interface: true)
 package model;
 
 import java.util.*;
@@ -34,5 +34,12 @@ public class Transition extends Node {
 	}
 	
 	
+
+
+	// Start of user code Transition
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

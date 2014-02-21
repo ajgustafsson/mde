@@ -1,7 +1,10 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@70fe5163 (name: Task) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@6f46b61f (name: Task) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
+
+import model.Task;
+import model.TaskState;
 public class Task extends Node {
 
 		private java.lang.String name;
@@ -28,13 +31,50 @@ public class Task extends Node {
 	
 	public void doJob() {
 		// Start of user code doJob
-		// TODO should be implemented
+		Scanner input = null;
+		try {
+
+			System.out.println("----------- Executing " + this.name + " -----------\n");
+
+			System.out.println("----------- Data from previous tasks: -----------\n");
+			if (previousTasks != null) {
+				for (Task task : previousTasks) {
+					System.out.println(task.getName() + ":");
+					System.out.println(task.getData());
+				}
+			}
+			System.out.println("----------- End of data from previous tasks -----------\n");
+
+			System.out.println("----------- " + this.name + " description: -----------\n");
+			System.out.println(this.Description);
+			System.out.println("----------- Type or past any data that is required for next step in the workflow: -----------\n");
+			input = new Scanner(System.in);
+			String dataInput = input.nextLine();
+			this.data = dataInput;
+
+			System.out.println("Set the result of the task...");
+			dataInput = input.nextLine();
+
+			this.Result = Integer.parseInt(dataInput);
+			System.out.println(this.transition.get(0));
+			System.out.println("----------- Done executing " + this.name + " -----------\n");
+			this.setState(TaskState.PROCESSED);
+			this.transition.get(0).transit();
+			
+			
+			
+		} finally {
+		//	if (input != null) {
+	//			input.close();
+	//		}
+		}
 		// End of user code
 	}
 	
-	public void setReady() {
+	public void setReady(List previousTasks) {
 		// Start of user code setReady
-		// TODO should be implemented
+		this.previousTasks.addAll(previousTasks);
+		this.state = TaskState.PROCESSING;
 		// End of user code
 	}
 	
@@ -120,5 +160,12 @@ public class Task extends Node {
 	}
 	
 	
+
+
+	// Start of user code Task
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

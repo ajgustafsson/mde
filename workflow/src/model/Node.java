@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@57d85152 (name: Node) (instanceClassName: null) (abstract: true, interface: true)
+//org.eclipse.emf.ecore.impl.EClassImpl@79211d11 (name: Node) (instanceClassName: null) (abstract: true, interface: true)
 package model;
 
 import java.util.*;
@@ -18,5 +18,12 @@ public class Node {
 	}
 	
 	
+
+
+	// Start of user code Node
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

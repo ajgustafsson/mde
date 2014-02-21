@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@647d2087 (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@1641fb9d (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -54,5 +54,12 @@ public class MainSystem {
 	}
 	
 	
+
+
+	// Start of user code MainSystem
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

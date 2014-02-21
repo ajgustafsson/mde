@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@33863c4a (name: Split) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@5fae1a85 (name: Split) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -14,7 +14,9 @@ public class Split extends Transition {
 	
 	public void transit() {
 		// Start of user code transit
-		// TODO should be implemented
+		for (Task task : tasks) {
+			task.setReady(previousTasks);
+		}	
 		// End of user code
 	}
 	
@@ -44,5 +46,12 @@ public class Split extends Transition {
 	}
 	
 	
+
+
+	// Start of user code Split
+	// TODO should be implemented
+	// End of user code
+
 }
+
 

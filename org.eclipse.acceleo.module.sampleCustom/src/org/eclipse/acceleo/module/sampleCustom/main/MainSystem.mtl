@@ -2,7 +2,6 @@
 [module MainSystem('Group2')]
 
 [template public mainSystem(aMainSystem : MainSystem)]
-[comment @main/]
 [file ('Starter.java', false, 'UTF-8')]
 
 package org.eclipse.acceleo.module.sampleCustom.genv1;

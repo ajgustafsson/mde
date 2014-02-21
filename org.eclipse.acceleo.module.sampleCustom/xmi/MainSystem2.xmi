@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ASCII"?>
+<G2:MainSystem
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:G2="Group2"
+    xsi:schemaLocation="Group2 engine.ecore">
+  <workflows
+      name="w1">
+    <nodes xsi:type="G2:Task"
+        name="Customer wants a bank loan"
+        start="true"
+        permission="//@permissions.1"
+        transition="//@workflows.0/@nodes.1"
+        Description="Get necesseary personal information from customer. (Name, age and income)"/>
+    <nodes xsi:type="G2:Simple"
+        name="Check if worthy"
+        previousTasks="//@workflows.0/@nodes.0"
+        task="//@workflows.0/@nodes.2"/>
+    <nodes xsi:type="G2:Task"
+        name="Is the customer credit worthy?"
+        end="true"
+        transition="//@workflows.0/@nodes.3"
+        Description="Contact credit central and see whether the customer is credit worthy or not. If yes set result to 0 otherwise set the result to 1."
+        previousTasks="//@workflows.0/@nodes.0"/>
+    <nodes xsi:type="G2:IfElse"
+        name="Is the customer credit worthy?"
+        previousTasks="//@workflows.0/@nodes.2"
+        tasks="//@workflows.0/@nodes.4 //@workflows.0/@nodes.10"/>
+    <nodes xsi:type="G2:Task"
+        name="Determine size of bank loan"
+        Description="Determine how big the loan should be."
+        previousTasks="//@workflows.0/@nodes.2"/>
+    <nodes xsi:type="G2:Task"
+        name="WhichKindOfLoan"
+        transition="//@workflows.0/@nodes.6"
+        Description="Decide which kind of loan the customer wants. Car = 0, House = 1, Consumbale = 2"/>
+    <nodes xsi:type="G2:Switch"
+        name="DecideType"
+        previousTasks="//@workflows.0/@nodes.5"
+        tasks="//@workflows.0/@nodes.7 //@workflows.0/@nodes.8 //@workflows.0/@nodes.9"/>
+    <nodes xsi:type="G2:Task"
+        name="StartCarLoanProcess"/>
+    <nodes xsi:type="G2:Task"
+        name="StartHouseLoanProcess"/>
+    <nodes xsi:type="G2:Task"
+        name="StartConsumableProcess"/>
+    <nodes xsi:type="G2:Task"
+        name="Denied"
+        Description="Explain to the customer why he's denied a loan."
+        previousTasks="//@workflows.0/@nodes.2"/>
+  </workflows>
+  <users name="Lena"/>
+  <users name="Leif"/>
+  <userGroups
+      permissions="//@permissions.0 //@permissions.1"
+      name="Bank Employee"/>
+  <userGroups
+      permissions="//@permissions.1"
+      name="Customer"/>
+  <permissions
+      name="Banking"/>
+  <permissions
+      name="Public"/>
+</G2:MainSystem>

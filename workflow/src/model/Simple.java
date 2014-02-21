@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@54b1b0f (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@1d3a3d5c (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
-public class Simple {
+import java.util.*;
+public class Simple extends Transition {
+
 		private java.lang.String name;
 	
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
 		private Task task;
 	
@@ -23,6 +25,14 @@ public class Simple {
 	
 	public java.lang.String getName() {
 		return name; 
+	}
+	
+	public void setPreviousTasks(List<Task> previousTasks) {
+		this.previousTasks = previousTasks;
+	}
+	
+	public List<Task> getPreviousTasks() {
+		return previousTasks; 
 	}
 	
 	public void setTask(Task task) {

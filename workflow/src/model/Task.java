@@ -1,7 +1,9 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@1386e93a (name: Task) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@70fe5163 (name: Task) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
-public class Task {
+import java.util.*;
+public class Task extends Node {
+
 		private java.lang.String name;
 	
 		private TaskState state;
@@ -19,9 +21,9 @@ public class Task {
 	
 		private Permission permission;
 	
-		private Transition transition;
+		private List<Transition> transition;
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
 	
 	public void doJob() {
@@ -101,19 +103,19 @@ public class Task {
 		return permission; 
 	}
 	
-	public void setTransition(Transition transition) {
+	public void setTransition(List<Transition> transition) {
 		this.transition = transition;
 	}
 	
-	public Transition getTransition() {
+	public List<Transition> getTransition() {
 		return transition; 
 	}
 	
-	public void setPreviousTasks(Task previousTasks) {
+	public void setPreviousTasks(List<Task> previousTasks) {
 		this.previousTasks = previousTasks;
 	}
 	
-	public Task getPreviousTasks() {
+	public List<Task> getPreviousTasks() {
 		return previousTasks; 
 	}
 	

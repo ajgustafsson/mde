@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@78798bb5 (name: Transition) (instanceClassName: null) (abstract: true, interface: true)
+//org.eclipse.emf.ecore.impl.EClassImpl@19a93cb1 (name: Transition) (instanceClassName: null) (abstract: true, interface: true)
 package model;
 
-public class Transition {
+import java.util.*;
+public class Transition extends Node {
+
 		private java.lang.String name;
 	
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
 	
 	public void transit() {
@@ -23,11 +25,11 @@ public class Transition {
 		return name; 
 	}
 	
-	public void setPreviousTasks(Task previousTasks) {
+	public void setPreviousTasks(List<Task> previousTasks) {
 		this.previousTasks = previousTasks;
 	}
 	
-	public Task getPreviousTasks() {
+	public List<Task> getPreviousTasks() {
 		return previousTasks; 
 	}
 	

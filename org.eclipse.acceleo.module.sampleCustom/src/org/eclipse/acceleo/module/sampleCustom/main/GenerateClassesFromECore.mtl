@@ -8,7 +8,13 @@
 //[e/]
 package model;
 
+import java.util.*;
+[if (e.eSuperTypes->size() = 0)]
 public class [e.name.toUpperFirst()/] {
+[else]
+public class [e.name.toUpperFirst()/] extends [e.eSuperTypes.name/] {
+[/if]
+
 	[e.generateAttributes()/]
 	[e.generateRelations()/]
 	[e.generateMethods()/]
@@ -32,9 +38,17 @@ public class [e.name.toUpperFirst()/] {
 [template public generateRelations(eClass : EClass)]
 [for (relation : EReference | eClass.eAllReferences)]
 [if (relation.eType.instanceClassName = null)]
+[if (relation.upperBound > 1)]
+	private List<[relation.eType.name/]> [relation.name.replace(' ', '')/];
+[else]
 	private [relation.eType.name/] [relation.name.replace(' ', '')/];
+[/if]
+[else]
+[if (relation.upperBound > 1)]
+	private List<[relation.eType.instanceClassName/]> [relation.name.replace(' ', '')/];
 [else]
 	private [relation.eType.instanceClassName/] [relation.name.replace(' ', '')/];
+[/if]
 [/if]
 
 [/for]
@@ -73,13 +87,32 @@ public [attribute.eType.instanceClassName/] ['get'.concat(attribute.name.toUpper
 [/if]
 
 [/for]
-[for (relation : EReference | eClass.eReferences)]
+[for (relation : EReference | eClass.eAllReferences)]
 [if (relation.eType.instanceClassName = null)]
+[if (relation.upperBound > 1)]
+public void ['set'.concat(relation.name.toUpperFirst().replace(' ', ''))/](List<[relation.eType.name/]> [relation.name.replace(' ', '')/]) {
+	this.[relation.name.replace(' ', '')/] = [relation.name.replace(' ', '')/];
+}
+
+public List<[relation.eType.name/]> ['get'.concat(relation.name.toUpperFirst().replace(' ', ''))/]() {
+	return [relation.name.replace(' ', '')/]; 
+}
+[else]
 public void ['set'.concat(relation.name.toUpperFirst().replace(' ', ''))/]([relation.eType.name/] [relation.name.replace(' ', '')/]) {
 	this.[relation.name.replace(' ', '')/] = [relation.name.replace(' ', '')/];
 }
 
 public [relation.eType.name/] ['get'.concat(relation.name.toUpperFirst().replace(' ', ''))/]() {
+	return [relation.name.replace(' ', '')/]; 
+}
+[/if]
+[else]
+[if (relation.upperBound > 1)]
+public void ['set'.concat(relation.name.toUpperFirst().replace(' ', ''))/](List<[relation.eType.instanceClassName/]> [relation.name.replace(' ', '')/]) {
+	this.[relation.name.replace(' ', '')/] = [relation.name.replace(' ', '')/];
+}
+
+public List<[relation.eType.instanceClassName/]> ['get'.concat(relation.name.toUpperFirst().replace(' ', ''))/]() {
 	return [relation.name.replace(' ', '')/]; 
 }
 [else]
@@ -90,6 +123,7 @@ public void ['set'.concat(relation.name.toUpperFirst().replace(' ', ''))/]([rela
 public [relation.eType.instanceClassName/] ['get'.concat(relation.name.toUpperFirst().replace(' ', ''))/]() {
 	return [relation.name.replace(' ', '')/]; 
 }
+[/if]
 [/if]
 
 [/for]

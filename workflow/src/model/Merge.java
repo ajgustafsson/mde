@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@3fe715e6 (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@5d1f6f6f (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
-public class Merge {
+import java.util.*;
+public class Merge extends Transition {
+
 		private java.lang.String name;
 	
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
 		private Task task;
 	
@@ -23,6 +25,14 @@ public class Merge {
 	
 	public java.lang.String getName() {
 		return name; 
+	}
+	
+	public void setPreviousTasks(List<Task> previousTasks) {
+		this.previousTasks = previousTasks;
+	}
+	
+	public List<Task> getPreviousTasks() {
+		return previousTasks; 
 	}
 	
 	public void setTask(Task task) {

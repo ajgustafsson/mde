@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@69755aa4 (name: WaitForOne) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@11b09ba9 (name: WaitForOne) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
-public class WaitForOne {
+import java.util.*;
+public class WaitForOne extends Transition {
+
 		private java.lang.String name;
 	
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
 		private Task task;
 	
@@ -23,6 +25,14 @@ public class WaitForOne {
 	
 	public java.lang.String getName() {
 		return name; 
+	}
+	
+	public void setPreviousTasks(List<Task> previousTasks) {
+		this.previousTasks = previousTasks;
+	}
+	
+	public List<Task> getPreviousTasks() {
+		return previousTasks; 
 	}
 	
 	public void setTask(Task task) {

@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@5601b6a1 (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@40c1b4df (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
+import java.util.*;
 public class Workflow {
+
 		private java.lang.String name;
 	
 	
-		private Node nodes;
+		private List<Node> nodes;
 	
 	
 	public void start() {
@@ -23,11 +25,11 @@ public class Workflow {
 		return name; 
 	}
 	
-	public void setNodes(Node nodes) {
+	public void setNodes(List<Node> nodes) {
 		this.nodes = nodes;
 	}
 	
-	public Node getNodes() {
+	public List<Node> getNodes() {
 		return nodes; 
 	}
 	

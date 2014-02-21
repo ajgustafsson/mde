@@ -1,13 +1,15 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@6e90f088 (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@5a7171bc (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
-public class IfElse {
+import java.util.*;
+public class IfElse extends Transition {
+
 		private java.lang.String name;
 	
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
-		private Task tasks;
+		private List<Task> tasks;
 	
 	
 	public void transit() {
@@ -25,11 +27,19 @@ public class IfElse {
 		return name; 
 	}
 	
-	public void setTasks(Task tasks) {
+	public void setPreviousTasks(List<Task> previousTasks) {
+		this.previousTasks = previousTasks;
+	}
+	
+	public List<Task> getPreviousTasks() {
+		return previousTasks; 
+	}
+	
+	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
 	
-	public Task getTasks() {
+	public List<Task> getTasks() {
 		return tasks; 
 	}
 	

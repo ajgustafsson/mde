@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@584b5d2f (name: User) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@5a765561 (name: User) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
+import java.util.*;
 public class User {
+
 		private java.lang.String name;
 	
 	
-		private UserGroup groups;
+		private List<UserGroup> groups;
 	
 	
 	
@@ -17,11 +19,11 @@ public class User {
 		return name; 
 	}
 	
-	public void setGroups(UserGroup groups) {
+	public void setGroups(List<UserGroup> groups) {
 		this.groups = groups;
 	}
 	
-	public UserGroup getGroups() {
+	public List<UserGroup> getGroups() {
 		return groups; 
 	}
 	

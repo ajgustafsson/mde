@@ -1,15 +1,17 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@357586e5 (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@647d2087 (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
+import java.util.*;
 public class MainSystem {
+
 	
-		private Workflow workflows;
+		private List<Workflow> workflows;
 	
-		private User users;
+		private List<User> users;
 	
-		private UserGroup userGroups;
+		private List<UserGroup> userGroups;
 	
-		private Permission permissions;
+		private List<Permission> permissions;
 	
 	
 	public void start() {
@@ -19,35 +21,35 @@ public class MainSystem {
 	}
 	
 	
-	public void setWorkflows(Workflow workflows) {
+	public void setWorkflows(List<Workflow> workflows) {
 		this.workflows = workflows;
 	}
 	
-	public Workflow getWorkflows() {
+	public List<Workflow> getWorkflows() {
 		return workflows; 
 	}
 	
-	public void setUsers(User users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 	
-	public User getUsers() {
+	public List<User> getUsers() {
 		return users; 
 	}
 	
-	public void setUserGroups(UserGroup userGroups) {
+	public void setUserGroups(List<UserGroup> userGroups) {
 		this.userGroups = userGroups;
 	}
 	
-	public UserGroup getUserGroups() {
+	public List<UserGroup> getUserGroups() {
 		return userGroups; 
 	}
 	
-	public void setPermissions(Permission permissions) {
+	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
 	}
 	
-	public Permission getPermissions() {
+	public List<Permission> getPermissions() {
 		return permissions; 
 	}
 	

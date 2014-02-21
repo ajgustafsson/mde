@@ -1,11 +1,13 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@4ef9abca (name: UserGroup) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@2fb8e76 (name: UserGroup) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
+import java.util.*;
 public class UserGroup {
+
 		private java.lang.String name;
 	
 	
-		private Permission permissions;
+		private List<Permission> permissions;
 	
 	
 	
@@ -17,11 +19,11 @@ public class UserGroup {
 		return name; 
 	}
 	
-	public void setPermissions(Permission permissions) {
+	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
 	}
 	
-	public Permission getPermissions() {
+	public List<Permission> getPermissions() {
 		return permissions; 
 	}
 	

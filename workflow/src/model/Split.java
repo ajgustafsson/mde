@@ -1,13 +1,15 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@63a4a88d (name: Split) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@33863c4a (name: Split) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
-public class Split {
+import java.util.*;
+public class Split extends Transition {
+
 		private java.lang.String name;
 	
 	
-		private Task previousTasks;
+		private List<Task> previousTasks;
 	
-		private Task tasks;
+		private List<Task> tasks;
 	
 	
 	public void transit() {
@@ -25,11 +27,19 @@ public class Split {
 		return name; 
 	}
 	
-	public void setTasks(Task tasks) {
+	public void setPreviousTasks(List<Task> previousTasks) {
+		this.previousTasks = previousTasks;
+	}
+	
+	public List<Task> getPreviousTasks() {
+		return previousTasks; 
+	}
+	
+	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
 	
-	public Task getTasks() {
+	public List<Task> getTasks() {
 		return tasks; 
 	}
 	

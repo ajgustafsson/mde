@@ -132,8 +132,7 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 		Task startTask = getStartTask();
 		if (checkThatUserCanExecuteTask(startTask, user)) {
 			startTask.doJob();
-		}
-		else {
+		} else {
 			System.out.println("You cannot do this task!");
 		}
 		if (!startTask.isEnd()) {
@@ -141,13 +140,14 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 			while (running) {
 				List<Task> executableTasks = getExecutableTasks();
 				Task toRun = null;
-				boolean correctTaskName = false;
+				if (executableTasks.size() == 1) {
+					toRun = executableTasks.get(0);
+				}
 				Scanner sc = null;
 				try {
-					sc = new Scanner(System.in);
-					while (!correctTaskName) {
-
+					while (toRun == null) {
 						printExecutableTasks(executableTasks);
+						sc = new Scanner(System.in);
 						String taskNameToStart = sc.nextLine();
 						try {
 							int id = Integer.parseInt(taskNameToStart);
@@ -157,13 +157,10 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 						} catch (NumberFormatException e) {
 						}
 
-						if (toRun != null) {
-							correctTaskName = true;
-						} else {
+						if (toRun == null) {
 							System.out.println("Task ID " + taskNameToStart
 									+ " isn't a valid task ID.");
 						}
-
 						if (checkThatUserCanExecuteTask(toRun, user)) {
 							toRun.doJob();
 							if (toRun.isEnd()) {
@@ -178,7 +175,6 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 					if (sc != null) {
 						sc.close();
 					}
-
 				}
 			}
 		}
@@ -201,14 +197,19 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 	private boolean checkThatUserCanExecuteTask(Task task, User user) {
 		Permission permission = task.getPermission();
 
-		List<UserGroup> groups = user.getGroups();
+		if (permission != null) {
 
-		for (UserGroup group : groups) {
-			if (group.getPermissions().contains(permission)) {
-				return true;
+			List<UserGroup> groups = user.getGroups();
+
+			for (UserGroup group : groups) {
+				if (group.getPermissions().contains(permission)) {
+					return true;
+				}
 			}
+			return false;
+		} else {
+			return true;
 		}
-		return false;
 	}
 
 	private List<Task> getExecutableTasks() {

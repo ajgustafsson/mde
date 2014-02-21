@@ -37,12 +37,12 @@ public class Starter {
 			
 		Workflow workflow = getWorkflow(workflowName, system.getWorkflows());
 		if (workflow == null) {
-	    	throw new NullPointerException("No workflow can be found with name: " + workflowName);
+	    	throw new IllegalArgumentException("No workflow can be found with name: " + workflowName);
 	    }
 		    
 	    User user = getUser(username, system.getUsers());
 	    if (user == null) {
-	    	throw new NullPointerException("No user can be found with name: " + user);
+	    	throw new IllegalArgumentException("No user can be found with name: " + user);
 	    }  
 	    
 	    workflow.start(user);

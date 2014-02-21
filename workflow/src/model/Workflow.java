@@ -9,16 +9,13 @@ public class Workflow {
 		private List<Node> nodes;
 	
 	
-<<<<<<< HEAD
-	public void start(User user) {
-=======
+
 	public void start(User var1
 	) {
 	
->>>>>>> 3c64b0cea0318b880057363deb342f6a3a804b4d
 		// Start of user code start
 		Task startTask = getStartTask();
-		if (checkThatUserCanExecuteTask(startTask, user)) {
+		if (checkThatUserCanExecuteTask(startTask, var1)) {
 			startTask.doJob();
 		} else {
 			System.out.println("You cannot do this task!");
@@ -54,7 +51,7 @@ public class Workflow {
 							System.out.println("Task ID " + taskNameToStart
 									+ " isn't a valid task ID.");
 						}
-						if (checkThatUserCanExecuteTask(toRun, user)) {
+						if (checkThatUserCanExecuteTask(toRun, var1)) {
 							toRun.doJob();
 							if (toRun.getEnd()) {
 								running = false;

@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@7a5a71ad (name: UserGroup) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;

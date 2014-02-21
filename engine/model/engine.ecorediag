@@ -60,7 +60,7 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_2d_ICZrVEeO1eYT6KI3pLw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_2d_ICprVEeO1eYT6KI3pLw" type="2001">
-        <element xmi:type="ecore:EAttribute" href="engine.ecore#//Task/Description"/>
+        <element xmi:type="ecore:EAttribute" href="engine.ecore#//Task/description"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_2d_IC5rVEeO1eYT6KI3pLw"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_2d_IDJrVEeO1eYT6KI3pLw" type="2001">

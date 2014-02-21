@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@79211d11 (name: Node) (instanceClassName: null) (abstract: true, interface: true)
 package model;
 
 import java.util.*;

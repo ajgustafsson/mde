@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@5fae1a85 (name: Split) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -12,7 +11,11 @@ public class Split extends Transition {
 		private List<Task> tasks;
 	
 	
-	public void transit() {
+	public void transit(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code transit
 		for (Task task : tasks) {
 			task.setReady(previousTasks);

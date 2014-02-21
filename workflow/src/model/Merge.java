@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@31c4b6bf (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -15,7 +14,11 @@ public class Merge extends Transition {
 		private Task task;
 	
 	
-	public void transit() {
+	public void transit(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code transit
 		boolean allDone = true;
 		for (Task task : previousTasks) {

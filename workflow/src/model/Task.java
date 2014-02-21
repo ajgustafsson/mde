@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@6f46b61f (name: Task) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -15,7 +14,7 @@ public class Task extends Node {
 	
 		private boolean start;
 	
-		private java.lang.String Description;
+		private java.lang.String description;
 	
 		private int Result;
 	
@@ -29,7 +28,11 @@ public class Task extends Node {
 		private List<Task> previousTasks;
 	
 	
-	public void doJob() {
+	public void doJob(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code doJob
 		Scanner input = null;
 		try {
@@ -46,7 +49,7 @@ public class Task extends Node {
 			System.out.println("----------- End of data from previous tasks -----------\n");
 
 			System.out.println("----------- " + this.name + " description: -----------\n");
-			System.out.println(this.Description);
+			System.out.println(this.description);
 			System.out.println("----------- Type or past any data that is required for next step in the workflow: -----------\n");
 			input = new Scanner(System.in);
 			String dataInput = input.nextLine();
@@ -111,12 +114,12 @@ public class Task extends Node {
 		return start; 
 	}
 	
-	public void setDescription(java.lang.String Description) {
-		this.Description = Description;
+	public void setDescription(java.lang.String description) {
+		this.description = description;
 	}
 	
 	public java.lang.String getDescription() {
-		return Description; 
+		return description; 
 	}
 	
 	public void setResult(int Result) {

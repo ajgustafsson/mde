@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@3613a81b (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -10,7 +9,13 @@ public class Workflow {
 		private List<Node> nodes;
 	
 	
+<<<<<<< HEAD
 	public void start(User user) {
+=======
+	public void start(User var1
+	) {
+	
+>>>>>>> 3c64b0cea0318b880057363deb342f6a3a804b4d
 		// Start of user code start
 		Task startTask = getStartTask();
 		if (checkThatUserCanExecuteTask(startTask, user)) {

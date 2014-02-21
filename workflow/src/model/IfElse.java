@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@1cad1d7b (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -12,7 +11,11 @@ public class IfElse extends Transition {
 		private List<Task> tasks;
 	
 	
-	public void transit() {
+	public void transit(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code transit
 		if (previousTasks.get(0).getResult() == 0) {
 			//negative outcome of the if else

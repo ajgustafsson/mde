@@ -20,6 +20,12 @@ public class Start {
 		[for (task : Task | workflow.nodes->select(oclIsKindOf(Task)).oclAsType(Task))]
 		[task.eClass().name/] [task.name/] = new Task();
 		[task.name/].setName("[task.name/]");
+		[task.name/].setDescription("[task.description/]");
+
+		[task.permission.eClass().name/] [task.permission.name/] = new [task.permission.eClass().name/]();
+		[task.permission.name/].setName("[task.permission.name/]");
+		[task.name/].setPermission([task.permission.name/]);
+
 		[task.name/].setState(TaskState.[task.state/]);
 		[task.name/].setEnd([task.end/]);
 		[task.name/].setStart([task.start/]);

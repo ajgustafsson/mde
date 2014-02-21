@@ -19,6 +19,10 @@ public class [e.name.toUpperFirst()/] extends [e.eSuperTypes.name/] {
 	[e.generateRelations()/]
 	[e.generateMethods()/]
 	[e.generateGettersAndSetters()/]
+
+	//[protected (e.name)]
+	//	y0lo
+	//[/protected]
 }
 
 [/file]
@@ -57,7 +61,23 @@ public class [e.name.toUpperFirst()/] extends [e.eSuperTypes.name/] {
 
 [template public generateMethods (eClass : EClass) ]
 [for (operation : EOperation | eClass.eAllOperations)]
-public void [operation.name/]() {
+[if (operation.eParameters->size() = 0)]
+public void [operation.name/](
+// [protected ('operation.name')]
+// 	go fot it anders
+// [/protected]
+) {
+[else]
+public void [operation.name/][for (parameter : EParameter | operation.eParameters) before ('(') separator (', ') after (') {')]
+[if (parameter.eType.instanceClassName = null)]
+[parameter.eType.name/] ['var'.concat(i.toString())/]
+[else]
+[parameter.eType.instanceClassName/] ['var'.concat(i.toString())/]
+[/if]
+[/for]
+
+
+[/if]
 	// [protected (operation.name)]
 	// TODO should be implemented
 	// [/protected]

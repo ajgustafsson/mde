@@ -1,4 +1,3 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@42ab2f68 (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 import java.util.*;
@@ -12,7 +11,11 @@ public class Simple extends Transition {
 		private Task task;
 	
 	
-	public void transit() {
+	public void transit(
+	// Start of user code operation.name
+	// 	go fot it anders
+	// End of user code
+	) {
 		// Start of user code transit
 		task.setReady(previousTasks);	
 		// End of user code

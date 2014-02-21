@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="MainSystem" name="org.eclipse.acceleo.module.sampleCustom">
+<<<<<<< HEAD
+    <property name="ECLIPSE_HOME" value="../../../../../../../Applications/eclipse"/>
+=======
     <property name="ECLIPSE_HOME" value="../../../../../../../Applications/eclipse kepler"/>
+>>>>>>> 68072b03cf2f5c9ed401166799f0272775286ffc
     <property name="ECLIPSE_WORKSPACE" value="../../.."/>
 
     <!-- The classpath with only the dependencies used by the project -->
@@ -26,8 +30,8 @@
         <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.acceleo.model_3.4.1.201309031307.jar"/>
         <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.acceleo.profiler_3.4.1.201309031307.jar"/>
         <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.acceleo.engine_3.4.1.201309031307.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.emf.codegen.ecore_2.9.1.v20131212-0558.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.emf.codegen_2.9.0.v20131212-0558.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.emf.codegen.ecore_2.9.1.v20130902-0605.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.eclipse.emf.codegen_2.9.0.v20130902-0605.jar"/>
         <pathelement location="${ECLIPSE_HOME}/plugins/com.google.guava_11.0.2.v201303041551.jar"/>
     </path>
 

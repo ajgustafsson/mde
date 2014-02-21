@@ -136,9 +136,11 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 			while (running) {
 				List<Task> executableTasks = getExecutableTasks();
 				Task toRun = null;
-				boolean correctTaskName = false;
-				while (!correctTaskName) {
-					
+				if (executableTasks.size() == 1) {
+					toRun = executableTasks.get(0);
+				}
+				
+				while (toRun == null) {
 					printExecutableTasks(executableTasks);
 					Scanner sc = new Scanner(System.in);
 					String taskNameToStart = sc.nextLine();
@@ -150,9 +152,7 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements Workfl
 					} catch (NumberFormatException e) {						
 					}
 					
-					if (toRun != null) {
-						correctTaskName = true;
-					} else {
+					if (toRun == null) {
 						System.out.println("Task ID " + taskNameToStart + " isn't a valid task ID.");
 					}
 				}

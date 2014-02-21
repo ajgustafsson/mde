@@ -64,8 +64,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
         eType="#//Task"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resultTasks" upperBound="-1"
-        eType="#//ResultTask" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" interface="true"
       eSuperTypes="#//Node">
@@ -167,10 +165,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Permission">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResultTask">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ResultName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

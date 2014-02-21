@@ -253,13 +253,22 @@ public interface EnginePackage extends EPackage {
 	int TASK__PREVIOUS_TASKS = NODE_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__RESULT_TASKS = NODE_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 9;
+	int TASK_FEATURE_COUNT = NODE_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Do Job</em>' operation.
@@ -317,22 +326,13 @@ public interface EnginePackage extends EPackage {
 	int TRANSITION__PREVIOUS_TASKS = NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__RESULT_TASKS = NODE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+	int TRANSITION_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Transit</em>' operation.
@@ -379,15 +379,6 @@ public interface EnginePackage extends EPackage {
 	 * @ordered
 	 */
 	int SPLIT__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
-
-	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPLIT__RESULT_TASKS = TRANSITION__RESULT_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
@@ -454,15 +445,6 @@ public interface EnginePackage extends EPackage {
 	int MERGE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
-
-	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -525,15 +507,6 @@ public interface EnginePackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
-
-	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -600,15 +573,6 @@ public interface EnginePackage extends EPackage {
 	int IF_ELSE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_ELSE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
-
-	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -673,15 +637,6 @@ public interface EnginePackage extends EPackage {
 	int SWITCH__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
 
 	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SWITCH__RESULT_TASKS = TRANSITION__RESULT_TASKS;
-
-	/**
 	 * The feature id for the '<em><b>Tasks</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -744,15 +699,6 @@ public interface EnginePackage extends EPackage {
 	 * @ordered
 	 */
 	int WAIT_FOR_ONE__PREVIOUS_TASKS = TRANSITION__PREVIOUS_TASKS;
-
-	/**
-	 * The feature id for the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WAIT_FOR_ONE__RESULT_TASKS = TRANSITION__RESULT_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Task</b></em>' reference.
@@ -1187,6 +1133,17 @@ public interface EnginePackage extends EPackage {
 	EReference getTask_PreviousTasks();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link Engine.Task#getResultTasks <em>Result Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Result Tasks</em>'.
+	 * @see Engine.Task#getResultTasks()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EReference getTask_ResultTasks();
+
+	/**
 	 * Returns the meta object for the '{@link Engine.Task#doJob() <em>Do Job</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1270,17 +1227,6 @@ public interface EnginePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransition_PreviousTasks();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Engine.Transition#getResultTasks <em>Result Tasks</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Result Tasks</em>'.
-	 * @see Engine.Transition#getResultTasks()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_ResultTasks();
 
 	/**
 	 * Returns the meta object for the '{@link Engine.Transition#transit() <em>Transit</em>}' operation.
@@ -1746,6 +1692,14 @@ public interface EnginePackage extends EPackage {
 		EReference TASK__PREVIOUS_TASKS = eINSTANCE.getTask_PreviousTasks();
 
 		/**
+		 * The meta object literal for the '<em><b>Result Tasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK__RESULT_TASKS = eINSTANCE.getTask_ResultTasks();
+
+		/**
 		 * The meta object literal for the '<em><b>Do Job</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1810,14 +1764,6 @@ public interface EnginePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__PREVIOUS_TASKS = eINSTANCE.getTransition_PreviousTasks();
-
-		/**
-		 * The meta object literal for the '<em><b>Result Tasks</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__RESULT_TASKS = eINSTANCE.getTransition_ResultTasks();
 
 		/**
 		 * The meta object literal for the '<em><b>Transit</b></em>' operation.

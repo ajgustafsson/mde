@@ -7,6 +7,7 @@
 package Engine.validation;
 
 import Engine.Permission;
+import Engine.ResultTask;
 import Engine.Task;
 import Engine.TaskState;
 import Engine.Transition;
@@ -40,6 +41,8 @@ public interface TaskValidator {
 	boolean validateData(String value);
 
 	boolean validatePreviousTasks(EList<Task> value);
+
+	boolean validateResultTasks(EList<ResultTask> value);
 
 	boolean validateChoice(String value);
 }

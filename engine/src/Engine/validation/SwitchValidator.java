@@ -6,10 +6,10 @@
  */
 package Engine.validation;
 
-import Engine.Choice;
+import org.eclipse.emf.common.util.EList;
+
 import Engine.ResultTask;
 import Engine.Task;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * A sample validator interface for {@link Engine.Switch}.
@@ -19,8 +19,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SwitchValidator {
 	boolean validate();
-
-	boolean validateChoices(EList<Choice> value);
 
 	boolean validateTasks(EList<Task> value);
 

@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link Engine.Task#getResult <em>Result</em>}</li>
  *   <li>{@link Engine.Task#getData <em>Data</em>}</li>
  *   <li>{@link Engine.Task#getPreviousTasks <em>Previous Tasks</em>}</li>
+ *   <li>{@link Engine.Task#getResultTasks <em>Result Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -156,6 +157,22 @@ public interface Task extends Node {
 	 * @generated
 	 */
 	EList<Task> getPreviousTasks();
+
+	/**
+	 * Returns the value of the '<em><b>Result Tasks</b></em>' containment reference list.
+	 * The list contents are of type {@link Engine.ResultTask}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Result Tasks</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Result Tasks</em>' containment reference list.
+	 * @see Engine.EnginePackage#getTask_ResultTasks()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ResultTask> getResultTasks();
 
 	/**
 	 * <!-- begin-user-doc -->

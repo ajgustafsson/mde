@@ -3,7 +3,6 @@
 package Engine.impl;
 
 import Engine.EnginePackage;
-import Engine.ResultTask;
 import Engine.Simple;
 import Engine.Task;
 import java.lang.reflect.InvocationTargetException;
@@ -15,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -28,7 +26,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Engine.impl.SimpleImpl#getName <em>Name</em>}</li>
  *   <li>{@link Engine.impl.SimpleImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
- *   <li>{@link Engine.impl.SimpleImpl#getResultTasks <em>Result Tasks</em>}</li>
  *   <li>{@link Engine.impl.SimpleImpl#getTask <em>Task</em>}</li>
  * </ul>
  * </p>
@@ -63,15 +60,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 	 * @ordered
 	 */
 	protected EList<Task> previousTasks;
-	/**
-	 * The cached value of the '{@link #getResultTasks() <em>Result Tasks</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResultTasks()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ResultTask> resultTasks;
 	/**
 	 * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -131,18 +119,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 			previousTasks = new EObjectWithInverseResolvingEList.ManyInverse<Task>(Task.class, this, EnginePackage.SIMPLE__PREVIOUS_TASKS, EnginePackage.TASK__TRANSITION);
 		}
 		return previousTasks;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ResultTask> getResultTasks() {
-		if (resultTasks == null) {
-			resultTasks = new EObjectContainmentEList<ResultTask>(ResultTask.class, this, EnginePackage.SIMPLE__RESULT_TASKS);
-		}
-		return resultTasks;
 	}
 
 	/**
@@ -216,8 +192,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 		switch (featureID) {
 			case EnginePackage.SIMPLE__PREVIOUS_TASKS:
 				return ((InternalEList<?>)getPreviousTasks()).basicRemove(otherEnd, msgs);
-			case EnginePackage.SIMPLE__RESULT_TASKS:
-				return ((InternalEList<?>)getResultTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -234,8 +208,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 				return getName();
 			case EnginePackage.SIMPLE__PREVIOUS_TASKS:
 				return getPreviousTasks();
-			case EnginePackage.SIMPLE__RESULT_TASKS:
-				return getResultTasks();
 			case EnginePackage.SIMPLE__TASK:
 				if (resolve) return getTask();
 				return basicGetTask();
@@ -259,10 +231,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 				getPreviousTasks().clear();
 				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
-			case EnginePackage.SIMPLE__RESULT_TASKS:
-				getResultTasks().clear();
-				getResultTasks().addAll((Collection<? extends ResultTask>)newValue);
-				return;
 			case EnginePackage.SIMPLE__TASK:
 				setTask((Task)newValue);
 				return;
@@ -284,9 +252,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 			case EnginePackage.SIMPLE__PREVIOUS_TASKS:
 				getPreviousTasks().clear();
 				return;
-			case EnginePackage.SIMPLE__RESULT_TASKS:
-				getResultTasks().clear();
-				return;
 			case EnginePackage.SIMPLE__TASK:
 				setTask((Task)null);
 				return;
@@ -306,8 +271,6 @@ public class SimpleImpl extends MinimalEObjectImpl.Container implements Simple {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case EnginePackage.SIMPLE__PREVIOUS_TASKS:
 				return previousTasks != null && !previousTasks.isEmpty();
-			case EnginePackage.SIMPLE__RESULT_TASKS:
-				return resultTasks != null && !resultTasks.isEmpty();
 			case EnginePackage.SIMPLE__TASK:
 				return task != null;
 		}

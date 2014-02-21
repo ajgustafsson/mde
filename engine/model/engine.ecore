@@ -64,14 +64,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
         eType="#//Task"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultTasks" upperBound="-1"
+        eType="#//ResultTask" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" interface="true"
       eSuperTypes="#//Node">
     <eOperations name="transit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousTasks" upperBound="-1"
         eType="#//Task" eOpposite="#//Task/transition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resultTasks" upperBound="-1"
-        eType="#//ResultTask" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Split" eSuperTypes="#//Transition">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

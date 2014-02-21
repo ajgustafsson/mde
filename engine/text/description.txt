@@ -25,12 +25,12 @@ Package Engine <Group2>
     Attribute Result : EInt
     Attribute data : EString
     Reference previousTasks : Task<<0..*>>
+    Reference resultTasks : ResultTask<<0..*>>
     Operation doJob() : void
     Operation setReady(EEList) : void
 
   Class Transition -> Node
     Reference previousTasks : Task<<0..*>>
-    Reference resultTasks : ResultTask<<0..*>>
     Operation transit() : void
 
   Class Split -> Transition

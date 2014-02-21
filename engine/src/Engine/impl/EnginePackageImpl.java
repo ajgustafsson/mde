@@ -332,6 +332,15 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTask_ResultTasks() {
+		return (EReference)taskEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getTask__DoJob() {
 		return taskEClass.getEOperations().get(0);
 	}
@@ -397,15 +406,6 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 	 */
 	public EReference getTransition_PreviousTasks() {
 		return (EReference)transitionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTransition_ResultTasks() {
-		return (EReference)transitionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -742,12 +742,12 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		createEAttribute(taskEClass, TASK__RESULT);
 		createEAttribute(taskEClass, TASK__DATA);
 		createEReference(taskEClass, TASK__PREVIOUS_TASKS);
+		createEReference(taskEClass, TASK__RESULT_TASKS);
 		createEOperation(taskEClass, TASK___DO_JOB);
 		createEOperation(taskEClass, TASK___SET_READY__ELIST);
 
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__PREVIOUS_TASKS);
-		createEReference(transitionEClass, TRANSITION__RESULT_TASKS);
 		createEOperation(transitionEClass, TRANSITION___TRANSIT);
 
 		splitEClass = createEClass(SPLIT);
@@ -853,6 +853,7 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 		initEAttribute(getTask_Result(), ecorePackage.getEInt(), "Result", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_Data(), ecorePackage.getEString(), "data", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTask_PreviousTasks(), this.getTask(), null, "previousTasks", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTask_ResultTasks(), this.getResultTask(), null, "resultTasks", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getTask__DoJob(), null, "doJob", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -861,7 +862,6 @@ public class EnginePackageImpl extends EPackageImpl implements EnginePackage {
 
 		initEClass(transitionEClass, Transition.class, "Transition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransition_PreviousTasks(), this.getTask(), this.getTask_Transition(), "previousTasks", null, 0, -1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_ResultTasks(), this.getResultTask(), null, "resultTasks", null, 0, -1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getTransition__Transit(), null, "transit", 0, 1, IS_UNIQUE, IS_ORDERED);
 

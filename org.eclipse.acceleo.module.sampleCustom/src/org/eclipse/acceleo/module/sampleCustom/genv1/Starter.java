@@ -31,7 +31,7 @@ public class Starter {
 
 	    ResourceSet resSet = new ResourceSetImpl();
 	    
-    	Resource resource = resSet.getResource(URI.createURI("xmi/MainSystem1.xmi"), true);
+    	Resource resource = resSet.getResource(URI.createURI("xmi/MainSystem.xmi"), true);
 	
 		MainSystem system = (MainSystem) resource.getContents().get(0);
 			

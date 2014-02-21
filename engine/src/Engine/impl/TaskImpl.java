@@ -4,6 +4,7 @@ package Engine.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,12 +14,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import Engine.EnginePackage;
 import Engine.Permission;
+import Engine.ResultTask;
 import Engine.Task;
 import Engine.TaskState;
 import Engine.Transition;
@@ -40,6 +43,7 @@ import Engine.Transition;
  *   <li>{@link Engine.impl.TaskImpl#getResult <em>Result</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getData <em>Data</em>}</li>
  *   <li>{@link Engine.impl.TaskImpl#getPreviousTasks <em>Previous Tasks</em>}</li>
+ *   <li>{@link Engine.impl.TaskImpl#getResultTasks <em>Result Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -217,6 +221,16 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	protected EList<Task> previousTasks;
 
 	/**
+	 * The cached value of the '{@link #getResultTasks() <em>Result Tasks</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResultTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ResultTask> resultTasks;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -355,6 +369,18 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ResultTask> getResultTasks() {
+		if (resultTasks == null) {
+			resultTasks = new EObjectContainmentEList<ResultTask>(ResultTask.class, this, EnginePackage.TASK__RESULT_TASKS);
+		}
+		return resultTasks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	public void doJob() {
 		System.out.println("----------- Data from previous tasks: -----------\n");
@@ -373,31 +399,34 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		String dataInput = input.nextLine();
 		this.data = dataInput;
 		
-//		printHelpToDecideHowItWent();
+		System.out.println("Set the result of the task...");
+		dataInput = input.nextLine();
+		
+		this.result = Integer.parseInt(dataInput);
 		
 		this.transition.get(0).transit();
 	}
 	
-	private void printHelpToDecideHowItWent() {
-		Transition next = this.transition.get(0);
-		next.getResultTasks();
-		
-		System.out.println("What's the result of the task?");
-		for (int i = 0; i < next.getResultT.size(); i++) {
-			Task task = this.tasks.get(i);
-			System.out.println("Choice ID: " + i +  " (" + task.getChoice() + ")");
-		}
-		Scanner input = new Scanner(System.in);
-		String dataInput = input.nextLine();
-		
-		int result = Integer.parseInt(dataInput);
-		Task nextTask = tasks.get(result);
-		
-		nextTask.setReady(previousTasks);
-		
-//		next.getPreviousTasks()
-		
-	}
+//	private void printHelpToDecideHowItWent() {
+//		Transition next = this.transition.get(0);
+//		List<ResultTask> resultTasks = next.getResultTasks();
+//		if (resultTasks != null && resultTasks.size() > 0) {
+//			
+//			System.out.println("What's the result of the task?");
+//			for (int i = 0; i < resultTasks.size(); i++) {
+//				ResultTask resultTask = resultTasks.get(i);
+//				System.out.println("Choice ID: " + i +  " (" + task.getChoice() + ")");
+//			}
+//			Scanner input = new Scanner(System.in);
+//			String dataInput = input.nextLine();
+//			
+//			int result = Integer.parseInt(dataInput);
+//			Task nextTask = tasks.get(result);
+//			
+//			nextTask.setReady(previousTasks);
+//		}
+//		
+//	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -433,6 +462,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		switch (featureID) {
 			case EnginePackage.TASK__TRANSITION:
 				return ((InternalEList<?>)getTransition()).basicRemove(otherEnd, msgs);
+			case EnginePackage.TASK__RESULT_TASKS:
+				return ((InternalEList<?>)getResultTasks()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -558,6 +589,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return getData();
 			case EnginePackage.TASK__PREVIOUS_TASKS:
 				return getPreviousTasks();
+			case EnginePackage.TASK__RESULT_TASKS:
+				return getResultTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -603,6 +636,10 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				getPreviousTasks().clear();
 				getPreviousTasks().addAll((Collection<? extends Task>)newValue);
 				return;
+			case EnginePackage.TASK__RESULT_TASKS:
+				getResultTasks().clear();
+				getResultTasks().addAll((Collection<? extends ResultTask>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -645,6 +682,9 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			case EnginePackage.TASK__PREVIOUS_TASKS:
 				getPreviousTasks().clear();
 				return;
+			case EnginePackage.TASK__RESULT_TASKS:
+				getResultTasks().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -677,6 +717,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 				return DATA_EDEFAULT == null ? data != null : !DATA_EDEFAULT.equals(data);
 			case EnginePackage.TASK__PREVIOUS_TASKS:
 				return previousTasks != null && !previousTasks.isEmpty();
+			case EnginePackage.TASK__RESULT_TASKS:
+				return resultTasks != null && !resultTasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

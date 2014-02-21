@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link Engine.Transition#getPreviousTasks <em>Previous Tasks</em>}</li>
- *   <li>{@link Engine.Transition#getResultTasks <em>Result Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,22 +40,6 @@ public interface Transition extends Node {
 	 * @generated
 	 */
 	EList<Task> getPreviousTasks();
-
-	/**
-	 * Returns the value of the '<em><b>Result Tasks</b></em>' containment reference list.
-	 * The list contents are of type {@link Engine.ResultTask}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Result Tasks</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Tasks</em>' containment reference list.
-	 * @see Engine.EnginePackage#getTransition_ResultTasks()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ResultTask> getResultTasks();
 
 	/**
 	 * <!-- begin-user-doc -->

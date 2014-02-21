@@ -142,6 +142,11 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 				Task toRun = null;
 				if (executableTasks.size() == 1) {
 					toRun = executableTasks.get(0);
+					if(toRun.isEnd()) {
+						toRun.doJob();
+						break;
+					}
+					toRun.doJob();
 				}
 				Scanner sc = null;
 				try {
@@ -172,9 +177,7 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 						}
 					}
 				} finally {
-					if (sc != null) {
-						sc.close();
-					}
+
 				}
 			}
 		}
@@ -231,7 +234,7 @@ public class WorkflowImpl extends MinimalEObjectImpl.Container implements
 		System.out
 				.println("Which task do you want to start? (Type the ID of the task you want to start)");
 		for (int i = 0; i < executableTasks.size(); i++) {
-			Task task = executableTasks.get(0);
+			Task task = executableTasks.get(i);
 			System.out.println("Task ID: " + i + " (" + task.getName() + ")");
 		}
 	}

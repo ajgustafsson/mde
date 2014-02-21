@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@429ed026 (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@3fe715e6 (name: Merge) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class Merge {
@@ -6,8 +6,6 @@ public class Merge {
 	
 	
 		private Task previousTasks;
-	
-		private ResultTask resultTasks;
 	
 		private Task task;
 	

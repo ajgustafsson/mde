@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@1d1ab9e4 (name: Switch) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@5f3aa034 (name: Switch) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class Switch {
@@ -6,8 +6,6 @@ public class Switch {
 	
 	
 		private Task previousTasks;
-	
-		private ResultTask resultTasks;
 	
 		private Task tasks;
 	

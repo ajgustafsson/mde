@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@59359d9e (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@357586e5 (name: MainSystem) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class MainSystem {

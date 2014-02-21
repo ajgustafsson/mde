@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@4a1c47ef (name: Task) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@1386e93a (name: Task) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class Task {

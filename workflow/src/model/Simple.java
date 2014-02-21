@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@69f8ad56 (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@54b1b0f (name: Simple) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class Simple {
@@ -6,8 +6,6 @@ public class Simple {
 	
 	
 		private Task previousTasks;
-	
-		private ResultTask resultTasks;
 	
 		private Task task;
 	

@@ -5,6 +5,7 @@
 [comment @main/]
 [file ('Start.java', false, 'UTF-8')]
 package model;
+import java.util.Map;
 import java.util.HashMap;
 
 public class Start {
@@ -25,10 +26,11 @@ public class Start {
 
 		[/for]
 		[for (simple : Simple | workflow.nodes->select(oclIsKindOf(Simple)).oclAsType(Simple))]
-		[simple.eClass().name/] [simple.name/] = new [task.eClass().name/]();
-		[simple.name/].setName([simple.name/]);
-		[simple.name/].setTask([simple.task/]);
-		[simple.name/].setPreviousTask([simple.previousTasks/]);
+		[simple.eClass().name/] [simple.name/] = new [simple.eClass().name/]();
+		[simple.name/].setName("[simple.name/]");
+		[simple.name/].setTask(tasks.get("[simple.previousTasks.name/]"));
+		[simple.name/].setTask(tasks.get("[simple.task.name/]"));
+
 		transitions.put("[simple/]","[simple.name/]");
 
 	[/for]

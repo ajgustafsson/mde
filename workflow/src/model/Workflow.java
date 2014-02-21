@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@13d80311 (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@5601b6a1 (name: Workflow) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class Workflow {

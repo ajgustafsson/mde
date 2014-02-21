@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@22b62c67 (name: Node) (instanceClassName: null) (abstract: true, interface: true)
+//org.eclipse.emf.ecore.impl.EClassImpl@4d0f25bd (name: Node) (instanceClassName: null) (abstract: true, interface: true)
 package model;
 
 public class Node {

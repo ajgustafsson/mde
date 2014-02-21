@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@69fa8338 (name: Split) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@63a4a88d (name: Split) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class Split {
@@ -6,8 +6,6 @@ public class Split {
 	
 	
 		private Task previousTasks;
-	
-		private ResultTask resultTasks;
 	
 		private Task tasks;
 	

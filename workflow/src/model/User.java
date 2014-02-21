@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@50e4c9c9 (name: User) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@584b5d2f (name: User) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class User {

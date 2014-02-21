@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@60cd4888 (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@6e90f088 (name: IfElse) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class IfElse {
@@ -6,8 +6,6 @@ public class IfElse {
 	
 	
 		private Task previousTasks;
-	
-		private ResultTask resultTasks;
 	
 		private Task tasks;
 	

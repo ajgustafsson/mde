@@ -1,4 +1,4 @@
-//org.eclipse.emf.ecore.impl.EClassImpl@18869132 (name: WaitForOne) (instanceClassName: null) (abstract: false, interface: false)
+//org.eclipse.emf.ecore.impl.EClassImpl@69755aa4 (name: WaitForOne) (instanceClassName: null) (abstract: false, interface: false)
 package model;
 
 public class WaitForOne {
@@ -6,8 +6,6 @@ public class WaitForOne {
 	
 	
 		private Task previousTasks;
-	
-		private ResultTask resultTasks;
 	
 		private Task task;
 	

@@ -10,25 +10,26 @@
     <nodes xsi:type="G2:Task"
         name="task1"
         start="true"
-        permission="//@permissions.0"
+        permission="//@permissions.1"
         transition="//@workflows.0/@nodes.1"
-        Description="Detta ar den forsta tasken"/>
+        description="Detta ar den forsta tasken"/>
     <nodes xsi:type="G2:Simple"
         name="simple1"
         previousTasks="//@workflows.0/@nodes.0"
         task="//@workflows.0/@nodes.2"/>
     <nodes xsi:type="G2:Task"
         name="task2"
-        end="true"
         permission="//@permissions.0"
-        Description="Detta ar task2"
+        description="Detta ar task2"
         data=""/>
   </workflows>
   <users groups="//@userGroups.0"
       name="Eva"/>
   <userGroups
-      permissions="//@permissions.0"
+      permissions="//@permissions.0 //@permissions.1"
       name="grupp"/>
   <permissions
       name="perm"/>
+  <permissions
+      name="perm1"/>
 </G2:MainSystem>

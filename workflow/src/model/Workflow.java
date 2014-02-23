@@ -27,11 +27,10 @@ public class Workflow {
 				Task toRun = null;
 				if (executableTasks.size() == 1) {
 					toRun = executableTasks.get(0);
+					toRun.doJob();
 					if(toRun.getEnd()) {
-						toRun.doJob();
 						break;
 					}
-					toRun.doJob();
 				}
 				Scanner sc = null;
 				try {
@@ -64,7 +63,9 @@ public class Workflow {
 				} finally {
 
 				}
+				
 			}
+			System.out.println("Good work brother, you completed the workflow");
 		}
 		// End of user code
 	}

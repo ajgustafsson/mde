@@ -57,13 +57,13 @@ public class Task extends Node {
 			dataInput = input.nextLine();
 
 			this.Result = Integer.parseInt(dataInput);
-			System.out.println(this.transition.get(0));
+			
 			System.out.println("----------- Done executing " + this.name + " -----------\n");
 			this.setState(TaskState.PROCESSED);
-			this.transition.get(0).transit();
-			
-			
-			
+			if (transition != null && transition.size() > 0) {
+				this.transition.get(0).transit();				
+			}
+				
 		} finally {
 		//	if (input != null) {
 	//			input.close();

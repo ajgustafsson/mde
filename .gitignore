@@ -3,3 +3,5 @@
 engine/bin/
 
 *.class
+
+.DS_Store

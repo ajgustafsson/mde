@@ -1,0 +1,7 @@
+transformation workflow2Petrinet();
+
+modeltype MMW uses "Group2";
+
+main() {
+
+}

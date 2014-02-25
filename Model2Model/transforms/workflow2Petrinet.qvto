@@ -1,7 +1,78 @@
-transformation workflow2Petrinet();
 
-modeltype MMW uses "Group2";
+transformation workflow2Petrinet(in src:WF, out trg:PN);
+
+//Importing the necessary metamodels, first defined in project/properties
+modeltype WF uses "Group2";
+modeltype PN uses "chalmers.se/cse/mde2014";
+
 
 main() {
+	src.rootObjects()[MainSystem].workflows -> map workflowToPetrinet();
+}
 
+
+mapping Workflow::workflowToPetrinet():PetriNet {
+	name := self.name;
+	
+	
+	//Creating all places in the PetriNet
+	nodes := self.nodes[Task] -> map wfeTaskToPetriPlace(self);	
+	
+	//Creating all transitions in the petriNet
+	nodes += self.nodes[Split] -> map splitToTransition(self);
+	nodes += self.nodes[Simple] -> map simpleToTransition(self);
+}
+
+mapping Simple::simpleToTransition(in workflow : Workflow):PN::Transition {
+	name := self.name; 
+	
+	//TODO: set incoming
+	outgoing := self.task -> map createArc(workflow, self);
+	
+	outgoing -> setIncoming();	
+	outgoing -> map addArcToPetri(workflow);
+}
+
+mapping Split::splitToTransition(in workflow : Workflow):PN::Transition {
+	name := self.name;
+	
+	outgoing := self.tasks -> map createArc(workflow, self);
+	
+	outgoing -> map setIncoming();	
+	outgoing -> map addArcToPetri(workflow);
+}
+
+mapping PN::Arc::setIncoming() {
+	self.target.incoming := self;
+}
+
+mapping PN::Arc::addArcToPetri(in workflow : Workflow) {
+	workflow.resolveone(PetriNet).arcs += self;
+}
+
+mapping Task::wfeTaskToPetriPlace(in workflow :Workflow):Place {
+	name := self.name;
+	net := workflow.resolveone(PetriNet);
+	//outgoing := self.transition.map transitionToArc(self, workflow);
+	outgoing := self-> map connectFromTask(workflow);
+	workflow.resolveone(PetriNet).arcs += outgoing;
+	
+	//Fetching the previous transition, only need the first task to determine because they point to the same transition.
+	//TODO: Set incoming arc.
+	//incoming := 
+	
+	//TODO: Add arc outgoing, incoming reference
+}
+
+mapping WF::Task::createArc(in workflow : Workflow, in wfTransition : Transition):Arc {
+	net := workflow.resolveone(PetriNet);
+	source := wfTransition.resolveone(PN::Transition);
+	target := self.resolveone(Place);
+}
+
+mapping WF::Task::connectFromTask(in workflow : Workflow):Arc {
+	//TODO: Set petrinet
+	net := workflow.resolveone(PetriNet);
+	source := self.resolveone(Place);
+	target := self.transition.resolveone(PN::Transition);
 }

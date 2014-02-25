@@ -22,7 +22,8 @@
         permission="//@permissions.0"
         transition="//@workflows.0/@nodes.3"
         description="Detta ar task2"
-        data=""/>
+        data=""
+        previousTasks="//@workflows.0/@nodes.0"/>
     <nodes xsi:type="G2:Split"
         name="parallelFlowMaddafaaaaakka"
         previousTasks="//@workflows.0/@nodes.2"

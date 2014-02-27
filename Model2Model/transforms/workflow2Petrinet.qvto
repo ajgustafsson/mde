@@ -16,7 +16,7 @@ mapping Workflow::workflowToPetrinet():PetriNet {
 	
 	
 	//Creating all places in the PetriNet
-	nodes := self.nodes[Task] -> map wfeTaskToPetriPlace(self);	
+	nodes := self.nodes[Task] -> map wfeTaskToPetriPlace(self);
 	
 	//Creating all transitions in the petriNet
 	nodes += self.nodes[Split] -> map splitToTransition(self);

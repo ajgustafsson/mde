@@ -14,13 +14,20 @@ main() {
 mapping Workflow::workflowToPetrinet():PetriNet {
 	name := self.name;
 	
+	//Creating all places in the PetriNet and connect an outgoing arc
+	nodes := self.nodes[Task] -> map wfeTaskToPetriPlace(self);	
 	
-	//Creating all places in the PetriNet
-	nodes := self.nodes[Task] -> map wfeTaskToPetriPlace(self);
-	
-	//Creating all transitions in the petriNet
+	//Creating all transitions in the petriNet and add outoing arcs and set incoming on the following place
 	nodes += self.nodes[Split] -> map splitToTransition(self);
 	nodes += self.nodes[Simple] -> map simpleToTransition(self);
+	nodes += self.nodes[Merge] -> map mergeToTransition(self);
+	nodes += self.nodes[IfElse] -> map ifElseToTransition(self);
+	nodes += self.nodes[Switch] -> map switchToTransition(self);
+	nodes += self.nodes[WaitForOne] -> map waitForOneToTransition(self);
+	
+	//set the target on arcs from places
+	self.nodes[Task] -> map setTargetOnArcsFromPlaces();
+	
 }
 
 mapping Simple::simpleToTransition(in workflow : Workflow):PN::Transition {
@@ -29,8 +36,9 @@ mapping Simple::simpleToTransition(in workflow : Workflow):PN::Transition {
 	//TODO: set incoming
 	outgoing := self.task -> map createArc(workflow, self);
 	
-	outgoing -> setIncoming();	
+	outgoing -> setIncomingArcOnFollowingPlace();	
 	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
 }
 
 mapping Split::splitToTransition(in workflow : Workflow):PN::Transition {
@@ -38,11 +46,52 @@ mapping Split::splitToTransition(in workflow : Workflow):PN::Transition {
 	
 	outgoing := self.tasks -> map createArc(workflow, self);
 	
-	outgoing -> map setIncoming();	
+	outgoing -> map setIncomingArcOnFollowingPlace();	
 	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
 }
 
-mapping PN::Arc::setIncoming() {
+mapping Merge::mergeToTransition(in workflow : Workflow):PN::Transition {
+	name := self.name;
+	
+	outgoing := self.task -> map createArc(workflow, self);
+	
+	outgoing -> map setIncomingArcOnFollowingPlace();	
+	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
+}
+
+mapping IfElse::ifElseToTransition(in workflow : Workflow):PN::Transition {
+	name := self.name;
+	
+	outgoing := self.tasks -> map createArc(workflow, self);
+	
+	outgoing -> map setIncomingArcOnFollowingPlace();	
+	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
+}
+
+mapping Switch::switchToTransition(in workflow : Workflow):PN::Transition {
+	name := self.name;
+	
+	outgoing := self.tasks -> map createArc(workflow, self);
+	
+	outgoing -> map setIncomingArcOnFollowingPlace();	
+	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
+}
+
+mapping WaitForOne::waitForOneToTransition(in workflow : Workflow):PN::Transition {
+	name := self.name;
+	
+	outgoing := self.task -> map createArc(workflow, self);
+	
+	outgoing -> map setIncomingArcOnFollowingPlace();	
+	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
+}
+
+mapping PN::Arc::setIncomingArcOnFollowingPlace() {
 	self.target.incoming := self;
 }
 
@@ -53,15 +102,19 @@ mapping PN::Arc::addArcToPetri(in workflow : Workflow) {
 mapping Task::wfeTaskToPetriPlace(in workflow :Workflow):Place {
 	name := self.name;
 	net := workflow.resolveone(PetriNet);
-	//outgoing := self.transition.map transitionToArc(self, workflow);
-	outgoing := self-> map connectFromTask(workflow);
+	
+	if (self.start) then
+		tokens += map getToken()
+	endif;
+		if (self._end = false) then
+		outgoing := self-> map connectFromTask(workflow)
+	endif;
 	workflow.resolveone(PetriNet).arcs += outgoing;
+
+}
+
+mapping getToken():Token {
 	
-	//Fetching the previous transition, only need the first task to determine because they point to the same transition.
-	//TODO: Set incoming arc.
-	//incoming := 
-	
-	//TODO: Add arc outgoing, incoming reference
 }
 
 mapping WF::Task::createArc(in workflow : Workflow, in wfTransition : Transition):Arc {
@@ -71,8 +124,22 @@ mapping WF::Task::createArc(in workflow : Workflow, in wfTransition : Transition
 }
 
 mapping WF::Task::connectFromTask(in workflow : Workflow):Arc {
-	//TODO: Set petrinet
 	net := workflow.resolveone(PetriNet);
 	source := self.resolveone(Place);
-	target := self.transition.resolveone(PN::Transition);
+	
+	//TODO: doesn't work for simple because the transition isn't created yet.
+		
+}
+
+mapping Task::setTargetOnArcsFromPlaces() {
+	//log(''self.resolveone(Place).name)
+	self.resolveone(Place).outgoing->first().target := self.transition.resolveone(PN::Transition);
+	self.transition.resolveone(PN::Transition).incoming := self.resolveone(Place).outgoing->first();
+	 
+	//if (self.transition->first().oclIsTypeOf(Simple)) then
+		//self.resolveone(Place).outgoing.target = self.transition->first()		.outgoing.target = self.transition->first().oclAsType(Simple).resolveone(PN::Transition) 	
+	//endif;
+	
+	//outgoing->first().target = self.transition.resolveone(Place); 
+	
 }

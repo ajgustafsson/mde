@@ -8,8 +8,9 @@ modeltype PN uses "chalmers.se/cse/mde2014";
 
 main() {
 	src.rootObjects()[MainSystem].workflows -> map workflowToPetrinet();
+	
+	src.rootObjects()[MainSystem].userGroups -> map userGroupsAsTokens();
 }
-
 
 mapping Workflow::workflowToPetrinet():PetriNet {
 	name := self.name;
@@ -27,6 +28,15 @@ mapping Workflow::workflowToPetrinet():PetriNet {
 	
 	//set the target on arcs from places
 	self.nodes[Task] -> map setTargetOnArcsFromPlaces();
+}
+
+mapping UserGroup::userGroupsAsTokens() {
+	self.permissions.resolve(PN::Place) -> forEach(place) {
+		if (place.tokens -> size() = 0) then {
+			place.tokens += new Token();
+		}
+		endif;
+	};
 }
 
 mapping Simple::simpleToTransition(in workflow : Workflow):PN::Transition {
@@ -151,7 +161,6 @@ mapping Task::wfeTaskToPetriPlace(in workflow :Workflow):Place {
 }
 
 mapping getToken():Token {
-	
 }
 
 mapping WF::Task::createArc(in workflow : Workflow, in wfTransition : Transition):Arc {

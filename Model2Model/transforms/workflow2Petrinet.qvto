@@ -8,7 +8,6 @@ modeltype PN uses "chalmers.se/cse/mde2014";
 
 main() {
 	src.rootObjects()[MainSystem].workflows -> map workflowToPetrinet();
-	
 	src.rootObjects()[MainSystem].userGroups -> map userGroupsAsTokens();
 }
 
@@ -33,10 +32,13 @@ mapping Workflow::workflowToPetrinet():PetriNet {
 mapping UserGroup::userGroupsAsTokens() {
 	self.permissions.resolve(PN::Place) -> forEach(place) {
 		if (place.tokens -> size() = 0) then {
-			place.tokens += new Token();
+			place.tokens += map newToken(place);
 		}
 		endif;
 	};
+}
+
+mapping newToken(in place : Place) : Token {
 }
 
 mapping Simple::simpleToTransition(in workflow : Workflow):PN::Transition {

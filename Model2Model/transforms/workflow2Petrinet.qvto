@@ -1,4 +1,3 @@
-
 transformation workflow2Petrinet(in src:WF, out trg:PN);
 
 //Importing the necessary metamodels, first defined in project/properties
@@ -8,7 +7,7 @@ modeltype PN uses "chalmers.se/cse/mde2014";
 
 main() {
 	src.rootObjects()[MainSystem].workflows -> map workflowToPetrinet();
-	src.rootObjects()[MainSystem].userGroups -> map userGroupsAsTokens();
+	src.rootObjects()[MainSystem].users.groups -> map userGroupsAsTokens();
 }
 
 mapping Workflow::workflowToPetrinet():PetriNet {
@@ -29,6 +28,7 @@ mapping Workflow::workflowToPetrinet():PetriNet {
 	self.nodes[Task] -> map setTargetOnArcsFromPlaces();
 }
 
+//Iterating all user groups and adding tokens for the appropriate permission
 mapping UserGroup::userGroupsAsTokens() {
 	self.permissions.resolve(PN::Place) -> forEach(place) {
 		if (place.tokens -> size() = 0) then {
@@ -38,6 +38,7 @@ mapping UserGroup::userGroupsAsTokens() {
 	};
 }
 
+//Creating a new token, mainly to add tokens for a permission place
 mapping newToken(in place : Place) : Token {
 }
 

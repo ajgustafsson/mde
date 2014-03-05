@@ -58,8 +58,7 @@ mapping Split::splitToTransition(in workflow : Workflow):PN::Transition {
 	name := self.name;
 	
 	outgoing := self.tasks -> map createArc(workflow, self);
-	
-	outgoing -> map setIncomingArcOnFollowingPlace();	
+	outgoing -> map setIncomingArcOnFollowingPlace();
 	outgoing -> map addArcToPetri(workflow);
 	net := workflow.resolveone(PetriNet);
 	
@@ -80,43 +79,63 @@ mapping Merge::mergeToTransition(in workflow : Workflow):PN::Transition {
 	self.task.permission -> map createPermission(workflow, self);
 }
 
-mapping IfElse::ifElseToTransition(in workflow : Workflow):PN::Transition {
-	name := self.name;
-	
-	outgoing := self.tasks -> map createArc(workflow, self);
-	
-	outgoing -> map setIncomingArcOnFollowingPlace();	
-	outgoing -> map addArcToPetri(workflow);
-	net := workflow.resolveone(PetriNet);
-	
-	//create permission places
-	self.tasks.permission -> map createPermission(workflow, self);
+mapping IfElse::ifElseToTransition(in workflow : Workflow) {
+	self.previousTasks -> first().resolveone(Place).outgoing += self.tasks -> map ifElseOrSwitchTransitions(workflow).incoming;
 }
 
-mapping Switch::switchToTransition(in workflow : Workflow):PN::Transition {
-	name := self.name;
-	
-	outgoing := self.tasks -> map createArc(workflow, self);
-	
-	outgoing -> map setIncomingArcOnFollowingPlace();	
-	outgoing -> map addArcToPetri(workflow);
-	net := workflow.resolveone(PetriNet);
-	
-	//create permission places
-	self.tasks.permission -> map createPermission(workflow, self);
+mapping PN::Arc::setOutgoingArcOnFollowingPlace() {
+	self.source.outgoing += self;
 }
 
-mapping WaitForOne::waitForOneToTransition(in workflow : Workflow):PN::Transition {
+mapping Task::ifElseOrSwitchTransitions(in workflow : Workflow):PN::Transition {
 	name := self.name;
-	
-	outgoing := self.task -> map createArc(workflow, self);
-	
-	outgoing -> map setIncomingArcOnFollowingPlace();	
+	log("loop" + name);
+	incoming := self -> map createIncomingArcToTransition(workflow, self.previousTasks->first(), result);
+	incoming -> setOutgoingArcOnFollowingPlace();	
+	incoming -> map addArcToPetri(workflow);
+	outgoing := self -> map createOutgoingArcFromTransition(workflow, result);
+	outgoing -> setIncomingArcOnFollowingPlace();	
 	outgoing -> map addArcToPetri(workflow);
 	net := workflow.resolveone(PetriNet);
+	net.nodes += result;
 	
 	//create permission places
-	self.task.permission -> map createPermission(workflow, self);
+	self.permission -> map createPermission(workflow, self.transition->first());
+}
+
+mapping Task::waitForOneTransitions(in workflow : Workflow, nextTask : Task):PN::Transition {
+	name := self.name + "WFO";
+	log("loopWFO" + name);
+	incoming := self -> map createIncomingArcToTransition(workflow, self, result);
+	incoming -> setOutgoingArcOnFollowingPlace();	
+	incoming -> map addArcToPetri(workflow);
+	outgoing := self -> map createAnOutgoingArcFromTransition(workflow, nextTask, result);
+	outgoing -> setIncomingArcOnFollowingPlace();	
+	outgoing -> map addArcToPetri(workflow);
+	net := workflow.resolveone(PetriNet);
+	net.nodes += result;
+	
+	//create permission places
+	self.permission -> map createPermission(workflow, self.transition->first());
+}
+
+mapping WF::Task::createAnOutgoingArcFromTransition(in workflow : Workflow, in task : Task, in ptransition : PN::Transition):Arc {
+	net := workflow.resolveone(PetriNet);
+	source := ptransition;
+	target := task.resolveone(Place);
+}
+
+mapping WF::Task::createOutgoingArcFromTransition(in workflow : Workflow, in ptransition : PN::Transition):Arc {
+	net := workflow.resolveone(PetriNet);
+	source := ptransition;
+	target := self.resolveone(Place);
+}
+mapping Switch::switchToTransition(in workflow : Workflow) {
+	self.previousTasks -> first().resolveone(Place).outgoing += self.tasks -> map ifElseOrSwitchTransitions(workflow).incoming;
+}
+
+mapping WaitForOne::waitForOneToTransition(in workflow : Workflow) {
+	self.previousTasks -> map waitForOneTransitions(workflow, self.task).outgoing;
 }
 
 mapping WF::Permission::createPermission(in workflow : Workflow, in transition : WF::Transition):PN::Place {
@@ -142,7 +161,7 @@ mapping createPermissionArc(in incoming : PN::Node, in outgoing : PN::Node):PN::
 }
 
 mapping PN::Arc::setIncomingArcOnFollowingPlace() {
-	self.target.incoming := self;
+	self.target.incoming += self;
 }
 
 mapping PN::Arc::addArcToPetri(in workflow : Workflow) {
@@ -156,7 +175,8 @@ mapping Task::wfeTaskToPetriPlace(in workflow :Workflow):Place {
 	if (self.start) then
 		tokens += map getToken()
 	endif;
-		if (self._end = false) then
+		if ((self._end = false) and (self.transition->first().oclIsTypeOf(IfElse) = false) 
+		and (self.transition->first().oclIsTypeOf(Switch) = false) and (self.transition->first().oclIsTypeOf(WaitForOne) = false)) then
 		outgoing := self-> map connectFromTask(workflow)
 	endif;
 	workflow.resolveone(PetriNet).arcs += outgoing;
@@ -171,12 +191,22 @@ mapping WF::Task::createArc(in workflow : Workflow, in wfTransition : Transition
 	target := self.resolveone(Place);
 }
 
+mapping WF::Task::createIncomingArcToTransition(in workflow : Workflow, in task : Task, in ptransition : PN::Transition):Arc {
+	net := workflow.resolveone(PetriNet);
+	source := task.resolveone(Place);
+	target := ptransition;
+}
+
 mapping WF::Task::connectFromTask(in workflow : Workflow):Arc {
 	net := workflow.resolveone(PetriNet);
 	source := self.resolveone(Place);		
 }
 
 mapping Task::setTargetOnArcsFromPlaces() {
+	if((self.transition->first().oclIsTypeOf(IfElse) = false) and (self.transition->first().oclIsTypeOf(Switch) = false)
+	and (self.transition->first().oclIsTypeOf(WaitForOne) = false)) then {
 	self.resolveone(Place).outgoing->first().target := self.transition.resolveone(PN::Transition);
-	self.transition.resolveone(PN::Transition).incoming += self.resolveone(Place).outgoing->first();	
+	self.transition.resolveone(PN::Transition).incoming += self.resolveone(Place).outgoing->first()
+	}
+	endif;
 }
